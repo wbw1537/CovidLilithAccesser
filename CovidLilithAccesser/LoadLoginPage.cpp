@@ -13,6 +13,17 @@ void LoadLoginPage() {
 	putimage(80, WINDOWHEIGHT / 2 - logo.getheight() / 2 - 30, &logo);
 	drawAlpha(&title, 500, 50);
 
+	//load the button png and print.
+	IMAGE loginAsUser, loginAsAdmin, loginAsVolunteer;
+	loadimage(&loginAsUser, "resources/loginAsUser.png", 140, 45);
+	loadimage(&loginAsAdmin, "resources/loginAsAdmin.png", 140, 45);
+	loadimage(&loginAsVolunteer, "resources/loginAsVlounteer.png", 140, 45);
+	
+	drawAlpha(&loginAsAdmin, 470, 430);
+	drawAlpha(&loginAsVolunteer, 620, 430);
+	drawAlpha(&loginAsUser, 770, 430);
+
+	/*
 	//draw the rectangle for the login buttom
 	fillrectangle(250, 445, 400, 490);
 	fillrectangle(420, 445, 570, 490);
@@ -26,5 +37,7 @@ void LoadLoginPage() {
 	drawtext(FirstSelect1, &R[0], DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 	drawtext(FirstSelect2, &R[1], DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 	drawtext(FirstSelect3, &R[2], DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+	*/
+	
 
 }
