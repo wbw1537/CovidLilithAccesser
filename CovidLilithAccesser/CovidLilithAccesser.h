@@ -4,6 +4,7 @@
 #include<graphics.h>
 #include<string.h>
 #include"LoadLoginPage.h"
+#include"DrawPng.h"
 
 //carify the width and height of the window
 const int WINDOWWIDTH = 960;

@@ -1,14 +1,19 @@
 #include"CovidLilithAccesser.h"
 #include"LoadLoginPage.h"
+
 MOUSEMSG m1;
 //load the login page
 void LoadLoginPage() {
-	IMAGE backGround, logo;
+	IMAGE backGround, logo, title;
 	//load background image and logo image, then print them.
-	loadimage(&backGround, "resources / backGround.png", 960, 540);
-	loadimage(&logo, "resources/covidProofWorkers.jpg");
+	loadimage(&backGround, "resources/backGround.jpg");
+	loadimage(&logo, "resources/covidProofWorkers.jpg", 350, 227);
+	loadimage(&title, "resources/title.png");
 	putimage(0, 0, &backGround);
-	putimage(80, WINDOWHEIGHT / 2 - logo.getheight() / 2 - 20, &logo);
+	putimage(80, WINDOWHEIGHT / 2 - logo.getheight() / 2 - 30, &logo);
+	drawAlpha(&title, 500, 50);
+
+	//draw the rectangle for the login buttom
 	fillrectangle(250, 445, 400, 490);
 	fillrectangle(420, 445, 570, 490);
 	fillrectangle(590, 445, 740, 490);

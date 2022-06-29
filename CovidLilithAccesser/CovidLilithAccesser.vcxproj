@@ -128,10 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CovidLilithAccesser.cpp" />
+    <ClCompile Include="DrawPng.cpp" />
     <ClCompile Include="LoadLoginPage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CovidLilithAccesser.h" />
+    <ClInclude Include="DrawPng.h" />
     <ClInclude Include="LoadLoginPage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
