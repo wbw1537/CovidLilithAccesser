@@ -3,7 +3,7 @@
 
 int main(void)
 {
-	initgraph(640, 200);
+	initgraph(680, 200);
 	circle(200, 200, 100);
 	_getch();
 	closegraph();
