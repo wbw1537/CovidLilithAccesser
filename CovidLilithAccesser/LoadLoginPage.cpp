@@ -4,8 +4,9 @@
 MOUSEMSG m1;
 //load the login page
 void LoadLoginPage() {
+	
+	//load background image and logo image, then print them
 	IMAGE backGround, logo, title;
-	//load background image and logo image, then print them.
 	loadimage(&backGround, "resources/backGround.jpg");
 	loadimage(&logo, "resources/covidProofWorkers.jpg", 350, 227);
 	loadimage(&title, "resources/title.png");
@@ -18,7 +19,6 @@ void LoadLoginPage() {
 	loadimage(&loginAsUser, "resources/loginAsUser.png", 140, 45);
 	loadimage(&loginAsAdmin, "resources/loginAsAdmin.png", 140, 45);
 	loadimage(&loginAsVolunteer, "resources/loginAsVlounteer.png", 140, 45);
-	
 	drawAlpha(&loginAsAdmin, 470, 430);
 	drawAlpha(&loginAsVolunteer, 620, 430);
 	drawAlpha(&loginAsUser, 770, 430);
