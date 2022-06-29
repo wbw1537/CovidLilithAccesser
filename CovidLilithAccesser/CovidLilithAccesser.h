@@ -6,5 +6,5 @@
 #include"LoadLoginPage.h"
 
 //carify the width and height of the window
-const int windowWidth = 960;
-const int windowheight = 540;
+const int WINDOWWIDTH = 960;
+const int WINDOWHEIGHT = 540;

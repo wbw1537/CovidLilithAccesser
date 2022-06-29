@@ -2,12 +2,13 @@
 
 int main(void)
 {
-	initgraph(windowWidth, windowheight);
+	initgraph(WINDOWWIDTH, WINDOWHEIGHT);
 	
 	
 
 	//load the login page
-	void LoadLoginPage();
+	LoadLoginPage();
+
 
 	system("pause");
 	return 0;
