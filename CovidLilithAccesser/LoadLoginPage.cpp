@@ -63,7 +63,7 @@ void LoadLoginPage() {
 	//DrawButton(470, 400, 610, 445, 228, 228, 228, 400, 400, 400, 228, 228, 228, FirstSelect1, FirstSelect1, FirstSelect1, 0);
 	
 
-	while (1)
+	while (loadLoginPageOpen)
 	{
 		//get the mouce position and operation
 		m1 = GetMouseMsg();

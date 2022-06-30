@@ -23,10 +23,11 @@ void AdminSighIn()
 
 	//check if the ID and passwd received right
 	if (!strcmp(adminUser.ID, recAcntId) && !strcmp(adminUser.passWd, recAcntPasswd)){
+		loadLoginPageOpen = 0;
 		cleardevice();
+		AdminPage();
 	}
-	else
-	{
+	else{
 		HWND SignError = GetHWnd();
 		int isok = MessageBox(SignError, "用户名或密码错误!", "提示", MB_OK);
 	}

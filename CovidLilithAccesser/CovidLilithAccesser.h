@@ -8,7 +8,8 @@
 #include"DrawPng.h"
 #include"DrawTheButton.h"
 #include"AdminSighIn.h"
-#include"globle.h"
+#include"Globle.h"
+#include"AdminPage.h"
 
 
 

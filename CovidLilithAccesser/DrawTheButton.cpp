@@ -12,7 +12,7 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 		//set the text style
 		LOGFONT f;
 		gettextstyle(&f);
-		_tcscpy_s(f.lfFaceName, _T("宋体"));
+		_tcscpy_s(f.lfFaceName, _T("黑体"));
 		f.lfQuality = ANTIALIASED_QUALITY;
 		f.lfHeight = sizeOfChar;
 		settextstyle(&f);
@@ -30,7 +30,7 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 		//set the text style
 		LOGFONT f;
 		gettextstyle(&f);
-		_tcscpy_s(f.lfFaceName, _T("宋体"));
+		_tcscpy_s(f.lfFaceName, _T("黑体"));
 		f.lfQuality = ANTIALIASED_QUALITY;
 		f.lfHeight = sizeOfChar;
 		settextstyle(&f);
@@ -48,7 +48,7 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 		//set the text style
 		LOGFONT f;
 		gettextstyle(&f);
-		_tcscpy_s(f.lfFaceName, _T("宋体"));
+		_tcscpy_s(f.lfFaceName, _T("黑体"));
 		f.lfQuality = ANTIALIASED_QUALITY;
 		f.lfHeight = sizeOfChar;
 		settextstyle(&f);
@@ -56,5 +56,9 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 		//draw the text in the Button
 		RECT R = { position.left,position.top,position.right,position.buttom };
 		drawtext(L_TEXT, &R, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+	}
+	if (moucePosition == 3)
+	{
+
 	}
 }

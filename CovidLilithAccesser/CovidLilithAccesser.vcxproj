@@ -127,20 +127,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AdminPage.cpp" />
     <ClCompile Include="AdminSighIn.cpp" />
     <ClCompile Include="CovidLilithAccesser.cpp" />
     <ClCompile Include="DrawPng.cpp" />
     <ClCompile Include="DrawTheButton.cpp" />
-    <ClCompile Include="globle.cpp" />
+    <ClCompile Include="Globle.cpp" />
     <ClCompile Include="LoadLoginPage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdminPage.h" />
     <ClInclude Include="AdminSighIn.h" />
     <ClInclude Include="CovidLilithAccesser.h" />
     <ClInclude Include="DataStructures.h" />
     <ClInclude Include="DrawPng.h" />
     <ClInclude Include="DrawTheButton.h" />
-    <ClInclude Include="globle.h" />
+    <ClInclude Include="Globle.h" />
     <ClInclude Include="LoadLoginPage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
