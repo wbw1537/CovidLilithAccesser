@@ -60,8 +60,8 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 		RECT R = { position.left,position.top,position.right,position.buttom };
 		drawtext(L_TEXT, &R, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 	}
-	if (moucePosition == 3)
-	{
-
+	//
+	if (moucePosition == 3){
+		clearrectangle(position.left, position.top, position.right, position.buttom);
 	}
 }

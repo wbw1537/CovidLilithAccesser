@@ -109,6 +109,10 @@ void LoadLoginPage() {
 		DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, userButton.mouceActiv);
 
 	}
+	DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, 3);
+	DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, 3);
+	DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, 3);
+
 	
 
 }
