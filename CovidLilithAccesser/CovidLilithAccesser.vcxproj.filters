@@ -24,10 +24,13 @@
     <ClCompile Include="DrawPng.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DrawButton.cpp">
+    <ClCompile Include="AdminSighIn.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="AdminSighIn.cpp">
+    <ClCompile Include="DrawTheButton.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="globle.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,10 +44,16 @@
     <ClInclude Include="DrawPng.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DrawBotton.h">
+    <ClInclude Include="AdminSighIn.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="AdminSighIn.h">
+    <ClInclude Include="DrawTheButton.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DataStructures.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="globle.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

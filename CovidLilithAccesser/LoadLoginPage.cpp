@@ -3,7 +3,6 @@
 
 MOUSEMSG m1;
 
-
 //load the login page
 void LoadLoginPage() {
 	
@@ -27,6 +26,13 @@ void LoadLoginPage() {
 	drawAlpha(&loginAsUser, 770, 400);
 	*/
 
+	rectProperties adminButton, volunteerButton, userButton;
+
+	adminButton = { 470,400,610,445, 0 };
+	volunteerButton = { 620, 400, 760, 445, 0 };
+	userButton = { 770, 400, 910, 445, 0 };
+
+	/*
 	setfillcolor(RGB(228, 228, 228));
 	fillrectangle(470, 400, 610, 445);
 	fillrectangle(620, 400, 760, 445);
@@ -35,9 +41,9 @@ void LoadLoginPage() {
 
 	LOGFONT f;
 	gettextstyle(&f);
-	_tcscpy_s(f.lfFaceName, _T("Microsoft YaHei"));
+	_tcscpy_s(f.lfFaceName, _T("宋体"));
 	f.lfQuality = ANTIALIASED_QUALITY;
-	f.lfHeight = 30;
+	f.lfHeight = 20;
 	settextstyle(&f);
 	char FirstSelect1[20] = { "管理员登录" };
 	char FirstSelect2[20] = { "社区工作者登录" };
@@ -48,42 +54,60 @@ void LoadLoginPage() {
 	drawtext(FirstSelect1, &R[0], DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 	drawtext(FirstSelect2, &R[1], DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 	drawtext(FirstSelect3, &R[2], DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-	
+	*/
 
-	/*
+	
 	char FirstSelect1[20] = { "管理员登录" };
 	char FirstSelect2[20] = { "社区工作者登录" };
 	char FirstSelect3[20] = { "用户注册/登录" };
-	DrawBotton(470, 400, 610, 445, 228, 228, 228, 400, 400, 400, 228, 228, 228, FirstSelect1, FirstSelect1, FirstSelect1, 0);
-	*/
+	//DrawButton(470, 400, 610, 445, 228, 228, 228, 400, 400, 400, 228, 228, 228, FirstSelect1, FirstSelect1, FirstSelect1, 0);
+	
 
 	while (1)
 	{
 		//get the mouce position and operation
 		m1 = GetMouseMsg();
-		//admin login botton
-		if (m1.x > 470 && m1.x < 610 && m1.y > 400 && m1.y < 445)
-		{
-			if (m1.uMsg == WM_LBUTTONDOWN)
-			{
+		
+		//init the mouce activity to not in
+		adminButton.mouceActiv = 0;
+		volunteerButton.mouceActiv = 0;
+		userButton.mouceActiv = 0;
+		
+		//judge if the mouce in the button
+		if (m1.x > adminButton.left && m1.x < adminButton.right && m1.y > adminButton.top && m1.y < adminButton.buttom){
+			adminButton.mouceActiv = 1;
+			if (m1.uMsg == WM_LBUTTONDOWN){
+				adminButton.mouceActiv = 2;
 				//进行管理员登录
 				AdminSighIn();
 			}
 		}
-		//volunteer login botton
-		if (m1.x > 620 && m1.x < 760 && m1.y > 400 && m1.y <= 445)
-		{
-			if (m1.uMsg == WM_LBUTTONDOWN)
-			{
+
+		//draw the admin login Button
+		DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect1, 18, adminButton.mouceActiv);
+		
+		//draw the volunteer login Button
+		if (m1.x > volunteerButton.left && m1.x < volunteerButton.right && m1.y > volunteerButton.top && m1.y < volunteerButton.buttom){
+			volunteerButton.mouceActiv = 1;
+			if (m1.uMsg == WM_LBUTTONDOWN){
+				volunteerButton.mouceActiv = 2;
+				//VolunteerSignIn();
 			}
 		}
-		//user login botton
-		if (m1.x > 770 && m1.x < 910 && m1.y > 400 && m1.y <= 445)
-		{
-			if (m1.uMsg == WM_LBUTTONDOWN)
-			{
+		//draw the volunteer login button
+		DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18, volunteerButton.mouceActiv);
+
+		//user login Button
+		if (m1.x > userButton.left && m1.x < userButton.right && m1.y > volunteerButton.top && m1.y < volunteerButton.buttom){
+			userButton.mouceActiv = 1;
+			if (m1.uMsg == WM_LBUTTONDOWN){
+				userButton.mouceActiv = 2;
+				//VolunteerSignIn();
 			}
 		}
+		//draw the user login button
+		DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, userButton.mouceActiv);
+
 	}
 	
 

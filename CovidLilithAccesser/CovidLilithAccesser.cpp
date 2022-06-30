@@ -1,5 +1,7 @@
 #include"CovidLilithAccesser.h"
 
+
+
 int main(void)
 {
 	initgraph(WINDOWWIDTH, WINDOWHEIGHT);

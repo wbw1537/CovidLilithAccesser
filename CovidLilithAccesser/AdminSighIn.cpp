@@ -22,8 +22,7 @@ void AdminSighIn()
 	InputBox(recAcntPasswd, 20, InputPass);
 
 	//check if the ID and passwd received right
-	if (!strcmp(adminUser.ID, recAcntId) && !strcmp(adminUser.passWd, recAcntPasswd))
-	{
+	if (!strcmp(adminUser.ID, recAcntId) && !strcmp(adminUser.passWd, recAcntPasswd)){
 		cleardevice();
 	}
 	else
