@@ -16,26 +16,14 @@ void DrawBotton(int left, int top, int right, int bottom, int rgb_R_before, int 
 		line(left, top, right, top);
 		line(right, top, right, bottom);
 		line(left, bottom, right, bottom);
-		//渐变颜色设置
-		int a = 10;				//颜色渐变区域
-		int i = 0;				//局部变量i,用于循环变量
-		double c = 255 / a;		//设置变化率
-		//绘制渐变颜色变化边框
-		for (i = 0; i < a; i++)
-		{
-
-			setlinecolor(RGB(c * i, c * i, c * i));
-			line(left - i, top - i, left - i, bottom + i);
-			line(left - i, top - i, right + i, top - i);
-			line(right + i, top - i, right + i, bottom - i);
-			line(left - i, bottom + i, right + i, bottom + i);
-		}
+		
+		
 		solidrectangle(left, top, right, bottom);
 		setfillcolor(RGB(rgb_R_before, rgb_G_before, rgb_B_before));
 		settextcolor(BLACK);
 		RECT r = {left,top,right,bottom };			//获取按钮的矩形区域
-		drawtext(L_TEXT_before, &r, DT_CENTER | DT_NOPREFIX | DT_WORDBREAK | DT_INTERNAL);//设置文字的输出格式：居中，自动换行，使用系统字体，使用系统字体自动计算，并且输出文字
-		//drawtext(L_TEXT_before, &r, DT_CENTER | DT_VCENTER | DT_SINGLELINE);			//垂直居中，单行显示
+		//drawtext(L_TEXT_before, &r, DT_CENTER | DT_NOPREFIX | DT_WORDBREAK | DT_INTERNAL);//设置文字的输出格式：居中，自动换行，使用系统字体，使用系统字体自动计算，并且输出文字
+		drawtext(L_TEXT_before, &r, DT_CENTER | DT_VCENTER | DT_SINGLELINE);			//垂直居中，单行显示
 	}
 	if (moucePosition == 1)
 	{
