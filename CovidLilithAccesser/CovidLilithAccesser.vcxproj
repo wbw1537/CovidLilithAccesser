@@ -127,12 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AdminSighIn.cpp" />
     <ClCompile Include="CovidLilithAccesser.cpp" />
+    <ClCompile Include="DrawButton.cpp" />
     <ClCompile Include="DrawPng.cpp" />
     <ClCompile Include="LoadLoginPage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdminSighIn.h" />
     <ClInclude Include="CovidLilithAccesser.h" />
+    <ClInclude Include="DrawBotton.h" />
     <ClInclude Include="DrawPng.h" />
     <ClInclude Include="LoadLoginPage.h" />
   </ItemGroup>

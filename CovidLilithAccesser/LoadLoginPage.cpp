@@ -2,6 +2,8 @@
 #include"LoadLoginPage.h"
 
 MOUSEMSG m1;
+
+
 //load the login page
 void LoadLoginPage() {
 	
@@ -12,32 +14,54 @@ void LoadLoginPage() {
 	loadimage(&title, "resources/title.png");
 	putimage(0, 0, &backGround);
 	putimage(80, WINDOWHEIGHT / 2 - logo.getheight() / 2 - 30, &logo);
-	drawAlpha(&title, 500, 50);
+	drawAlpha(&title, 500, 80);
 
 	//load the button png and print.
 	IMAGE loginAsUser, loginAsAdmin, loginAsVolunteer;
 	loadimage(&loginAsUser, "resources/loginAsUser.png", 140, 45);
 	loadimage(&loginAsAdmin, "resources/loginAsAdmin.png", 140, 45);
 	loadimage(&loginAsVolunteer, "resources/loginAsVlounteer.png", 140, 45);
-	drawAlpha(&loginAsAdmin, 470, 430);
-	drawAlpha(&loginAsVolunteer, 620, 430);
-	drawAlpha(&loginAsUser, 770, 430);
+	drawAlpha(&loginAsAdmin, 470, 400);
+	drawAlpha(&loginAsVolunteer, 620, 400);
+	drawAlpha(&loginAsUser, 770, 400);
+
 
 	/*
-	//draw the rectangle for the login buttom
-	fillrectangle(250, 445, 400, 490);
-	fillrectangle(420, 445, 570, 490);
-	fillrectangle(590, 445, 740, 490);
-	setbkmode(TRANSPARENT);
-	settextcolor(GREEN);
-	char FirstSelect1[20] = { "管理员登录" };
-	char FirstSelect2[20] = { "社区工作者登录" };
-	char FirstSelect3[20] = { "居民登录" };
-	RECT R[3] = { {250, 445, 400, 490},{420, 445, 570, 490},{590, 445, 740, 490} };
-	drawtext(FirstSelect1, &R[0], DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-	drawtext(FirstSelect2, &R[1], DT_CENTER | DT_VCENTER | DT_SINGLELINE);
-	drawtext(FirstSelect3, &R[2], DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+	fillroundrect(470, 400, 610, 445,140,45);
+	fillroundrect(620, 760, 610, 445, 140, 45);
+	fillroundrect(770, 910, 610, 445, 140, 45);
 	*/
+	
+	
+
+	while (1)
+	{
+		//get the mouce position and operation
+		m1 = GetMouseMsg();
+		//admin login botton
+		if (m1.x > 470 && m1.x < 610 && m1.y > 400 && m1.y < 445)
+		{
+			if (m1.uMsg == WM_LBUTTONDOWN)
+			{
+				//进行管理员登录
+				AdminSighIn();
+			}
+		}
+		//volunteer login botton
+		if (m1.x > 620 && m1.x < 760 && m1.y > 400 && m1.y <= 445)
+		{
+			if (m1.uMsg == WM_LBUTTONDOWN)
+			{
+			}
+		}
+		//user login botton
+		if (m1.x > 770 && m1.x < 910 && m1.y > 400 && m1.y <= 445)
+		{
+			if (m1.uMsg == WM_LBUTTONDOWN)
+			{
+			}
+		}
+	}
 	
 
 }
