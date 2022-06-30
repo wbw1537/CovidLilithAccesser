@@ -5,6 +5,7 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 {
 	if (moucePosition == 0)//out of the Button
 	{
+		//clearrectangle(position.left, position.top, position.right, position.buttom);
 		//set the color of the Button and size of it
 		setfillcolor(RGB(outTheButton.red, outTheButton.blue, outTheButton.green));
 		fillrectangle(position.left, position.top, position.right, position.buttom);
@@ -23,6 +24,7 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 	}
 	if (moucePosition == 1)//in the Button
 	{
+		//clearrectangle(position.left, position.top, position.right, position.buttom);
 		//set the color of the Button and size of it
 		setfillcolor(RGB(inTheButton.red, inTheButton.blue, inTheButton.green));
 		fillrectangle(position.left, position.top, position.right, position.buttom);
@@ -41,6 +43,7 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 	}
 	if (moucePosition == 2)
 	{
+		//clearrectangle(position.left, position.top, position.right, position.buttom);
 		//set the color of the Button and size of it
 		setfillcolor(RGB(clickTheButton.red, clickTheButton.blue, clickTheButton.green));
 		fillrectangle(position.left, position.top, position.right, position.buttom);
