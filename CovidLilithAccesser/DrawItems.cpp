@@ -93,6 +93,7 @@ void DrawTextsSingle(rectProperties position, char* fonts, char* L_TEXT, int siz
 	drawtext(L_TEXT, &R, DT_LEFT | DT_WORDBREAK);
 }
 
+void DrawResiProfiles()
 //函数声明
 void drawAlpha(IMAGE* picture, int  picture_x, int picture_y); //x为要载入图片的X坐标，y为Y坐标
 
