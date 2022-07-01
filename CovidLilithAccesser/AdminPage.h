@@ -6,6 +6,8 @@
 
 void AdminPage();
 
+void ReleaseInfo(int towards);
+
 //需要添加的居民信息	
 // 0成功 1冲突 2其他
 int AddResident(resident toadd);

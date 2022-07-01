@@ -1,13 +1,13 @@
 #include"DrawItems.h"
 
 
-void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheButton, rgbColor clickTheButton, char* L_TEXT, int sizeOfChar, int moucePosition, int moucePositionBefore)
+void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheButton, rgbColor clickTheButton, char* L_TEXT, int sizeOfChar)
 {
-	if (moucePosition == moucePositionBefore) {
+	if (position.mouceActiv == position.mouceActivBefore) {
 		return;
 	}
 	else {
-		if (moucePosition == 0)//out of the Button
+		if (position.mouceActiv == 0)//out of the Button
 		{
 			clearrectangle(position.left, position.top, position.right, position.buttom);
 			//set the color of the Button and size of it
@@ -28,7 +28,7 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 			RECT R = { position.left,position.top,position.right,position.buttom };
 			drawtext(L_TEXT, &R, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 		}
-		if (moucePosition == 1)//in the Button
+		if (position.mouceActiv == 1)//in the Button
 		{
 			//clearrectangle(position.left, position.top, position.right, position.buttom);
 			//set the color of the Button and size of it
@@ -51,7 +51,7 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 			drawtext(L_TEXT, &R, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 			
 		}
-		if (moucePosition == 2)
+		if (position.mouceActiv == 2)
 		{
 			//clearrectangle(position.left, position.top, position.right, position.buttom);
 			//set the color of the Button and size of it
@@ -93,7 +93,7 @@ void DrawTextsSingle(rectProperties position, char* fonts, char* L_TEXT, int siz
 	drawtext(L_TEXT, &R, DT_LEFT | DT_WORDBREAK);
 }
 
-void DrawResiProfiles()
+//void DrawResiProfiles();
 //函数声明
 void drawAlpha(IMAGE* picture, int  picture_x, int picture_y); //x为要载入图片的X坐标，y为Y坐标
 

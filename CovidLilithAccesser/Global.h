@@ -5,6 +5,12 @@
 #include<locale.h>
 #include<stdlib.h>
 
+#define AdminToResi 1
+#define AdminToVol 2
+#define VolToResi 3
+#define VolToAdmin 4
+#define ResiToVol 5
+#define ResiToAdmin 6
 
 //carify the width and height of the window
 const int WINDOWWIDTH = 960;
@@ -58,6 +64,14 @@ typedef struct {
 	wchar_t wechat[64];
 	wchar_t position[32];
 }volunteer;
+
+typedef struct {
+	int messageType;
+	bool isSolve;
+	char title[500];
+	char message[500];
+	char reply[500];
+}TextExchange;
 
 extern rgbColor colorOutOfTheButton;
 extern rgbColor colorInTheButton;

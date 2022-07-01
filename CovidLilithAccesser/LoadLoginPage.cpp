@@ -61,11 +61,11 @@ void LoadLoginPage() {
 	//DrawButton(470, 400, 610, 445, 228, 228, 228, 400, 400, 400, 228, 228, 228, FirstSelect1, FirstSelect1, FirstSelect1, 0);
 
 	//draw the user login button
-	DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, userButton.mouceActiv, userButton.mouceActivBefore);
+	DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18);
 	//draw the admin login Button
-	DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect1, 18, adminButton.mouceActiv, adminButton.mouceActivBefore);
+	DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect1, 18);
 	//draw the volunteer login button
-	DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18, volunteerButton.mouceActiv, volunteerButton.mouceActivBefore);
+	DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18);
 
 	loadLoginPageOpen = 1;
 
@@ -118,11 +118,11 @@ void LoadLoginPage() {
 		}
 
 		//draw the user login button
-		DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, userButton.mouceActiv, userButton.mouceActivBefore);
+		DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18);
 		//draw the admin login Button
-		DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect1, 18, adminButton.mouceActiv, adminButton.mouceActivBefore);
+		DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect1, 18);
 		//draw the volunteer login button
-		DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18, volunteerButton.mouceActiv, volunteerButton.mouceActivBefore);
+		DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18);
 
 		/*
 		//if the last action is same as now, there is no need to print it again

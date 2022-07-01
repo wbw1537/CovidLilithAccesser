@@ -6,8 +6,8 @@ void AdminPage()
 	
 	ADM adminUser;
 	rectProperties text1,text2;
-	text1 = { 60,50,500,100 };
-	text2 = { 60,90,500,200 };
+	text1 = { 60,45,500,100 };
+	text2 = { 60,85,500,200 };
 	//read the file to get the login account and passwd.
 	FILE* fp;
 	fopen_s(&fp, "data/admininfo", "r");
@@ -27,11 +27,23 @@ void AdminPage()
 	sprintf_s(adminText2, 50, "欢迎您，%s", adminUser.name, 20);
 	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
 	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
-	
-	while (1)
+	//button charecters
+	char firstRect[30] = { "信息收集与发布" };
+	char secendRect[30] = { "工作人员信息列表" };
+	char thirdRect[30] = { "用户信息列表" };
+	//button rect
+	rectProperties messageButton, volButton, resiButton;
+	messageButton = { 150,400,150 + 180,400 + 45,0,1 };
+	volButton = { 390,400,390 + 180,400 + 45,0,1 };
+	resiButton = { 630,400,630 + 180,400 + 45,0,1 };
+	//draw the button first
+	DrawButton(messageButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, firstRect, 20);
+	DrawButton(volButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, secendRect, 20);
+	DrawButton(resiButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, thirdRect, 20);
+	do
 	{
-		
-	}
+
+	} while (1);
 }
 //release info to the resident or volunteer
 void ReleaseInfo(int towards) {
@@ -42,7 +54,20 @@ void ReleaseInfo(int towards) {
 		InputBox(toResiInfoTitle, 128, InputTitle);
 		TCHAR InputMessage[] = _T("请输入要向居民发布的信息内容");
 		InputBox(toResiInfoMessage, 128, InputMessage);
-
+		FILE* fp;
+		fp = fopen("data/resimessage", "a");
+		fprintf(fp, "%s %s", toResiInfoTitle, toResiInfoMessage);
+	}
+	if (towards == 1) { // to volunteer
+		//read the title and info to volunteer
+		char toVolInfoTitle[128], toVolInfoMessage[128];
+		TCHAR InputTitle[] = _T("请输入要向社区工作者发布的信息标题");
+		InputBox(toVolInfoTitle, 128, InputTitle);
+		TCHAR InputMessage[] = _T("请输入要向居民发布的信息内容");
+		InputBox(toVolInfoMessage, 128, InputMessage);
+		FILE* fp;
+		fp = fopen("data/volmessage", "a");
+		fprintf(fp, "%s %s", toVolInfoTitle, toVolInfoMessage);
 	}
 }
 
