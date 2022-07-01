@@ -63,8 +63,17 @@ void LoadLoginPage() {
 	//DrawButton(470, 400, 610, 445, 228, 228, 228, 400, 400, 400, 228, 228, 228, FirstSelect1, FirstSelect1, FirstSelect1, 0);
 	
 
-	while (loadLoginPageOpen)
+	do
 	{
+		//draw the admin login Button
+		DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect1, 18, adminButton.mouceActiv);
+		
+		//draw the volunteer login button
+		DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18, volunteerButton.mouceActiv);
+
+		//draw the user login button
+		DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, userButton.mouceActiv);
+
 		//get the mouce position and operation
 		m1 = GetMouseMsg();
 		
@@ -73,7 +82,7 @@ void LoadLoginPage() {
 		volunteerButton.mouceActiv = 0;
 		userButton.mouceActiv = 0;
 		
-		//judge if the mouce in the button
+		//judge if the mouse in the button
 		if (m1.x > adminButton.left && m1.x < adminButton.right && m1.y > adminButton.top && m1.y < adminButton.buttom){
 			adminButton.mouceActiv = 1;
 			if (m1.uMsg == WM_LBUTTONDOWN){
@@ -83,10 +92,7 @@ void LoadLoginPage() {
 			}
 		}
 
-		//draw the admin login Button
-		DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect1, 18, adminButton.mouceActiv);
-		
-		//draw the volunteer login Button
+		//judge if the mouce in the volunteer's button
 		if (m1.x > volunteerButton.left && m1.x < volunteerButton.right && m1.y > volunteerButton.top && m1.y < volunteerButton.buttom){
 			volunteerButton.mouceActiv = 1;
 			if (m1.uMsg == WM_LBUTTONDOWN){
@@ -94,9 +100,7 @@ void LoadLoginPage() {
 				//VolunteerSignIn();
 			}
 		}
-		//draw the volunteer login button
-		DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18, volunteerButton.mouceActiv);
-
+		
 		//user login Button
 		if (m1.x > userButton.left && m1.x < userButton.right && m1.y > volunteerButton.top && m1.y < volunteerButton.buttom){
 			userButton.mouceActiv = 1;
@@ -105,14 +109,8 @@ void LoadLoginPage() {
 				//VolunteerSignIn();
 			}
 		}
-		//draw the user login button
-		DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, userButton.mouceActiv);
-
-	}
-	DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, 3);
-	DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, 3);
-	DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, 3);
-
+		
+	} while (1);
 	
 
 }
