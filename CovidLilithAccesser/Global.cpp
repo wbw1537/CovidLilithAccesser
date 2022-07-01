@@ -13,3 +13,6 @@ bool loadLoginPageOpen;
 bool AdminPageOpen;
 bool ResiPageOpen;
 bool VolPageOpen;
+
+extern resident* residentinfo = { 0 };
+bool loadLoginPageOpen;

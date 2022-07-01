@@ -48,8 +48,8 @@ typedef struct {
 	unsigned int building;
 	wchar_t district[128];
 	//private
-	bool ifRead;
-	bool ifRisky;
+	int ifRead;
+	int ifRisky;
 }resident;
 
 /*name£ºÃû×Ö passwd£ºÃÜÂë ID£º¹¤ºÅ*/
@@ -83,3 +83,5 @@ extern char heiTi[64];
 extern char songTi[64];
 
 extern bool loadLoginPageOpen;
+
+extern resident* residentInfo;
