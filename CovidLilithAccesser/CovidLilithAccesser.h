@@ -5,9 +5,8 @@
 #include<string.h>
 #include"DataStructures.h"
 #include"LoadLoginPage.h"
-#include"DrawPng.h"
-#include"DrawTheButton.h"
-#include"AdminSighIn.h"
+#include"DrawItems.h"
+#include"SighIn.h"
 #include"Globle.h"
 #include"AdminPage.h"
 

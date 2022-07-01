@@ -62,18 +62,29 @@ void LoadLoginPage() {
 	char FirstSelect3[20] = { "ÓÃ»§×¢²á/µÇÂ¼" };
 	//DrawButton(470, 400, 610, 445, 228, 228, 228, 400, 400, 400, 228, 228, 228, FirstSelect1, FirstSelect1, FirstSelect1, 0);
 	
+	//draw the admin login Button
+	DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect1, 18, adminButton.mouceActiv);
+	//draw the volunteer login button
+	DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18, volunteerButton.mouceActiv);
+	//draw the user login button
+	DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, userButton.mouceActiv);
+
 
 	do
 	{
-		//draw the admin login Button
-		DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect1, 18, adminButton.mouceActiv);
+		if (adminButton.mouceActiv != 0) {
+			//draw the admin login Button
+			DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect1, 18, adminButton.mouceActiv);
+		}
+		if (volunteerButton.mouceActiv != 0) {
+			//draw the volunteer login button
+			DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18, volunteerButton.mouceActiv);
+		}
+		if (userButton.mouceActiv != 0) {
+			//draw the user login button
+			DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, userButton.mouceActiv);
+		}
 		
-		//draw the volunteer login button
-		DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18, volunteerButton.mouceActiv);
-
-		//draw the user login button
-		DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, userButton.mouceActiv);
-
 		//get the mouce position and operation
 		m1 = GetMouseMsg();
 		
@@ -110,7 +121,7 @@ void LoadLoginPage() {
 			}
 		}
 		
-	} while (1);
+	} while (loadLoginPageOpen);
 	
 
 }

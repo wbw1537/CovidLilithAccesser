@@ -21,13 +21,10 @@
     <ClCompile Include="LoadLoginPage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DrawPng.cpp">
+    <ClCompile Include="DrawItems.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="AdminSighIn.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="DrawTheButton.cpp">
+    <ClCompile Include="SighIn.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Globle.cpp">
@@ -44,13 +41,10 @@
     <ClInclude Include="LoadLoginPage.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DrawPng.h">
+    <ClInclude Include="DrawItems.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="AdminSighIn.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawTheButton.h">
+    <ClInclude Include="SighIn.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="DataStructures.h">

@@ -1,5 +1,5 @@
 #include"CovidLilithAccesser.h"
-#include"AdminSighIn.h"
+#include"SighIn.h"
 
 
 ADM adminUser;
@@ -24,6 +24,7 @@ void AdminSighIn()
 	//check if the ID and passwd received right
 	if (!strcmp(adminUser.ID, recAcntId) && !strcmp(adminUser.passWd, recAcntPasswd)){
 		loadLoginPageOpen = 0;
+		cleardevice();
 		cleardevice();
 		AdminPage();
 	}
