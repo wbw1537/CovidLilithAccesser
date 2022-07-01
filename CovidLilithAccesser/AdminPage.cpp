@@ -113,6 +113,7 @@ int AddVolunteer(volunteer toadd) {
 
 	fp = fopen(".\\data\\volinfo", "a, ccs=utf-8");
 	fwprintf(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n", toadd.name, toadd.passwd, toadd.ID, toadd.age, toadd.sex, toadd.department, toadd.phone, toadd.wechat, toadd.position);
+	fclose(fp);
 	return 0;
 }
 	
