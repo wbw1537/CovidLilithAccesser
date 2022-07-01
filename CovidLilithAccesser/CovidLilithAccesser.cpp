@@ -6,8 +6,6 @@ int main(void)
 {
 	initgraph(WINDOWWIDTH, WINDOWHEIGHT);
 	
-	
-
 	//load the login page
 	LoadLoginPage();
 

@@ -88,6 +88,7 @@ void LoadLoginPage() {
 			if (m1.uMsg == WM_LBUTTONUP) {
 				//进行管理员登录
 				AdminSighIn();
+				return;
 			}
 		}
 
