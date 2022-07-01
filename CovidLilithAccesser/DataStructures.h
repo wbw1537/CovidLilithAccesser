@@ -28,8 +28,12 @@ typedef struct{
 typedef struct {
 	char name[50];
 	char passwd[128];
+	char fromProvince[32];
 	long ID;
+	//private
 	bool ifRead;
+	bool ifRisky;
+
 }resident;
 
 /*name£ºÃû×Ö passwd£ºÃÜÂë ID£º¹¤ºÅ*/
@@ -37,4 +41,4 @@ typedef struct {
 	char name[50];
 	char passwd[128];
 	long ID;
-};
+}volunteer;
