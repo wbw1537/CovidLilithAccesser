@@ -1,5 +1,5 @@
 #pragma once
-#include"DataStructures.h"
+#include"Global.h"
 #include<graphics.h>
 #include<stdio.h>
 

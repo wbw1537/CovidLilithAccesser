@@ -139,7 +139,6 @@
     <ClInclude Include="Global.h" />
     <ClInclude Include="SighIn.h" />
     <ClInclude Include="CovidLilithAccesser.h" />
-    <ClInclude Include="DataStructures.h" />
     <ClInclude Include="DrawItems.h" />
     <ClInclude Include="LoadLoginPage.h" />
   </ItemGroup>

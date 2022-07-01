@@ -47,9 +47,6 @@
     <ClInclude Include="SighIn.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DataStructures.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="AdminPage.h">
       <Filter>头文件</Filter>
     </ClInclude>
