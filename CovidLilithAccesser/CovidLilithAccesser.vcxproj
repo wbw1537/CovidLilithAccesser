@@ -128,19 +128,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AdminPage.cpp" />
+    <ClCompile Include="InfoPage.cpp" />
+    <ClCompile Include="ResiPage.cpp" />
     <ClCompile Include="SighIn.cpp" />
     <ClCompile Include="CovidLilithAccesser.cpp" />
     <ClCompile Include="DrawItems.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="LoadLoginPage.cpp" />
+    <ClCompile Include="VolPage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdminPage.h" />
     <ClInclude Include="Global.h" />
+    <ClInclude Include="InfoPage.h" />
+    <ClInclude Include="ResiPage.h" />
     <ClInclude Include="SighIn.h" />
     <ClInclude Include="CovidLilithAccesser.h" />
     <ClInclude Include="DrawItems.h" />
     <ClInclude Include="LoadLoginPage.h" />
+    <ClInclude Include="VolPage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,17 +3,19 @@
 
 void AdminPage()
 {
-	
+	MOUSEMSG m2;
 	ADM adminUser;
 	rectProperties text1,text2;
 	text1 = { 60,45,500,100 };
 	text2 = { 60,85,500,200 };
+
 	//read the file to get the login account and passwd.
 	FILE* fp;
 	fopen_s(&fp, "data/admininfo", "r");
 	if (fp == NULL) return;
 	fscanf_s(fp, "%s%s%s", adminUser.ID, 64, adminUser.passWd, 64, adminUser.name, 64);
 	fclose(fp);
+
 	//init some graphs
 	cleardevice();
 	IMAGE backGround, title;
@@ -21,28 +23,71 @@ void AdminPage()
 	loadimage(&title, "resources/title.png", 290, 109);
 	putimage(0, 0, &backGround);
 	drawAlpha(&title, 630, 30);
+
 	//draw the texts
 	char adminText1[50] = { "管理员操作界面:" };
 	char adminText2[50];
+	char adminText3[200];
 	sprintf_s(adminText2, 50, "欢迎您，%s", adminUser.name, 20);
+
 	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
 	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
+	
 	//button charecters
 	char firstRect[30] = { "信息收集与发布" };
 	char secendRect[30] = { "工作人员信息列表" };
 	char thirdRect[30] = { "用户信息列表" };
+
 	//button rect
 	rectProperties messageButton, volButton, resiButton;
 	messageButton = { 150,400,150 + 180,400 + 45,0,1 };
 	volButton = { 390,400,390 + 180,400 + 45,0,1 };
 	resiButton = { 630,400,630 + 180,400 + 45,0,1 };
+
 	//draw the button first
 	DrawButton(messageButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, firstRect, 20);
 	DrawButton(volButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, secendRect, 20);
 	DrawButton(resiButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, thirdRect, 20);
-	do
-	{
+	
+	do{
 
+		//get the mouce position and operation
+		m2 = GetMouseMsg();
+		
+		CheckButton(m2,messageButton,InfoPage,firstRect,20);
+		CheckButton(m2, volButton, VolManageMenu, secendRect, 20);
+		CheckButton(m2, resiButton, ReciManageMenu, thirdRect, 20);
+		/*
+		//init the mouce activity to not in
+		messageButton.mouceActiv = 0;
+		volButton.mouceActiv = 0;
+		resiButton.mouceActiv = 0;
+
+		//message button
+		
+
+		//vol button
+		if (m2.x > volButton.left && m2.y > volButton.top && m2.y < messageButton.right && m2.x > messageButton.buttom) {
+			volButton.mouceActiv = 1;
+			if (m2.uMsg == WM_LBUTTONDOWN) {
+				volButton.mouceActiv = 2;
+			}
+			if (m2.uMsg == WM_LBUTTONUP) {
+				//
+			}
+		}
+
+		//user button
+		if (m2.x > messageButton.left && m2.y > messageButton.top && m2.y < messageButton.right && m2.x > messageButton.buttom) {
+			messageButton.mouceActiv = 1;
+			if (m2.uMsg == WM_LBUTTONDOWN) {
+				messageButton.mouceActiv = 2;
+			}
+			if (m2.uMsg == WM_LBUTTONUP) {
+				//
+			}
+		}
+		*/
 	} while (1);
 }
 //release info to the resident or volunteer

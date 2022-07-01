@@ -33,6 +33,15 @@
     <ClCompile Include="AdminPage.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="VolPage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ResiPage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoPage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CovidLilithAccesser.h">
@@ -51,6 +60,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Global.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="VolPage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ResiPage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoPage.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

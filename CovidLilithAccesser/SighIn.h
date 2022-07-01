@@ -5,4 +5,8 @@
 #include"DrawItems.h"
 #include"AdminPage.h"
 
-bool AdminSighIn();
+void AdminSighIn();
+
+void UserSignIn();
+
+void VolSignIn();

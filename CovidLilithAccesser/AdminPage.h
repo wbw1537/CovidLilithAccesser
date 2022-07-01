@@ -1,6 +1,7 @@
 #pragma once
 #include"Global.h"
 #include"DrawItems.h"
+#include"InfoPage.h"
 #include<graphics.h>
 #include<stdio.h>
 #include<stdlib.h>
