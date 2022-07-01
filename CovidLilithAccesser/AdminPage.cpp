@@ -1,4 +1,4 @@
-#include"CovidLilithAccesser.h"
+#include"AdminPage.h"
 
 void AdminPage()
 {
@@ -6,3 +6,4 @@ void AdminPage()
 	loadimage(&backGround, "resources/backGround.jpg");
 	putimage(0, 0, &backGround);
 }
+

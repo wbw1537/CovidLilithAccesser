@@ -23,3 +23,18 @@ typedef struct{
 	//the activity of mouce, 0 for not in, 1 for in it, 2 for chicking it
 	int mouceActiv;
 }rectProperties;
+
+/*name:名字，passwd：密码， ID：用户ID*/
+typedef struct {
+	char name[50];
+	char passwd[128];
+	long ID;
+	bool ifRead;
+}resident;
+
+/*name：名字 passwd：密码 ID：工号*/
+typedef struct {
+	char name[50];
+	char passwd[128];
+	long ID;
+};

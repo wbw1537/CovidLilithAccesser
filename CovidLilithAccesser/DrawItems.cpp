@@ -1,4 +1,3 @@
-#include"CovidLilithAccesser.h"
 #include"DrawItems.h"
 
 void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheButton, rgbColor clickTheButton, char* L_TEXT, int sizeOfChar, int moucePosition)

@@ -1,5 +1,5 @@
-#include"CovidLilithAccesser.h"
 #include"LoadLoginPage.h"
+
 
 MOUSEMSG m1;
 
