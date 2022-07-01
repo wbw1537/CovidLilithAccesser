@@ -4,12 +4,12 @@
 ADM adminUser;
 char len[20];
 
-void AdminSighIn()
+bool AdminSighIn()
 {
 	//read the file to get the login account and passwd.
 	FILE * fp;
 	fopen_s(&fp, "resources\\AdminSignIn", "r");
-	if (fp == NULL) return;
+	if (fp == NULL) return 0;
 	fscanf_s(fp, "%s%s%s", adminUser.ID, 64, adminUser.passWd, 64, adminUser.name, 64);
 	fclose(fp);
 
@@ -25,9 +25,11 @@ void AdminSighIn()
 		loadLoginPageOpen = 0;
 		initgraph(WINDOWWIDTH, WINDOWHEIGHT);
 		AdminPage();
+		return 1;
 	}
 	else{
 		HWND SignError = GetHWnd();
 		int isok = MessageBox(SignError, "用户名或密码错误!", "提示", MB_OK);
+		return 0;
 	}
 }
