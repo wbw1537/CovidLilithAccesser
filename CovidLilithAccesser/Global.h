@@ -39,10 +39,11 @@ typedef struct {
 	wchar_t fromProvince[32];
 	long ID;
 	long belong;
+	unsigned int building;
+	wchar_t district[128];
 	//private
 	bool ifRead;
 	bool ifRisky;
-
 }resident;
 
 /*name£ºÃû×Ö passwd£ºÃÜÂë ID£º¹¤ºÅ*/
@@ -50,6 +51,12 @@ typedef struct {
 	wchar_t name[50];
 	char passwd[128];
 	long ID;
+	int age;
+	int sex;
+	wchar_t department[32];
+	unsigned long long phone;
+	wchar_t wechat[64];
+	wchar_t position[32];
 }volunteer;
 
 extern rgbColor colorOutOfTheButton;
