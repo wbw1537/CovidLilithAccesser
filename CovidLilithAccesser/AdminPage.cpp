@@ -28,7 +28,7 @@ int AddResident(resident toadd) {
 	fp = fopen(".\\data\\resinfo", "r, ccs=utf-8");
 	long testID = 0;
 	bool have = false;
-	while (fwscanf(fp, L"%*s,%*s,%ld,%*ld,%*s,%*d,%*d", &testID) == 1) {
+	while (fwscanf(fp, L"%*s ,%*s ,%*s ,%ld ,%*ld ,%*d ,%*d", &testID) == 1) {
 		if (testID == toadd.ID) {
 			return 1;
 		}
@@ -36,7 +36,8 @@ int AddResident(resident toadd) {
 	fclose(fp);
 
 	fp = fopen(".\\data\\resinfo", "a, ccs=utf-8");
-	fwprintf(fp, L"%s,%s,%ld,%ld,%s,%d,%d\n", toadd.name, toadd.passwd, toadd.ID,toadd.belong, toadd.fromProvince, toadd.ifRead, toadd.ifRisky);
+	fwprintf(fp, L"%s ,%s ,%s ,%ld ,%ld ,%d ,%d\n", toadd.name, toadd.passwd, toadd.fromProvince, toadd.ID, toadd.belong, toadd.ifRead, toadd.ifRisky);
+	fclose(fp);
 	return 0;
 }
 
@@ -63,7 +64,30 @@ int AddVolunteer(volunteer toadd) {
 //需要删除的居民的ID	
 // 数据库中不存在返回false，存在且删除返回true
 bool DelResident(long residentID) {
-
+	FILE* fp = { 0 };
+	FILE* fpw = { 0 };
+	bool del = false;
+	fp = fopen(".\\data\\resinfo", "r, ccs=utf-8");
+	rewind(fp);
+	fpw = fopen(".\\data\\tmp", "w+, ccs=utf-8");
+	resident tmp = { 0 };
+	while (fwscanf_s(fp, L"%s ,%s ,%s ,%ld ,%ld ,%d ,%d", tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID, &tmp.belong, &tmp.ifRead, &tmp.ifRisky) == 7) {
+		if (tmp.ID != residentID) {
+			fwprintf(fpw, L"%s ,%s ,%s ,%ld ,%ld ,%d ,%d\n", tmp.name, tmp.passwd, tmp.fromProvince, tmp.ID, tmp.belong, tmp.ifRead, tmp.ifRisky);
+		}
+		else {
+			del = true;
+		}
+	}
+	fclose(fp);
+	fp = fopen(".\\data\\resinfo", "w, ccs=utf-8");
+	rewind(fpw);
+	while (fwscanf_s(fpw, L"%s ,%s ,%s ,%ld ,%ld ,%d ,%d", tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID, &tmp.belong, &tmp.ifRead, &tmp.ifRisky) == 7) {
+		fwprintf(fp, L"%s ,%s ,%s ,%ld ,%ld ,%d ,%d\n", tmp.name, tmp.passwd, tmp.fromProvince, tmp.ID, tmp.belong, tmp.ifRead, tmp.ifRisky);
+	}
+	fclose(fp);
+	fclose(fpw);
+	return del;
 }
 
 //需要删除的工作人员ID	
