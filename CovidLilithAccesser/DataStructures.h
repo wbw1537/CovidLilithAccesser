@@ -16,12 +16,14 @@ typedef struct{
 	char name[64];
 }ADM;
 
-//the coordination of the rectangle
-typedef struct{
-	//the position of the buttom
+//struct of button
+typedef struct {
+	//the coordination of the rectangle
 	int left, top, right, buttom;
 	//the activity of mouce, 0 for not in, 1 for in it, 2 for chicking it
 	int mouceActiv;
+	//the mouceActive in the last loop
+	int mouceActivBefore;
 }rectProperties;
 
 /*name:Ãû×Ö£¬passwd£ºÃÜÂë£¬ ID£ºÓÃ»§ID*/

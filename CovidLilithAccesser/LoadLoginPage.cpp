@@ -1,11 +1,9 @@
 #include"LoadLoginPage.h"
 
-
 MOUSEMSG m1;
 
-//load the login page
 void LoadLoginPage() {
-	
+
 	//load background image and logo image, then print them
 	IMAGE backGround, logo, title;
 	loadimage(&backGround, "resources/backGround.jpg");
@@ -14,7 +12,7 @@ void LoadLoginPage() {
 	putimage(0, 0, &backGround);
 	putimage(80, WINDOWHEIGHT / 2 - logo.getheight() / 2 - 30, &logo);
 	drawAlpha(&title, 500, 80);
-	
+
 	/*
 	//load the button png and print.
 	IMAGE loginAsUser, loginAsAdmin, loginAsVolunteer;
@@ -28,9 +26,9 @@ void LoadLoginPage() {
 
 	rectProperties adminButton, volunteerButton, userButton;
 
-	adminButton = { 470,400,610,445, 0 };
-	volunteerButton = { 620, 400, 760, 445, 0 };
-	userButton = { 770, 400, 910, 445, 0 };
+	adminButton = { 470,400,610,445, 0 ,1 };
+	volunteerButton = { 620, 400, 760, 445, 0 ,1 };
+	userButton = { 770, 400, 910, 445, 0 ,1 };
 
 	/*
 	setfillcolor(RGB(228, 228, 228));
@@ -56,72 +54,90 @@ void LoadLoginPage() {
 	drawtext(FirstSelect3, &R[2], DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 	*/
 
-	
+
 	char FirstSelect1[20] = { "管理员登录" };
 	char FirstSelect2[20] = { "社区工作者登录" };
 	char FirstSelect3[20] = { "用户注册/登录" };
 	//DrawButton(470, 400, 610, 445, 228, 228, 228, 400, 400, 400, 228, 228, 228, FirstSelect1, FirstSelect1, FirstSelect1, 0);
-	
-	//draw the admin login Button
-	DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect1, 18, adminButton.mouceActiv);
-	//draw the volunteer login button
-	DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18, volunteerButton.mouceActiv);
+
 	//draw the user login button
-	DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, userButton.mouceActiv);
+	DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, userButton.mouceActiv, userButton.mouceActivBefore);
+	//draw the admin login Button
+	DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect1, 18, adminButton.mouceActiv, adminButton.mouceActivBefore);
+	//draw the volunteer login button
+	DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18, volunteerButton.mouceActiv, volunteerButton.mouceActivBefore);
 
 
 	do
 	{
-		if (adminButton.mouceActiv != 0) {
-			//draw the admin login Button
-			DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect1, 18, adminButton.mouceActiv);
-		}
-		if (volunteerButton.mouceActiv != 0) {
-			//draw the volunteer login button
-			DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18, volunteerButton.mouceActiv);
-		}
-		if (userButton.mouceActiv != 0) {
-			//draw the user login button
-			DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, userButton.mouceActiv);
-		}
-		
+
 		//get the mouce position and operation
 		m1 = GetMouseMsg();
-		
+
 		//init the mouce activity to not in
 		adminButton.mouceActiv = 0;
 		volunteerButton.mouceActiv = 0;
 		userButton.mouceActiv = 0;
-		
+
 		//judge if the mouse in the button
-		if (m1.x > adminButton.left && m1.x < adminButton.right && m1.y > adminButton.top && m1.y < adminButton.buttom){
+		if (m1.x > adminButton.left && m1.x < adminButton.right && m1.y > adminButton.top && m1.y < adminButton.buttom) {
 			adminButton.mouceActiv = 1;
-			if (m1.uMsg == WM_LBUTTONDOWN){
+			if (m1.uMsg == WM_LBUTTONDOWN) {
 				adminButton.mouceActiv = 2;
+			}
+			if (m1.uMsg == WM_LBUTTONUP) {
 				//进行管理员登录
 				AdminSighIn();
 			}
 		}
 
 		//judge if the mouce in the volunteer's button
-		if (m1.x > volunteerButton.left && m1.x < volunteerButton.right && m1.y > volunteerButton.top && m1.y < volunteerButton.buttom){
+		if (m1.x > volunteerButton.left && m1.x < volunteerButton.right && m1.y > volunteerButton.top && m1.y < volunteerButton.buttom) {
 			volunteerButton.mouceActiv = 1;
-			if (m1.uMsg == WM_LBUTTONDOWN){
+			if (m1.uMsg == WM_LBUTTONDOWN) {
 				volunteerButton.mouceActiv = 2;
-				//VolunteerSignIn();
+			}
+			if (m1.uMsg == WM_LBUTTONUP) {
+				//login as volunteer
+				//VolunteerSighIn();
 			}
 		}
-		
+
 		//user login Button
-		if (m1.x > userButton.left && m1.x < userButton.right && m1.y > volunteerButton.top && m1.y < volunteerButton.buttom){
+		if (m1.x > userButton.left && m1.x < userButton.right && m1.y > volunteerButton.top && m1.y < volunteerButton.buttom) {
 			userButton.mouceActiv = 1;
-			if (m1.uMsg == WM_LBUTTONDOWN){
+			if (m1.uMsg == WM_LBUTTONDOWN) {
 				userButton.mouceActiv = 2;
 				//VolunteerSignIn();
 			}
+			if (m1.uMsg == WM_LBUTTONUP) {
+				//login as user
+				//userSighIn();
+			}
 		}
-		
-	} while (loadLoginPageOpen);
-	
 
+		//draw the user login button
+		DrawButton(userButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect3, 18, userButton.mouceActiv, userButton.mouceActivBefore);
+		//draw the admin login Button
+		DrawButton(adminButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect1, 18, adminButton.mouceActiv, adminButton.mouceActivBefore);
+		//draw the volunteer login button
+		DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18, volunteerButton.mouceActiv, volunteerButton.mouceActivBefore);
+
+		/*
+		//if the last action is same as now, there is no need to print it again
+		if (adminButton.mouceActiv != adminButton.mouceActivBefore) {
+			}
+		if (volunteerButton.mouceActiv != volunteerButton.mouceActivBefore) {
+			}
+		if (userButton.mouceActiv != userButton.mouceActivBefore) {
+			}
+			*/
+
+			//store the mouceAction of the last loop
+		adminButton.mouceActivBefore = adminButton.mouceActiv;
+		volunteerButton.mouceActivBefore = volunteerButton.mouceActiv;
+		userButton.mouceActivBefore = userButton.mouceActiv;
+
+	} while (loadLoginPageOpen);
+	return;
 }
