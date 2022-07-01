@@ -1,6 +1,9 @@
 #include"AdminPage.h"
 #pragma warning(disable : 4996)
 
+resident* residentInfo;
+//volunteer* volunteerInfo;
+
 void AdminPage()
 {
 	MOUSEMSG m2;
@@ -277,6 +280,7 @@ bool LoadResidentInfoFile() {
 	return true;
 }
 
+
 bool LoadVolInfoFile(){
 	volunteerInfo = (volunteer*)malloc(5 * sizeof(volunteer));
 	if (volunteerInfo == NULL) {
@@ -308,3 +312,4 @@ bool LoadVolInfoFile(){
 	}
 	return true;
 }
+
