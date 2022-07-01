@@ -88,7 +88,7 @@ void LoadLoginPage() {
 			}
 			if (m1.uMsg == WM_LBUTTONUP) {
 				//if login succeed,
-				if (AdminSighIn()) return;
+				AdminSighIn();
 			}
 		}
 

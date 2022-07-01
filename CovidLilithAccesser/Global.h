@@ -55,5 +55,9 @@ typedef struct {
 extern rgbColor colorOutOfTheButton;
 extern rgbColor colorInTheButton;
 extern rgbColor colorClickingTheButton;
+extern rgbColor blueOfText;
+
+extern char heiTi[64];
+extern char songTi[64];
 
 extern bool loadLoginPageOpen;
