@@ -38,6 +38,7 @@ typedef struct {
 	char passwd[128];
 	wchar_t fromProvince[32];
 	long ID;
+	long belong;
 	//private
 	bool ifRead;
 	bool ifRisky;

@@ -28,7 +28,7 @@ int AddResident(resident toadd) {
 	fp = fopen(".\\data\\resinfo", "r, ccs=utf-8");
 	long testID = 0;
 	bool have = false;
-	while (fwscanf(fp, L"%*s,%*s,%ld,%*s,%*d,%*d", &testID) == 1) {
+	while (fwscanf(fp, L"%*s,%*s,%ld,%*ld,%*s,%*d,%*d", &testID) == 1) {
 		if (testID == toadd.ID) {
 			return 1;
 		}
@@ -36,7 +36,7 @@ int AddResident(resident toadd) {
 	fclose(fp);
 
 	fp = fopen(".\\data\\resinfo", "a, ccs=utf-8");
-	fwprintf(fp, L"%s,%s,%ld,%s,%d,%d\n", toadd.name, toadd.passwd, toadd.ID, toadd.fromProvince, toadd.ifRead, toadd.ifRisky);
+	fwprintf(fp, L"%s,%s,%ld,%ld,%s,%d,%d\n", toadd.name, toadd.passwd, toadd.ID,toadd.belong, toadd.fromProvince, toadd.ifRead, toadd.ifRisky);
 	return 0;
 }
 
