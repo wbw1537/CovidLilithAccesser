@@ -3,13 +3,14 @@
 
 void AdminPage()
 {
+	
 	ADM adminUser;
 	rectProperties text1,text2;
-	text1 = { 10,10,300,100 };
-	text2 = { 10,100,100,200 };
+	text1 = { 60,50,500,100 };
+	text2 = { 60,90,500,200 };
 	//read the file to get the login account and passwd.
 	FILE* fp;
-	fopen_s(&fp, "resources\\AdminSignIn", "r");
+	fopen_s(&fp, "data/admininfo", "r");
 	if (fp == NULL) return;
 	fscanf_s(fp, "%s%s%s", adminUser.ID, 64, adminUser.passWd, 64, adminUser.name, 64);
 	fclose(fp);
@@ -17,14 +18,16 @@ void AdminPage()
 	cleardevice();
 	IMAGE backGround, title;
 	loadimage(&backGround, "resources/backGround.jpg");
-	loadimage(&title, "resources/title.png");
+	loadimage(&title, "resources/title.png", 290, 109);
 	putimage(0, 0, &backGround);
-	drawAlpha(&title, 550, 30);
+	drawAlpha(&title, 630, 30);
 	//draw the texts
-	char adminText1[50] = { "管理员操作界面" };
+	char adminText1[50] = { "管理员操作界面:" };
 	char adminText2[50];
-	sprintf_s(adminText2, "欢迎您，%d", adminUser.name);
-	DrawTextsSingle(text1, songTi, adminText1, 35, 600, 0, blueOfText);
+	sprintf_s(adminText2, 50, "欢迎您，%s", adminUser.name, 20);
+	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
+	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
+	
 	while (1)
 	{
 		

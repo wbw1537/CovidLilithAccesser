@@ -7,7 +7,7 @@ bool AdminSighIn()
 {
 	//read the file to get the login account and passwd.
 	FILE * fp;
-	fopen_s(&fp, "resources\\AdminSignIn", "r");
+	fopen_s(&fp, "data/admininfo", "r");
 	if (fp == NULL) return 0;
 	fscanf_s(fp, "%s%s%s", adminUser.ID, 64, adminUser.passWd, 64, adminUser.name, 64);
 	fclose(fp);

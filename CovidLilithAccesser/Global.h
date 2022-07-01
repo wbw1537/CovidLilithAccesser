@@ -56,6 +56,7 @@ extern rgbColor colorOutOfTheButton;
 extern rgbColor colorInTheButton;
 extern rgbColor colorClickingTheButton;
 extern rgbColor blueOfText;
+extern rgbColor blackOfText;
 
 extern char heiTi[64];
 extern char songTi[64];
