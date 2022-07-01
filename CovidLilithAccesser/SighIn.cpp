@@ -2,7 +2,6 @@
 
 
 ADM adminUser;
-char len[20];
 
 bool AdminSighIn()
 {
@@ -23,7 +22,7 @@ bool AdminSighIn()
 	//check if the ID and passwd received right
 	if (!strcmp(adminUser.ID, recAcntId) && !strcmp(adminUser.passWd, recAcntPasswd)){
 		loadLoginPageOpen = 0;
-		initgraph(WINDOWWIDTH, WINDOWHEIGHT);
+		cleardevice();
 		AdminPage();
 		return 1;
 	}

@@ -18,9 +18,10 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 			//set the text style
 			LOGFONT f;
 			gettextstyle(&f);
-			_tcscpy_s(f.lfFaceName, _T("黑体"));
+			_tcscpy_s(f.lfFaceName, _T("宋体"));
 			f.lfQuality = ANTIALIASED_QUALITY;
 			f.lfHeight = sizeOfChar;
+			f.lfWeight = 600;
 			settextstyle(&f);
 			settextcolor(BLACK);
 			//draw the text in the Button
@@ -78,6 +79,19 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 
 }
 
+void DrawTextsSingle(rectProperties position, char* fonts, char* L_TEXT, int sizeOfChar, int weightOfChar, int italic, rgbColor textColor) {
+	LOGFONT f;
+	gettextstyle(&f);
+	_tcscpy_s(f.lfFaceName, _T(fonts));
+	f.lfQuality = ANTIALIASED_QUALITY;
+	f.lfItalic = italic;
+	f.lfWeight = weightOfChar;
+	f.lfHeight = sizeOfChar;
+	settextstyle(&f);
+	settextcolor(RGB(textColor.red, textColor.green, textColor.blue));
+	RECT R = { position.left,position.top,position.right,position.buttom };
+	drawtext(L_TEXT, &R, DT_LEFT | DT_WORDBREAK);
+}
 
 //函数声明
 void drawAlpha(IMAGE* picture, int  picture_x, int picture_y); //x为要载入图片的X坐标，y为Y坐标
