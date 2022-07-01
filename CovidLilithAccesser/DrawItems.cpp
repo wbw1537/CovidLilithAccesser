@@ -9,10 +9,11 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 	else {
 		if (moucePosition == 0)//out of the Button
 		{
-			//clearrectangle(position.left, position.top, position.right, position.buttom);
+			clearrectangle(position.left, position.top, position.right, position.buttom);
 			//set the color of the Button and size of it
 			setfillcolor(RGB(outTheButton.red, outTheButton.blue, outTheButton.green));
 			fillrectangle(position.left, position.top, position.right, position.buttom);
+			setlinecolor(BLACK);
 			setbkmode(TRANSPARENT);
 			//set the text style
 			LOGFONT f;
@@ -31,7 +32,9 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 			//clearrectangle(position.left, position.top, position.right, position.buttom);
 			//set the color of the Button and size of it
 			setfillcolor(RGB(inTheButton.red, inTheButton.blue, inTheButton.green));
+			
 			fillrectangle(position.left, position.top, position.right, position.buttom);
+			/*
 			setbkmode(TRANSPARENT);
 			//set the text style
 			LOGFONT f;
@@ -41,16 +44,20 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 			f.lfHeight = sizeOfChar;
 			settextstyle(&f);
 			settextcolor(BLACK);
+			*/
 			//draw the text in the Button
 			RECT R = { position.left,position.top,position.right,position.buttom };
 			drawtext(L_TEXT, &R, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+			
 		}
 		if (moucePosition == 2)
 		{
 			//clearrectangle(position.left, position.top, position.right, position.buttom);
 			//set the color of the Button and size of it
 			setfillcolor(RGB(clickTheButton.red, clickTheButton.blue, clickTheButton.green));
+			
 			fillrectangle(position.left, position.top, position.right, position.buttom);
+			/*
 			setbkmode(TRANSPARENT);
 			//set the text style
 			LOGFONT f;
@@ -60,11 +67,14 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 			f.lfHeight = sizeOfChar;
 			settextstyle(&f);
 			settextcolor(BLACK);
+			*/
 			//draw the text in the Button
 			RECT R = { position.left,position.top,position.right,position.buttom };
 			drawtext(L_TEXT, &R, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
+			
 		}
 	}
+	//clearrectangle(position.left, position.top, position.right, position.buttom);
 
 }
 
