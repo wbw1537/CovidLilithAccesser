@@ -67,7 +67,7 @@ int AddVolunteer(volunteer toadd) {
 	fp = fopen(".\\data\\volinfo", "r, ccs=utf-8");
 	long testID = 0;
 	bool have = false;
-	while (fwscanf(fp, L"%*s,%*s,%ld", &testID) == 1) {
+	while (fwscanf(fp, L"%*s ,%*s ,%ld ,%*d ,%*d ,%*s ,%*llu ,%*s ,%*s", &testID) == 1) {
 		if (testID == toadd.ID) {
 			return 1;
 		}
@@ -75,7 +75,7 @@ int AddVolunteer(volunteer toadd) {
 	fclose(fp);
 
 	fp = fopen(".\\data\\volinfo", "a, ccs=utf-8");
-	fwprintf(fp, L"%s,%s,%ld\n", toadd.name, toadd.passwd, toadd.ID);
+	fwprintf(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n", toadd.name, toadd.passwd, toadd.ID, toadd.age, toadd.sex, toadd.department, toadd.phone, toadd.wechat, toadd.position);
 	return 0;
 }
 	
@@ -114,9 +114,9 @@ bool DelVolunteer(long volunteerID) {
 	rewind(fp);
 	fpw = fopen(".\\data\\tmp", "w+, ccs=utf-8");
 	volunteer tmp = { 0 };
-	while (fwscanf_s(fp, L"%s ,%s ,%ld", tmp.name, 50, tmp.passwd, 128, &tmp.ID) == 3) {
+	while (fwscanf_s(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s", tmp.name, 50, tmp.passwd, 128, &tmp.ID, &tmp.age, &tmp.sex, tmp.department, 64, &tmp.phone, tmp.wechat, 64, tmp.position, 32) == 9) {
 		if (tmp.ID != volunteerID) {
-			fwprintf(fpw, L"%s ,%s ,%ld\n", tmp.name, tmp.passwd, tmp.ID);
+			fwprintf(fpw, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n", tmp.name, tmp.passwd, tmp.ID, tmp.age, tmp.sex, tmp.department, tmp.phone, tmp.wechat, tmp.position);
 		}
 		else {
 			del = true;
@@ -125,8 +125,8 @@ bool DelVolunteer(long volunteerID) {
 	fclose(fp);
 	fp = fopen(".\\data\\volinfo", "w, ccs=utf-8");
 	rewind(fpw);
-	while (fwscanf_s(fpw, L"%s ,%s ,%ld", tmp.name, 50, tmp.passwd, 128, &tmp.ID ) == 3) {
-		fwprintf(fp, L"%s ,%s ,%ld\n", tmp.name, tmp.passwd, tmp.ID);
+	while (fwscanf_s(fpw, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s", tmp.name, 50, tmp.passwd, 128, &tmp.ID, &tmp.age, &tmp.sex, tmp.department, 64, &tmp.phone, tmp.wechat, 64, tmp.position, 32) == 9) {
+		fwprintf(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n", tmp.name, tmp.passwd, tmp.ID, tmp.age, tmp.sex, tmp.department, tmp.phone, tmp.wechat, tmp.position);
 	}
 	fclose(fp);
 	fclose(fpw);
