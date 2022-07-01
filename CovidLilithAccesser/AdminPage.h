@@ -3,6 +3,7 @@
 #include"DrawItems.h"
 #include<graphics.h>
 #include<stdio.h>
+#include<stdlib.h>
 
 void AdminPage();
 
@@ -24,4 +25,6 @@ bool DelResident(long residentID);
 // 数据库中不存在返回false，存在且删除返回true
 bool DelVolunteer(long volunteerID);
 
-void JumpLines(int lines, FILE * fp);
+void JumpLines(int lines, FILE* fp);
+
+bool LoadResidentInfoFile();

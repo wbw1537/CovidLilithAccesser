@@ -9,4 +9,5 @@ extern rgbColor blackOfText = { 30,30,30 };
 extern char heiTi[64] = "÷ÚÌו";
 extern char songTi[64] = "ËÎÌו";
 
+extern resident* residentinfo = { 0 };
 bool loadLoginPageOpen;

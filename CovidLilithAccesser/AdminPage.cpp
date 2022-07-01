@@ -94,7 +94,10 @@ int AddResident(resident toadd) {
 	fclose(fp);
 
 	fp = fopen(".\\data\\resinfo", "a, ccs=utf-8");
-	fwprintf(fp, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d\n", toadd.name, toadd.passwd, toadd.fromProvince, toadd.ID, toadd.belong, toadd.building, toadd.district, toadd.ifRead, toadd.ifRisky);
+	fwprintf(fp, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d\n",
+		toadd.name, toadd.passwd, toadd.fromProvince, toadd.ID,
+		toadd.belong, toadd.building, toadd.district, toadd.ifRead, toadd.ifRisky
+	);
 	fclose(fp);
 	return 0;
 }
@@ -112,7 +115,10 @@ int AddVolunteer(volunteer toadd) {
 	fclose(fp);
 
 	fp = fopen(".\\data\\volinfo", "a, ccs=utf-8");
-	fwprintf(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n", toadd.name, toadd.passwd, toadd.ID, toadd.age, toadd.sex, toadd.department, toadd.phone, toadd.wechat, toadd.position);
+	fwprintf(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
+		toadd.name, toadd.passwd, toadd.ID, toadd.age, toadd.sex,
+		toadd.department, toadd.phone, toadd.wechat, toadd.position
+	);
 	fclose(fp);
 	return 0;
 }
@@ -125,9 +131,16 @@ bool DelResident(long residentID) {
 	rewind(fp);
 	fpw = fopen(".\\data\\tmp", "w+, ccs=utf-8");
 	resident tmp = { 0 };
-	while (fwscanf_s(fp, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d", tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID, &tmp.belong, &tmp.building, tmp.district, 32, &tmp.ifRead, &tmp.ifRisky) == 9) {
+	while (fwscanf_s(fp, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d",
+		tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID,
+		&tmp.belong, &tmp.building, tmp.district, 32, &tmp.ifRead, &tmp.ifRisky
+		) == 9
+	) {
 		if (tmp.ID != residentID) {
-			fwprintf(fpw, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d\n", tmp.name, tmp.passwd, tmp.fromProvince, tmp.ID, tmp.belong, tmp.building, tmp.district, tmp.ifRead, tmp.ifRisky);
+			fwprintf(fpw, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d\n",
+				tmp.name, tmp.passwd, tmp.fromProvince, tmp.ID, tmp.belong,
+				tmp.building, tmp.district, tmp.ifRead, tmp.ifRisky
+			);
 		}
 		else {
 			del = true;
@@ -136,8 +149,15 @@ bool DelResident(long residentID) {
 	fclose(fp);
 	fp = fopen(".\\data\\resinfo", "w, ccs=utf-8");
 	rewind(fpw);
-	while (fwscanf_s(fpw, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d", tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID, &tmp.belong, &tmp.building, tmp.district, 32, &tmp.ifRead, &tmp.ifRisky) == 9) {
-		fwprintf(fp, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d\n", tmp.name, tmp.passwd, tmp.fromProvince, tmp.ID, tmp.belong, tmp.building, tmp.district, tmp.ifRead, tmp.ifRisky);
+	while (fwscanf_s(fpw, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d",
+		tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID,
+		&tmp.belong, &tmp.building, tmp.district, 32, &tmp.ifRead, &tmp.ifRisky
+		) == 9
+	) {
+		fwprintf(fp, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d\n",
+			tmp.name, tmp.passwd, tmp.fromProvince, tmp.ID, tmp.belong,
+			tmp.building, tmp.district, tmp.ifRead, tmp.ifRisky
+		);
 	}
 	fclose(fp);
 	fclose(fpw);
@@ -152,9 +172,14 @@ bool DelVolunteer(long volunteerID) {
 	rewind(fp);
 	fpw = fopen(".\\data\\tmp", "w+, ccs=utf-8");
 	volunteer tmp = { 0 };
-	while (fwscanf_s(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s", tmp.name, 50, tmp.passwd, 128, &tmp.ID, &tmp.age, &tmp.sex, tmp.department, 64, &tmp.phone, tmp.wechat, 64, tmp.position, 32) == 9) {
+	while (fwscanf_s(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s",
+		tmp.name, 50, tmp.passwd, 128, &tmp.ID, &tmp.age, &tmp.sex,
+		tmp.department, 64, &tmp.phone, tmp.wechat, 64, tmp.position, 32
+	) == 9) {
 		if (tmp.ID != volunteerID) {
-			fwprintf(fpw, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n", tmp.name, tmp.passwd, tmp.ID, tmp.age, tmp.sex, tmp.department, tmp.phone, tmp.wechat, tmp.position);
+			fwprintf(fpw, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
+				tmp.name, tmp.passwd, tmp.ID, tmp.age, tmp.sex, tmp.department, tmp.phone, tmp.wechat, tmp.position
+			);
 		}
 		else {
 			del = true;
@@ -163,10 +188,45 @@ bool DelVolunteer(long volunteerID) {
 	fclose(fp);
 	fp = fopen(".\\data\\volinfo", "w, ccs=utf-8");
 	rewind(fpw);
-	while (fwscanf_s(fpw, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s", tmp.name, 50, tmp.passwd, 128, &tmp.ID, &tmp.age, &tmp.sex, tmp.department, 64, &tmp.phone, tmp.wechat, 64, tmp.position, 32) == 9) {
-		fwprintf(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n", tmp.name, tmp.passwd, tmp.ID, tmp.age, tmp.sex, tmp.department, tmp.phone, tmp.wechat, tmp.position);
+	while (fwscanf_s(fpw, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s",
+		tmp.name, 50, tmp.passwd, 128, &tmp.ID, &tmp.age, &tmp.sex, tmp.department, 64,
+		&tmp.phone, tmp.wechat, 64, tmp.position, 32) == 9) {
+		fwprintf(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
+			tmp.name, tmp.passwd, tmp.ID, tmp.age, tmp.sex, tmp.department, tmp.phone, tmp.wechat, tmp.position);
 	}
 	fclose(fp);
 	fclose(fpw);
 	return del;
+}
+
+bool LoadResidentInfoFile() {
+	residentInfo = (resident*)malloc(5 * sizeof(resident));
+	if (residentInfo == NULL) {
+		return false;
+	}
+	ZeroMemory(residentInfo, 5 * sizeof(resident));
+	int size = 5, index = 0;
+	resident tmp = { 0 };
+	resident* tmpArray;
+	FILE* fp = fopen(".\\data\\resinfo", "r, ccs=utf-8");
+	while (fwscanf_s(fp, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d",
+		tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID, &tmp.belong,
+		&tmp.building, tmp.district, 32, &tmp.ifRead, &tmp.ifRisky) == 9
+		) {
+		residentInfo[index] = tmp;
+		if (index == size - 1) {
+			tmpArray = residentInfo;
+			residentInfo = (resident*)malloc(2 * size * sizeof(resident));
+			if (residentInfo == NULL) {
+				return false;
+			}
+			ZeroMemory(residentInfo, 2 * size * sizeof(resident));
+			for (int i = 0; i < size; i++) {
+				residentInfo[i] = tmpArray[i];
+			}
+			size *= 2;
+		}
+		index++;
+	}
+	return true;
 }
