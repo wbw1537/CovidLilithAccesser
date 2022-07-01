@@ -7,7 +7,7 @@
 #include"LoadLoginPage.h"
 #include"DrawItems.h"
 #include"SighIn.h"
-#include"Globle.h"
+#include"Global.h"
 #include"AdminPage.h"
 
 

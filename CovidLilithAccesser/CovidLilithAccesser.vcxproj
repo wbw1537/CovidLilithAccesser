@@ -131,16 +131,16 @@
     <ClCompile Include="SighIn.cpp" />
     <ClCompile Include="CovidLilithAccesser.cpp" />
     <ClCompile Include="DrawItems.cpp" />
-    <ClCompile Include="Globle.cpp" />
+    <ClCompile Include="Global.cpp" />
     <ClCompile Include="LoadLoginPage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AdminPage.h" />
+    <ClInclude Include="Global.h" />
     <ClInclude Include="SighIn.h" />
     <ClInclude Include="CovidLilithAccesser.h" />
     <ClInclude Include="DataStructures.h" />
     <ClInclude Include="DrawItems.h" />
-    <ClInclude Include="Globle.h" />
     <ClInclude Include="LoadLoginPage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

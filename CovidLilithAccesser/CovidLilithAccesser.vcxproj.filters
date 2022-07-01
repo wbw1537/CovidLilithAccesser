@@ -27,7 +27,7 @@
     <ClCompile Include="SighIn.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Globle.cpp">
+    <ClCompile Include="Global.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="AdminPage.cpp">
@@ -50,10 +50,10 @@
     <ClInclude Include="DataStructures.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Globle.h">
+    <ClInclude Include="AdminPage.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="AdminPage.h">
+    <ClInclude Include="Global.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
