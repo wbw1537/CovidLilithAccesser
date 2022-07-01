@@ -85,3 +85,4 @@ extern char songTi[64];
 extern bool loadLoginPageOpen;
 
 extern resident* residentInfo;
+extern volunteer* volunteerInfo;

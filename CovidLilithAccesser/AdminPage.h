@@ -29,3 +29,5 @@ bool DelVolunteer(long volunteerID);
 void JumpLines(int lines, FILE* fp);
 
 bool LoadResidentInfoFile();
+
+bool LoadVolInfoFile();

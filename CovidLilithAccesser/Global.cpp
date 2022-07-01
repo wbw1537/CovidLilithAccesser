@@ -10,9 +10,13 @@ extern char heiTi[64] = "÷ÚÌו";
 extern char songTi[64] = "ËÎÌו";
 
 bool loadLoginPageOpen;
+
+/*
 bool AdminPageOpen;
 bool ResiPageOpen;
 bool VolPageOpen;
+bool loadLoginPageOpen;
+*/
 
 extern resident* residentinfo = { 0 };
-bool loadLoginPageOpen;
+extern volunteer* volunteerInfo = { 0 };

@@ -276,3 +276,35 @@ bool LoadResidentInfoFile() {
 	}
 	return true;
 }
+
+bool LoadVolInfoFile(){
+	volunteerInfo = (volunteer*)malloc(5 * sizeof(volunteer));
+	if (volunteerInfo == NULL) {
+		return false;
+	}
+	ZeroMemory(volunteerInfo, 5 * sizeof(volunteer));
+	int size = 5, index = 0;
+	volunteer tmp = { 0 };
+	volunteer* tmpArray;
+	FILE* fp = fopen(".\\data\\volinfo", "r, ccs=utf-8");
+	while (fwscanf_s(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s",
+		tmp.name, 50, tmp.passwd, 128, tmp.ID, 32, &tmp.age, &tmp.sex,
+		&tmp.department, tmp.phone, 32, &tmp.wechat, &tmp.position) == 9
+		) {
+		volunteerInfo[index] = tmp;
+		if (index == size - 1) {
+			tmpArray = volunteerInfo;
+			volunteerInfo = (volunteer*)malloc(2 * size * sizeof(volunteer));
+			if (volunteerInfo == NULL) {
+				return false;
+			}
+			ZeroMemory(volunteerInfo, 2 * size * sizeof(volunteer));
+			for (int i = 0; i < size; i++) {
+				volunteerInfo[i] = tmpArray[i];
+			}
+			size *= 2;
+		}
+		index++;
+	}
+	return true;
+}
