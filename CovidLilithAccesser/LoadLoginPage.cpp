@@ -67,6 +67,7 @@ void LoadLoginPage() {
 	//draw the volunteer login button
 	DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18, volunteerButton.mouceActiv, volunteerButton.mouceActivBefore);
 
+	loadLoginPageOpen = 1;
 
 	do
 	{
@@ -86,9 +87,8 @@ void LoadLoginPage() {
 				adminButton.mouceActiv = 2;
 			}
 			if (m1.uMsg == WM_LBUTTONUP) {
-				//进行管理员登录
-				AdminSighIn();
-				return;
+				//if login succeed,
+				if (AdminSighIn()) return;
 			}
 		}
 

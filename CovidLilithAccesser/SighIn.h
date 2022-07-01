@@ -5,4 +5,4 @@
 #include"DrawItems.h"
 #include"AdminPage.h"
 
-void AdminSighIn();
+bool AdminSighIn();
