@@ -57,6 +57,7 @@ void AdminPage()
 		CheckButton(m2,messageButton,InfoPage,firstRect,20);
 		CheckButton(m2, volButton, VolManageMenu, secendRect, 20);
 		CheckButton(m2, resiButton, ReciManageMenu, thirdRect, 20);
+		
 		/*
 		//init the mouce activity to not in
 		messageButton.mouceActiv = 0;
