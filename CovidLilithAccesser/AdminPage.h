@@ -7,9 +7,7 @@ void AdminPage();
 
 //需要添加的居民信息	
 // 0成功 1冲突 2其他
-int AddResident(resident toadd){
-	
-}
+int AddResident(resident toadd);
 
 //需要添加的工作人员	
 // 0成功 1冲突 2其他

@@ -1,4 +1,5 @@
 #include"AdminPage.h"
+#pragma warning(disable : 4996)
 
 void AdminPage()
 {
@@ -18,8 +19,11 @@ void JumpLines(int lines, FILE * fp) {
 }
 
 int AddResident(resident toadd) {
-	fopen(".\\data\\resinfo", "r");
-
+	
+	FILE* fp = { 0 };
+	fp = fopen( ".\\data\\resinfo", "a");
+	fprintf(fp, "%s,%s,%ld,%s,%d,%d", toadd.name, toadd.passwd, toadd.ID, toadd.fromProvince, toadd.ifRead, toadd.ifRisky);
+	return 0;
 }
 
 //需要添加的工作人员	
