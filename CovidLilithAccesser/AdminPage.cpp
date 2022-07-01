@@ -33,6 +33,18 @@ void AdminPage()
 		
 	}
 }
+//release info to the resident or volunteer
+void ReleaseInfo(int towards) {
+	if (towards == 0) { // to resident
+		//read the title and info to resident
+		char toResiInfoTitle[128], toResiInfoMessage[128];
+		TCHAR InputTitle[] = _T("请输入要向居民发布的信息标题");
+		InputBox(toResiInfoTitle, 128, InputTitle);
+		TCHAR InputMessage[] = _T("请输入要向居民发布的信息内容");
+		InputBox(toResiInfoMessage, 128, InputMessage);
+
+	}
+}
 
 void JumpLines(int lines, FILE * fp) {
 	wchar_t ch;
