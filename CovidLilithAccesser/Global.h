@@ -1,5 +1,11 @@
 #pragma once
 
+#include<stdio.h>
+#include<wchar.h>
+#include<locale.h>
+#include<stdlib.h>
+
+
 //carify the width and height of the window
 const int WINDOWWIDTH = 960;
 const int WINDOWHEIGHT = 540;
@@ -28,9 +34,9 @@ typedef struct {
 
 /*name:名字，passwd：密码， ID：用户ID*/
 typedef struct {
-	char name[50];
+	wchar_t name[50];
 	char passwd[128];
-	char fromProvince[32];
+	wchar_t fromProvince[32];
 	long ID;
 	//private
 	bool ifRead;
@@ -40,7 +46,7 @@ typedef struct {
 
 /*name：名字 passwd：密码 ID：工号*/
 typedef struct {
-	char name[50];
+	wchar_t name[50];
 	char passwd[128];
 	long ID;
 }volunteer;
