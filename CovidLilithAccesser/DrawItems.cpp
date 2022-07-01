@@ -78,6 +78,21 @@ void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheBu
 	//clearrectangle(position.left, position.top, position.right, position.buttom);
 
 }
+//use callback function
+void CheckButton(MOUSEMSG m, rectProperties &Button, void (*doSth)(void), char* L_TEXT, int sizeOfChar) {
+	Button.mouceActiv = 0;
+	if (m.x > Button.left && m.y > Button.top && m.y < Button.buttom && m.x < Button.right) {
+		Button.mouceActiv = 1;
+		if (m.uMsg == WM_LBUTTONDOWN) {
+			Button.mouceActiv = 2;
+		}
+		if (m.uMsg == WM_LBUTTONUP) {
+			doSth();
+		}
+	}
+	DrawButton(Button, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, L_TEXT, sizeOfChar);
+	Button.mouceActivBefore = Button.mouceActiv;
+}
 
 void DrawTextsSingle(rectProperties position, char* fonts, char* L_TEXT, int sizeOfChar, int weightOfChar, int italic, rgbColor textColor) {
 	LOGFONT f;

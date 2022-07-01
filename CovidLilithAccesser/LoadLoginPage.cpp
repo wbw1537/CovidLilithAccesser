@@ -75,6 +75,11 @@ void LoadLoginPage() {
 		//get the mouce position and operation
 		m1 = GetMouseMsg();
 
+		CheckButton(m1, adminButton, AdminSighIn, FirstSelect1, 18);
+		CheckButton(m1, userButton, UserSignIn, FirstSelect3, 18);
+		CheckButton(m1, volunteerButton, VolSignIn, FirstSelect2, 18);
+
+		/*
 		//init the mouce activity to not in
 		adminButton.mouceActiv = 0;
 		volunteerButton.mouceActiv = 0;
@@ -124,21 +129,13 @@ void LoadLoginPage() {
 		//draw the volunteer login button
 		DrawButton(volunteerButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, FirstSelect2, 18);
 
-		/*
-		//if the last action is same as now, there is no need to print it again
-		if (adminButton.mouceActiv != adminButton.mouceActivBefore) {
-			}
-		if (volunteerButton.mouceActiv != volunteerButton.mouceActivBefore) {
-			}
-		if (userButton.mouceActiv != userButton.mouceActivBefore) {
-			}
-			*/
+		
 
 			//store the mouceAction of the last loop
 		adminButton.mouceActivBefore = adminButton.mouceActiv;
 		volunteerButton.mouceActivBefore = volunteerButton.mouceActiv;
 		userButton.mouceActivBefore = userButton.mouceActiv;
-
+		*/
 	} while (loadLoginPageOpen);
 	return;
 }
