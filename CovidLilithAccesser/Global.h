@@ -67,7 +67,7 @@ typedef struct {
 
 typedef struct {
 	int messageType;
-	bool isSolve;
+	int isSolve;
 	char title[500];
 	char message[500];
 	char reply[500];
@@ -89,3 +89,5 @@ extern int numOfVol;
 
 extern resident* residentInfo;
 extern volunteer* volunteerInfo;
+extern TextExchange* resMessageList ;
+extern TextExchange* volMessageList ;
