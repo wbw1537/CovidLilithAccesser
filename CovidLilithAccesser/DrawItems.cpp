@@ -3,7 +3,7 @@
 
 void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheButton, rgbColor clickTheButton, char* L_TEXT, int sizeOfChar)
 {
-	if (position.mouceActiv == position.mouceActivBefore) {
+	if (position.mouceActiv == position.mouceActivBefore && lastIndexToDrawPage == indexToDrawPage) {
 		return;
 	}
 	else {

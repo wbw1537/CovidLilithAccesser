@@ -87,6 +87,9 @@ extern bool loadLoginPageOpen;
 extern bool ResiManagePageOpen;
 extern bool AdminPageOpen;
 
+extern int indexToDrawPage;
+extern int lastIndexToDrawPage;
+
 extern int numOfRes;
 extern int numOfVol;
 

@@ -7,6 +7,8 @@
 void InfoPage();
 
 void ReciManageMenu();
+void NextPageButton();
+void LastPageButton();
 
 void VolManageMenu();
 

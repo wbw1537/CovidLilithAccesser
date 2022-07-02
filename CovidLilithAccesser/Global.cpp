@@ -25,3 +25,5 @@ extern TextExchange* resMessageList = { 0 };
 extern TextExchange* volMessageList = { 0 };
 extern int numOfRes = 10;
 extern int numOfVol = 10;
+extern int indexToDrawPage = 0;
+extern int lastIndexToDrawPage = 0;

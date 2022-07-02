@@ -1,5 +1,6 @@
 #include"InfoPage.h"
 #pragma warning(disable : 4996)
+
 void InfoPage()
 {
 
@@ -17,16 +18,20 @@ void ReciManageMenu(){
 	drawAlpha(&title, 630, 30);
 
 	//print texts
-	rectProperties text1, text2, exitButtonCorr;
+	rectProperties text1, text2, exitButtonCorr,nextPageButtonCorr,lastPageButtonCorr;
 	text1 = { 60,45,500,100 };
 	text2 = { 60,85,500,200 };
 	exitButtonCorr = { 800,480,860,510,0,1 };
+	nextPageButtonCorr = { 330,480,450,520,0,1 };
+	lastPageButtonCorr = { 200,480,320,520,0,1 };
 	char adminText1[50] = { "用户信息管理系统:" };
 	char adminText2[50] = {"点击各个单元格可修改单元格内容"};
 	char exitButtonText[50] = { "退出" };
+	char nextPageButtonText[50] = {"下移"};
+	char lastPageButtonText[50] = {"上移"};
 	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
 	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
-
+	
 	//print sheet
 	int leftCoor = 22, topCoor = 170, rectWidth = 115, rectHeight = 30;
 	
@@ -95,28 +100,52 @@ void ReciManageMenu(){
 	char outputText1[10][50] = { "姓名","用户密码","来源地","编号","所属","楼栋","辖区","风险等级" };
 	
 	DrawButton(exitButtonCorr, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, exitButtonText, 20);
+	DrawButton(lastPageButtonCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, lastPageButtonText, 20);
+	DrawButton(nextPageButtonCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, nextPageButtonText, 20);
 
 	//output the title of the sheet
 	for (int i = 0; i < 8; i++) {
 		DrawButton(rects0[i], colorOfBackGround, colorOfBackGround, colorOfBackGround, outputText1[i], 20);
 	}
+
+	indexToDrawPage = 0;
+
 	do {
 		m3 = GetMouseMsg();
-		DrawLineButtonOfRes(rects1, 15, &residentInfo[0], m3);
-		DrawLineButtonOfRes(rects2, 15, &residentInfo[1], m3);
-		DrawLineButtonOfRes(rects3, 15, &residentInfo[2], m3);
-		DrawLineButtonOfRes(rects4, 15, &residentInfo[3], m3);
-		DrawLineButtonOfRes(rects5, 15, &residentInfo[4], m3);
-		DrawLineButtonOfRes(rects6, 15, &residentInfo[5], m3);
-		DrawLineButtonOfRes(rects7, 15, &residentInfo[6], m3);
-		DrawLineButtonOfRes(rects8, 15, &residentInfo[7], m3);
-		DrawLineButtonOfRes(rects9, 15, &residentInfo[8], m3);
+		DrawLineButtonOfRes(rects1, 15, &residentInfo[indexToDrawPage + 0], m3);
+		DrawLineButtonOfRes(rects2, 15, &residentInfo[indexToDrawPage + 1], m3);
+		DrawLineButtonOfRes(rects3, 15, &residentInfo[indexToDrawPage + 2], m3);
+		DrawLineButtonOfRes(rects4, 15, &residentInfo[indexToDrawPage + 3], m3);
+		DrawLineButtonOfRes(rects5, 15, &residentInfo[indexToDrawPage + 4], m3);
+		DrawLineButtonOfRes(rects6, 15, &residentInfo[indexToDrawPage + 5], m3);
+		DrawLineButtonOfRes(rects7, 15, &residentInfo[indexToDrawPage + 6], m3);
+		DrawLineButtonOfRes(rects8, 15, &residentInfo[indexToDrawPage + 7], m3);
+		DrawLineButtonOfRes(rects9, 15, &residentInfo[indexToDrawPage + 8], m3);
 		
+		lastIndexToDrawPage = indexToDrawPage;
+
 		CheckButton(m3, exitButtonCorr, EndResiManageMenu, exitButtonText, 20);
-		
+		CheckButton(m3, nextPageButtonCorr, NextPageButton, nextPageButtonText, 20);
+		CheckButton(m3, lastPageButtonCorr, LastPageButton, lastPageButtonText, 20);
+	
+
 	} while (ResiManagePageOpen);
 }
 
+void NextPageButton() {
+	if (indexToDrawPage < numOfRes) {
+		indexToDrawPage++;
+	}
+	else {
+		return;
+	}
+}
+void LastPageButton() {
+	if (indexToDrawPage > 0) {
+		indexToDrawPage--;
+	}
+	else return;
+}
 void EndResiManageMenu(){
 	ResiManagePageOpen = 0;
 	AdminPage();
