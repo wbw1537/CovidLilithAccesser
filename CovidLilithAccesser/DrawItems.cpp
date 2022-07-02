@@ -188,7 +188,7 @@ void DrawLineButtonOfRes(int leftCoor, int topCoor, int rectWidth, int rectHeigh
 					TCHAR InputBuilding[] = _T("请输入要修改的楼栋");
 					InputBox(changeBuilding, 20, InputBuilding);
 					int returnBuilding;
-					returnBuilding = strtol(changeBuilding, NULL, 10);
+					returnBuilding = strtol(changeBuilding,NULL, 10);
 					resinfo->building = returnBuilding;
 				}
 				case 6: {//district
