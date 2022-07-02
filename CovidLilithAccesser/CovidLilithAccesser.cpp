@@ -22,5 +22,9 @@ int main(void)
 
 
 	system("pause");
+
+	free(residentInfo);
+	free(volunteerInfo);
+
 	return 0;
 }
