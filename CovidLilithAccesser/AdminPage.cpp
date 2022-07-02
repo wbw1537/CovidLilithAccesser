@@ -155,7 +155,7 @@ int AddResident(resident toadd) {
 	fclose(fp);
 
 	fp = fopen(".\\data\\resinfo", "a");
-	fwprintf(fp, L"%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d\n",
+	fprintf(fp, "%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d\n",
 		toadd.name, toadd.passwd, toadd.fromProvince, toadd.ID,
 		toadd.belong, toadd.building, toadd.district, toadd.ifRead, toadd.ifRisky
 	);

@@ -27,3 +27,4 @@ extern int numOfRes = 10;
 extern int numOfVol = 10;
 extern int indexToDrawPage = 0;
 extern int lastIndexToDrawPage = 0;
+extern bool forceToFlashButton = 0;

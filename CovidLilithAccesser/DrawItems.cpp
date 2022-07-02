@@ -3,7 +3,7 @@
 
 void DrawButton(rectProperties position, rgbColor outTheButton, rgbColor inTheButton, rgbColor clickTheButton, char* L_TEXT, int sizeOfChar)
 {
-	if (position.mouceActiv == position.mouceActivBefore && lastIndexToDrawPage == indexToDrawPage) {
+	if (position.mouceActiv == position.mouceActivBefore && lastIndexToDrawPage == indexToDrawPage && !forceToFlashButton) {
 		return;
 	}
 	else {
@@ -132,58 +132,66 @@ void DrawLineButtonOfRes(rectProperties rects[], int sizeOfFont, resident* resin
 			if (m.uMsg == WM_LBUTTONUP) {
 				switch (i) {
 				case 0: {//name
-					char *changeName = {0};
+					char changeName[64];
 					TCHAR InputName[] = _T("请输入要修改的姓名");
 					InputBox(changeName, 20, InputName);
 					strcpy_s(resinfo->name, changeName);
+					break;
 				}
 				case 1: {//passwd
-					char* changePasswd = { 0 };
+					char changePasswd[64];
 					TCHAR InputPasswd[] = _T("请输入要修改的用户密码");
 					InputBox(changePasswd, 20, InputPasswd);
 					strcpy_s(resinfo->passwd, changePasswd);
+					break;
 				}
 				case 2: {//from Province
-					char* changeProv = { 0 };
+					char changeProv[64];
 					TCHAR InputProv[] = _T("请输入要修改的省份");
 					InputBox(changeProv, 20, InputProv);
 					strcpy_s(resinfo->fromProvince, changeProv);
+					break;
 				}
 				case 3: {//ID
-					char* changeID = { 0 };
+					char changeID[64];
 					TCHAR InputID[] = _T("请输入要修改的ID");
 					InputBox(changeID, 20, InputID);
 					int returnID;
 					returnID = strtol(changeID, NULL, 10);
 					resinfo->ID = returnID;
+					break;
 				}
 				case 4: {//belong to any volunteer
-					char* changeBelongName = { 0 };
+					char changeBelongName[64];
 					TCHAR InputBelongName[] = _T("请输入要修改的管理员姓名");
 					InputBox(changeBelongName, 20, InputBelongName);
 					strcpy_s(resinfo->belong, changeBelongName);
+					break;
 				}
 				case 5: {//building
-					char* changeBuilding = { 0 };
+					char changeBuilding[64];
 					TCHAR InputBuilding[] = _T("请输入要修改的楼栋");
 					InputBox(changeBuilding, 20, InputBuilding);
 					int returnBuilding;
 					returnBuilding = strtol(changeBuilding,NULL, 10);
 					resinfo->building = returnBuilding;
+					break;
 				}
 				case 6: {//district
-					char* changeDistrict = { 0 };
+					char changeDistrict[64];
 					TCHAR InputDistrict[] = _T("请输入要修改的小区名称");
 					InputBox(changeDistrict, 20, InputDistrict);
-					strcpy_s(resinfo->belong, changeDistrict);
+					strcpy_s(resinfo->district, changeDistrict);
+					break;
 				}
 				case 7: {//ifrisky
-					char* changeIfRisky = { 0 };
+					char changeIfRisky[64];
 					TCHAR InputIfRisky[] = _T("请输入要修改的风险等级，请输入1或0");
 					InputBox(changeIfRisky, 20, InputIfRisky);
 					int returnIfRisky;
 					returnIfRisky = strtol(changeIfRisky, NULL, 10);
 					resinfo->ifRisky = returnIfRisky;
+					break;
 				}
 				}
 			}

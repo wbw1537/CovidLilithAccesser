@@ -147,11 +147,12 @@ void ReciManageMenu(){
 		DrawLineButtonOfRes(rects9, 15, &residentInfo[indexToDrawPage + 8], m3);
 		
 		lastIndexToDrawPage = indexToDrawPage;
+		forceToFlashButton = 0;
 
 		CheckButton(m3, exitButtonCorr, EndResiManageMenu, exitButtonText, 20);
 		CheckButton(m3, nextPageButtonCorr, NextPageButton, nextPageButtonText, 20);
 		CheckButton(m3, lastPageButtonCorr, LastPageButton, lastPageButtonText, 20);
-	
+		CheckButton(m3, addUserInfoCorr, AddResidentFront, addUserInfoText, 20);
 
 	} while (ResiManagePageOpen);
 }
@@ -172,7 +173,7 @@ void LastPageButton() {
 }
 
 void AddResidentFront() {
-	resident res;
+	resident residentInfo;
 	char resName[128], resPasswd[128], resFromProvince[128], resID[128], 
 		resBelong[128], resBuilding[128], resDistrict[128], resIfRisky[128];
 	TCHAR InputName[] = _T("请输入姓名");
@@ -191,6 +192,18 @@ void AddResidentFront() {
 	InputBox(resDistrict, 128, InputDistrict);
 	TCHAR InputIfRisky[] = _T("请输入风险等级");
 	InputBox(resIfRisky, 128, InputIfRisky);
+	strcpy_s(residentInfo.name, resName);
+	strcpy_s(residentInfo.passwd, resPasswd);
+	strcpy_s(residentInfo.fromProvince, resFromProvince);
+	residentInfo.ID = strtol(resID, NULL, 10);
+	strcpy_s(residentInfo.belong, resBelong);
+	residentInfo.building = strtol(resBuilding, NULL, 10);
+	strcpy_s(residentInfo.district, resDistrict);
+	residentInfo.ifRisky = strtol(resIfRisky, NULL, 10);
+	residentInfo.ifRead = 0;
+	AddResident(residentInfo);
+	LoadResidentInfoFile();
+	forceToFlashButton = 1;
 }
 
 

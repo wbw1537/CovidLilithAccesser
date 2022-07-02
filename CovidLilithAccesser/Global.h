@@ -89,6 +89,7 @@ extern bool AdminPageOpen;
 
 extern int indexToDrawPage;
 extern int lastIndexToDrawPage;
+extern bool forceToFlashButton;
 
 extern int numOfRes;
 extern int numOfVol;
