@@ -18,20 +18,38 @@ void ReciManageMenu(){
 	drawAlpha(&title, 630, 30);
 
 	//print texts
-	rectProperties text1, text2, exitButtonCorr,nextPageButtonCorr,lastPageButtonCorr;
+	rectProperties text1, text2;
 	text1 = { 60,45,500,100 };
 	text2 = { 60,85,500,200 };
-	exitButtonCorr = { 800,480,860,510,0,1 };
-	nextPageButtonCorr = { 330,480,450,520,0,1 };
-	lastPageButtonCorr = { 200,480,320,520,0,1 };
+	
 	char adminText1[50] = { "用户信息管理系统:" };
 	char adminText2[50] = {"点击各个单元格可修改单元格内容"};
-	char exitButtonText[50] = { "退出" };
-	char nextPageButtonText[50] = {"下移"};
-	char lastPageButtonText[50] = {"上移"};
+
 	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
 	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
 	
+
+
+	rectProperties exitButtonCorr, nextPageButtonCorr, lastPageButtonCorr;
+	rectProperties addUserInfoCorr, delUserInfoCorr, reWriteUserInfoCorr;
+	int downLeftCorr = 100, downTopCorr = 470, downButtonWidth = 120, downButtonHeight = 40;
+	//int tempDownLeftCorr = downLeftCorr;
+
+	addUserInfoCorr = { downLeftCorr,downTopCorr,downLeftCorr + 1 * downButtonWidth + 0 * 10,downTopCorr + downButtonHeight,0,1 };
+	delUserInfoCorr = { downLeftCorr + 1 * downButtonWidth + 1 * 10,downTopCorr,downLeftCorr + 2 * downButtonWidth + 1 * 10,downTopCorr + downButtonHeight,0,1 };
+	reWriteUserInfoCorr = { downLeftCorr + 2 * downButtonWidth + 2 * 10,downTopCorr,downLeftCorr + 3 * downButtonWidth + 2 * 10,downTopCorr + downButtonHeight,0,1 };
+	lastPageButtonCorr = { downLeftCorr + 3 * downButtonWidth + 3 * 10,downTopCorr,downLeftCorr + 4 * downButtonWidth + 3 * 10,downTopCorr + downButtonHeight,0,1 };
+	nextPageButtonCorr = { downLeftCorr + 4 * downButtonWidth + 4 * 10,downTopCorr,downLeftCorr + 5 * downButtonWidth + 4 * 10,downTopCorr + downButtonHeight,0,1 };
+	exitButtonCorr = { downLeftCorr + 5 * downButtonWidth + 5 * 10,downTopCorr,downLeftCorr + 6 * downButtonWidth + 5 * 10,downTopCorr + downButtonHeight,0,1 };
+
+
+	char exitButtonText[50] = { "退出" };
+	char nextPageButtonText[50] = { "下移" };
+	char lastPageButtonText[50] = { "上移" };
+	char addUserInfoText[50] = { "添加用户" };
+	char delUserInfoText[50] = { "删除用户" };
+	char reWriteUserInfoText[50] = { "覆写文件" };
+
 	//print sheet
 	int leftCoor = 22, topCoor = 170, rectWidth = 115, rectHeight = 30;
 	
@@ -102,6 +120,12 @@ void ReciManageMenu(){
 	DrawButton(exitButtonCorr, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, exitButtonText, 20);
 	DrawButton(lastPageButtonCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, lastPageButtonText, 20);
 	DrawButton(nextPageButtonCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, nextPageButtonText, 20);
+	DrawButton(addUserInfoCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, addUserInfoText, 20);
+	DrawButton(delUserInfoCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, delUserInfoText, 20);
+	DrawButton(reWriteUserInfoCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, reWriteUserInfoText, 20);
+
+
+
 
 	//output the title of the sheet
 	for (int i = 0; i < 8; i++) {
@@ -146,6 +170,30 @@ void LastPageButton() {
 	}
 	else return;
 }
+
+void AddResidentFront() {
+	resident res;
+	char resName[128], resPasswd[128], resFromProvince[128], resID[128], 
+		resBelong[128], resBuilding[128], resDistrict[128], resIfRisky[128];
+	TCHAR InputName[] = _T("请输入姓名");
+	InputBox(resName, 128, InputName);
+	TCHAR InputPAsswd[] = _T("请输入密码");
+	InputBox(resPasswd, 128, InputPAsswd);
+	TCHAR InputProv[] = _T("请输入来源地");
+	InputBox(resFromProvince, 128, InputProv);
+	TCHAR InputID[] = _T("请输入编号");
+	InputBox(resID, 128, InputID);
+	TCHAR InputBelong[] = _T("请输入所属工作人员");
+	InputBox(resBelong, 128, InputBelong);
+	TCHAR InputBuilding[] = _T("请输入居住楼栋");
+	InputBox(resBuilding, 128, InputBuilding);
+	TCHAR InputDistrict[] = _T("请输入辖区");
+	InputBox(resDistrict, 128, InputDistrict);
+	TCHAR InputIfRisky[] = _T("请输入风险等级");
+	InputBox(resIfRisky, 128, InputIfRisky);
+}
+
+
 void EndResiManageMenu(){
 	ResiManagePageOpen = 0;
 	AdminPage();

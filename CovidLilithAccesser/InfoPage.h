@@ -9,6 +9,7 @@ void InfoPage();
 void ReciManageMenu();
 void NextPageButton();
 void LastPageButton();
+void AddResidentFront();
 
 void VolManageMenu();
 
