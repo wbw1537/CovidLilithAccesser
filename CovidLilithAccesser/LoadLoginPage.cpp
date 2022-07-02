@@ -7,10 +7,10 @@ void LoadLoginPage() {
 	//load background image and logo image, then print them
 	IMAGE backGround, logo, title;
 	loadimage(&backGround, "resources/backGround.jpg");
-	loadimage(&logo, "resources/covidProofWorkers.jpg", 350, 227);
+	loadimage(&logo, "resources/covidProofWorkers.png", 350, 227);
 	loadimage(&title, "resources/title.png");
 	putimage(0, 0, &backGround);
-	putimage(80, WINDOWHEIGHT / 2 - logo.getheight() / 2 - 30, &logo);
+	drawAlpha(&logo,80, WINDOWHEIGHT / 2 - logo.getheight() / 2 - 30);
 	drawAlpha(&title, 500, 80);
 
 	/*
