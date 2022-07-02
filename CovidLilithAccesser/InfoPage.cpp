@@ -14,6 +14,17 @@ void ReciManageMenu(){
 	putimage(0, 0, &backGround);
 	drawAlpha(&title, 630, 30);
 
+
+	rectProperties text1, text2, text3;
+	text1 = { 60,45,500,100 };
+	text2 = { 60,85,500,200 };
+
+	char adminText1[50] = { "用户信息管理系统:" };
+	char adminText2[50] = {"点击各个单元格可修改单元格内容"};
+
+	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
+	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
+
 	int leftCoor = 22, topCoor = 170, rectWidth = 115, rectHeight = 30;
 	
 	rectProperties rects1[20];
@@ -75,15 +86,15 @@ void ReciManageMenu(){
 	
 	do {
 		m3 = GetMouseMsg();
-		DrawLineButtonOfRes(rects1, 20, &residentInfo[0], m3);
-		DrawLineButtonOfRes(rects2, 20, &residentInfo[1], m3);
-		DrawLineButtonOfRes(rects3, 20, &residentInfo[2], m3);
-		DrawLineButtonOfRes(rects4, 20, &residentInfo[3], m3);
-		DrawLineButtonOfRes(rects5, 20, &residentInfo[4], m3);
-		DrawLineButtonOfRes(rects6, 20, &residentInfo[5], m3);
-		DrawLineButtonOfRes(rects7, 20, &residentInfo[6], m3);
-		DrawLineButtonOfRes(rects8, 20, &residentInfo[7], m3);
-		DrawLineButtonOfRes(rects9, 20, &residentInfo[8], m3);
+		DrawLineButtonOfRes(rects1, 15, &residentInfo[0], m3);
+		DrawLineButtonOfRes(rects2, 15, &residentInfo[1], m3);
+		DrawLineButtonOfRes(rects3, 15, &residentInfo[2], m3);
+		DrawLineButtonOfRes(rects4, 15, &residentInfo[3], m3);
+		DrawLineButtonOfRes(rects5, 15, &residentInfo[4], m3);
+		DrawLineButtonOfRes(rects6, 15, &residentInfo[5], m3);
+		DrawLineButtonOfRes(rects7, 15, &residentInfo[6], m3);
+		DrawLineButtonOfRes(rects8, 15, &residentInfo[7], m3);
+		DrawLineButtonOfRes(rects9, 15, &residentInfo[8], m3);
 
 		
 	} while (1);
