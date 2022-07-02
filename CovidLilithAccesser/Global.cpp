@@ -20,3 +20,5 @@ bool loadLoginPageOpen;
 
 extern resident* residentinfo = { 0 };
 extern volunteer* volunteerInfo = { 0 };
+extern int numOfRes = 0;
+extern int numOfVol = 0;

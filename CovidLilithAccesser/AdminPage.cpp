@@ -134,8 +134,7 @@ int AddResident(resident toadd) {
 	FILE* fp = { 0 };
 	fp = fopen(".\\data\\resinfo", "r, ccs=utf-8");
 	long testID = 0;
-	bool have = false;
-	while (fwscanf(fp, L"%*s ,%*s ,%*s ,%ld ,%*ld ,%*u ,%*s ,%*d ,%*d", &testID) == 1) {
+	while (fwscanf(fp, L"%*s ,%*s ,%*s ,%ld ,%*s ,%*u ,%*s ,%*d ,%*d", &testID) == 1) {
 		if (testID == toadd.ID) {
 			return 1;
 		}
@@ -143,7 +142,7 @@ int AddResident(resident toadd) {
 	fclose(fp);
 
 	fp = fopen(".\\data\\resinfo", "a, ccs=utf-8");
-	fwprintf(fp, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d\n",
+	fwprintf(fp, L"%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d\n",
 		toadd.name, toadd.passwd, toadd.fromProvince, toadd.ID,
 		toadd.belong, toadd.building, toadd.district, toadd.ifRead, toadd.ifRisky
 	);
@@ -180,13 +179,13 @@ bool DelResident(long residentID) {
 	rewind(fp);
 	fpw = fopen(".\\data\\tmp", "w+, ccs=utf-8");
 	resident tmp = { 0 };
-	while (fwscanf_s(fp, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d",
+	while (fwscanf_s(fp, L"%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d",
 		tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID,
 		&tmp.belong, &tmp.building, tmp.district, 32, &tmp.ifRead, &tmp.ifRisky
 		) == 9
 	) {
 		if (tmp.ID != residentID) {
-			fwprintf(fpw, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d\n",
+			fwprintf(fpw, L"%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d\n",
 				tmp.name, tmp.passwd, tmp.fromProvince, tmp.ID, tmp.belong,
 				tmp.building, tmp.district, tmp.ifRead, tmp.ifRisky
 			);
@@ -198,12 +197,12 @@ bool DelResident(long residentID) {
 	fclose(fp);
 	fp = fopen(".\\data\\resinfo", "w, ccs=utf-8");
 	rewind(fpw);
-	while (fwscanf_s(fpw, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d",
+	while (fwscanf_s(fpw, L"%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d",
 		tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID,
 		&tmp.belong, &tmp.building, tmp.district, 32, &tmp.ifRead, &tmp.ifRisky
 		) == 9
 	) {
-		fwprintf(fp, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d\n",
+		fwprintf(fp, L"%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d\n",
 			tmp.name, tmp.passwd, tmp.fromProvince, tmp.ID, tmp.belong,
 			tmp.building, tmp.district, tmp.ifRead, tmp.ifRisky
 		);
@@ -248,6 +247,37 @@ bool DelVolunteer(long volunteerID) {
 	return del;
 }
 
+void SaveInResiModify() {
+	FILE* fp;
+	fopen_s(&fp, "data/resinfo", "w, ccs=utf-8");
+	if (fp == NULL) {
+		return;
+	}
+	for (int i = 0; i < numOfRes; i++) {
+		if (residentInfo[i].ID != 0) {
+			fwprintf(fp, L"%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d\n",
+				residentInfo[i].name, residentInfo[i].passwd, residentInfo[i].fromProvince, residentInfo[i].ID, residentInfo[i].belong,
+				residentInfo[i].building, residentInfo[i].district, residentInfo[i].ifRead, residentInfo[i].ifRisky);
+		}
+		fclose(fp);
+	}
+}
+
+void SaveInVolModify() {
+	FILE* fp;
+	fopen_s(&fp, "data/volinfo", "w, ccs=utf-8");
+	if (fp == NULL) {
+		return;
+	}
+	for (int i = 0; i < numOfVol; i++) {
+		if (volunteerInfo[i].ID != 0) {
+			fwprintf(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
+				volunteerInfo[i].name, volunteerInfo[i].passwd, volunteerInfo[i].ID, volunteerInfo[i].age, volunteerInfo[i].sex, volunteerInfo[i].department, volunteerInfo[i].phone, volunteerInfo[i].wechat, volunteerInfo[i].position);
+		}
+		fclose(fp);
+	}
+}
+
 bool LoadResidentInfoFile() {
 	residentInfo = (resident*)malloc(5 * sizeof(resident));
 	if (residentInfo == NULL) {
@@ -276,7 +306,9 @@ bool LoadResidentInfoFile() {
 			size *= 2;
 		}
 		index++;
+		
 	}
+	numOfRes = index;
 	return true;
 }
 
@@ -310,6 +342,7 @@ bool LoadVolInfoFile(){
 		}
 		index++;
 	}
+	numOfVol = index;
 	return true;
 }
 

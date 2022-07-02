@@ -44,7 +44,7 @@ typedef struct {
 	char passwd[128];
 	wchar_t fromProvince[32];
 	long ID;
-	long belong;
+	wchar_t belong[50];//belong to any volunteer
 	unsigned int building;
 	wchar_t district[128];
 	//private
@@ -83,6 +83,9 @@ extern char heiTi[64];
 extern char songTi[64];
 
 extern bool loadLoginPageOpen;
+
+extern int numOfRes;
+extern int numOfVol;
 
 extern resident* residentInfo;
 extern volunteer* volunteerInfo;
