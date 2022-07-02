@@ -292,7 +292,7 @@ bool LoadResidentInfoFile() {
 	resident* tmpArray;
 	FILE* fp = fopen(".\\data\\resinfo", "r, ccs=utf-8");
 	while (fwscanf_s(fp, L"%ls ,%s ,%ls ,%ld ,%ls ,%u ,%ls ,%d ,%d",
-		tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID, &tmp.belong,
+		tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID, tmp.belong, 50, 
 		&tmp.building, tmp.district, 32, &tmp.ifRead, &tmp.ifRisky) == 9
 		) {
 		residentInfo[index] = tmp;
@@ -311,7 +311,7 @@ bool LoadResidentInfoFile() {
 		index++;
 		
 	}
-	//numOfRes = index;
+	numOfRes = index;
 	return true;
 }
 
