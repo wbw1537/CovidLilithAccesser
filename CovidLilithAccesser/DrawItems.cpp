@@ -108,23 +108,18 @@ void DrawTextsSingle(rectProperties position, char* fonts, char* L_TEXT, int siz
 	drawtext(L_TEXT, &R, DT_LEFT | DT_WORDBREAK);
 }
 
-void DrawLineButtonOfRes(int leftCoor, int topCoor, int rectWidth, int rectHeight, int sizeOfFont, resident* resinfo, MOUSEMSG m) {
-	rectProperties rects[20];
-	int tempLeftCoor = leftCoor, tempTopCoor = topCoor;
-	for (int i = 0; i < 8; i++) {
-		rects[i] = { tempLeftCoor,tempTopCoor,tempLeftCoor + rectWidth,tempTopCoor + rectHeight ,0,1 };
-		tempLeftCoor += rectWidth;
-	}
+
+void DrawLineButtonOfRes(rectProperties rects[], int sizeOfFont, resident* resinfo, MOUSEMSG m) {
 	//init the texts to print in the button
 
 	char outPutText1[9][200];
-	sprintf_s(outPutText1[0], 50,"%ls",resinfo->name);
+	sprintf_s(outPutText1[0], 50,"%s",resinfo->name);
 	sprintf_s(outPutText1[1], 50, "%s", resinfo->passwd);
-	sprintf_s(outPutText1[2], 50, "%ls", resinfo->fromProvince);
+	sprintf_s(outPutText1[2], 50, "%s", resinfo->fromProvince);
 	sprintf_s(outPutText1[3], 50, "%ld", resinfo->ID);
-	sprintf_s(outPutText1[4], 50, "%ls", resinfo->belong);
+	sprintf_s(outPutText1[4], 50, "%s", resinfo->belong);
 	sprintf_s(outPutText1[5], 50, "%u", resinfo->building);
-	sprintf_s(outPutText1[6], 50, "%ls", resinfo->district);
+	sprintf_s(outPutText1[6], 50, "%s", resinfo->district);
 	sprintf_s(outPutText1[7], 50, "%d", resinfo->ifRisky);
 
 	for (int i = 0; i < 8; i++) {
@@ -137,15 +132,10 @@ void DrawLineButtonOfRes(int leftCoor, int topCoor, int rectWidth, int rectHeigh
 			if (m.uMsg == WM_LBUTTONUP) {
 				switch (i) {
 				case 0: {//name
-					char* changeName = {0};
+					char *changeName = {0};
 					TCHAR InputName[] = _T("请输入要修改的姓名");
 					InputBox(changeName, 20, InputName);
-					wchar_t* returnName;
-					int iSize1;
-					iSize1 = MultiByteToWideChar(CP_ACP, 0, changeName, -1, NULL, 0);
-					returnName = (wchar_t*)malloc(iSize1 * sizeof(wchar_t));
-					MultiByteToWideChar(CP_ACP, 0, changeName, -1, returnName, iSize1);
-					wcscpy_s(resinfo->name, returnName);
+					strcpy_s(resinfo->name, changeName);
 				}
 				case 1: {//passwd
 					char* changePasswd = { 0 };
@@ -157,12 +147,7 @@ void DrawLineButtonOfRes(int leftCoor, int topCoor, int rectWidth, int rectHeigh
 					char* changeProv = { 0 };
 					TCHAR InputProv[] = _T("请输入要修改的省份");
 					InputBox(changeProv, 20, InputProv);
-					wchar_t* returnProv;
-					int iSize2;
-					iSize2 = MultiByteToWideChar(CP_ACP, 0, changeProv, -1, NULL, 0);
-					returnProv = (wchar_t*)malloc(iSize2 * sizeof(wchar_t));
-					MultiByteToWideChar(CP_ACP, 0, changeProv, -1, returnProv, iSize2);
-					wcscpy_s(resinfo->fromProvince, returnProv);
+					strcpy_s(resinfo->fromProvince, changeProv);
 				}
 				case 3: {//ID
 					char* changeID = { 0 };
@@ -176,12 +161,7 @@ void DrawLineButtonOfRes(int leftCoor, int topCoor, int rectWidth, int rectHeigh
 					char* changeBelongName = { 0 };
 					TCHAR InputBelongName[] = _T("请输入要修改的管理员姓名");
 					InputBox(changeBelongName, 20, InputBelongName);
-					wchar_t* returnBelongName;
-					int iSize3;
-					iSize3 = MultiByteToWideChar(CP_ACP, 0, changeBelongName, -1, NULL, 0);
-					returnBelongName = (wchar_t*)malloc(iSize3 * sizeof(wchar_t));
-					MultiByteToWideChar(CP_ACP, 0, changeBelongName, -1, returnBelongName, iSize3);
-					wcscpy_s(resinfo->belong, returnBelongName);
+					strcpy_s(resinfo->belong, changeBelongName);
 				}
 				case 5: {//building
 					char* changeBuilding = { 0 };
@@ -195,12 +175,7 @@ void DrawLineButtonOfRes(int leftCoor, int topCoor, int rectWidth, int rectHeigh
 					char* changeDistrict = { 0 };
 					TCHAR InputDistrict[] = _T("请输入要修改的小区名称");
 					InputBox(changeDistrict, 20, InputDistrict);
-					wchar_t* returnDistrict;
-					int iSize4;
-					iSize4 = MultiByteToWideChar(CP_ACP, 0, changeDistrict, -1, NULL, 0);
-					returnDistrict = (wchar_t*)malloc(iSize4 * sizeof(wchar_t));
-					MultiByteToWideChar(CP_ACP, 0, changeDistrict, -1, returnDistrict, iSize4);
-					wcscpy_s(resinfo->belong, returnDistrict);
+					strcpy_s(resinfo->belong, changeDistrict);
 				}
 				case 7: {//ifrisky
 					char* changeIfRisky = { 0 };

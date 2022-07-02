@@ -40,13 +40,13 @@ typedef struct {
 
 /*name:名字，passwd：密码， ID：用户ID*/
 typedef struct {
-	wchar_t name[50];
+	char name[50];
 	char passwd[128];
-	wchar_t fromProvince[32];
+	char fromProvince[32];
 	long ID;
-	wchar_t belong[50];//belong to any volunteer
+	char belong[50];//belong to any volunteer
 	unsigned int building;
-	wchar_t district[128];
+	char district[128];
 	//private
 	int ifRead;
 	int ifRisky;
@@ -54,15 +54,15 @@ typedef struct {
 
 /*name：名字 passwd：密码 ID：工号*/
 typedef struct {
-	wchar_t name[50];
+	char name[50];
 	char passwd[128];
 	long ID;
 	int age;
 	int sex;
-	wchar_t department[32];
+	char department[32];
 	unsigned long long phone;
-	wchar_t wechat[64];
-	wchar_t position[32];
+	char wechat[64];
+	char position[32];
 }volunteer;
 
 typedef struct {

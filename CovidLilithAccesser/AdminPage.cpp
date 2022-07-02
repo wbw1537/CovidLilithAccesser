@@ -124,9 +124,9 @@ void ReleaseInfo(int towards) {
 }
 
 void JumpLines(int lines, FILE * fp) {
-	wchar_t ch;
+	char ch;
 	for (int i = 0; i < lines; i++) {
-		while (fwscanf(fp, L"%c", &ch) && ch != '\n') {
+		while (fscanf(fp, "%s", &ch) && ch != '\n') {
 			;
 		}
 	}
@@ -135,16 +135,16 @@ void JumpLines(int lines, FILE * fp) {
 int AddResident(resident toadd) {
 
 	FILE* fp = { 0 };
-	fp = fopen(".\\data\\resinfo", "r, ccs=utf-8");
+	fp = fopen(".\\data\\resinfo", "r");
 	long testID = 0;
-	while (fwscanf(fp, L"%*s ,%*s ,%*s ,%ld ,%*s ,%*u ,%*s ,%*d ,%*d", &testID) == 1) {
+	while (fscanf(fp, "%*s ,%*s ,%*s ,%ld ,%*s ,%*u ,%*s ,%*d ,%*d", &testID) == 1) {
 		if (testID == toadd.ID) {
 			return 1;
 		}
 	}
 	fclose(fp);
 
-	fp = fopen(".\\data\\resinfo", "a, ccs=utf-8");
+	fp = fopen(".\\data\\resinfo", "a");
 	fwprintf(fp, L"%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d\n",
 		toadd.name, toadd.passwd, toadd.fromProvince, toadd.ID,
 		toadd.belong, toadd.building, toadd.district, toadd.ifRead, toadd.ifRisky
@@ -155,18 +155,18 @@ int AddResident(resident toadd) {
 
 int AddVolunteer(volunteer toadd) {
 	FILE* fp = { 0 };
-	fp = fopen(".\\data\\volinfo", "r, ccs=utf-8");
+	fp = fopen(".\\data\\volinfo", "r");
 	long testID = 0;
 	bool have = false;
-	while (fwscanf(fp, L"%*s ,%*s ,%ld ,%*d ,%*d ,%*s ,%*llu ,%*s ,%*s", &testID) == 1) {
+	while (fscanf(fp, "%*s ,%*s ,%ld ,%*d ,%*d ,%*s ,%*llu ,%*s ,%*s", &testID) == 1) {
 		if (testID == toadd.ID) {
 			return 1;
 		}
 	}
 	fclose(fp);
 
-	fp = fopen(".\\data\\volinfo", "a, ccs=utf-8");
-	fwprintf(fp, L"%ls ,%s ,%ld ,%d ,%d ,%ls ,%llu ,%ls ,%ls\n",
+	fp = fopen(".\\data\\volinfo", "a");
+	fprintf(fp, "%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
 		toadd.name, toadd.passwd, toadd.ID, toadd.age, toadd.sex,
 		toadd.department, toadd.phone, toadd.wechat, toadd.position
 	);
@@ -178,17 +178,17 @@ bool DelResident(long residentID) {
 	FILE* fp = { 0 };
 	FILE* fpw = { 0 };
 	bool del = false;
-	fp = fopen(".\\data\\resinfo", "r, ccs=utf-8");
+	fp = fopen(".\\data\\resinfo", "r");
 	rewind(fp);
-	fpw = fopen(".\\data\\tmp", "w+, ccs=utf-8");
+	fpw = fopen(".\\data\\tmp", "w+");
 	resident tmp = { 0 };
-	while (fwscanf_s(fp, L"%ls ,%s ,%ls ,%ld ,%ls ,%u ,%ls ,%d ,%d",
+	while (fscanf_s(fp, "%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d",
 		tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID,
 		&tmp.belong, &tmp.building, tmp.district, 32, &tmp.ifRead, &tmp.ifRisky
 		) == 9
 	) {
 		if (tmp.ID != residentID) {
-			fwprintf(fpw, L"%ls ,%s ,%ls ,%ld ,%ls ,%u ,%ls ,%d ,%d\n",
+			fprintf(fpw, "%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d\n",
 				tmp.name, tmp.passwd, tmp.fromProvince, tmp.ID, tmp.belong,
 				tmp.building, tmp.district, tmp.ifRead, tmp.ifRisky
 			);
@@ -198,14 +198,14 @@ bool DelResident(long residentID) {
 		}
 	}
 	fclose(fp);
-	fp = fopen(".\\data\\resinfo", "w, ccs=utf-8");
+	fp = fopen(".\\data\\resinfo", "w");
 	rewind(fpw);
-	while (fwscanf_s(fpw, L"%ls ,%s ,%ls ,%ld ,%ls ,%u ,%ls ,%d ,%d",
+	while (fscanf_s(fpw, "%s ,%s ,%s ,%d ,%s ,%u ,%s ,%d ,%d",
 		tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID,
 		&tmp.belong, &tmp.building, tmp.district, 32, &tmp.ifRead, &tmp.ifRisky
 		) == 9
 	) {
-		fwprintf(fp, L"%ls ,%s ,%ls ,%ld ,%ls ,%u ,%ls ,%d ,%d\n",
+		fprintf(fp, "%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d\n",
 			tmp.name, tmp.passwd, tmp.fromProvince, tmp.ID, tmp.belong,
 			tmp.building, tmp.district, tmp.ifRead, tmp.ifRisky
 		);
@@ -219,16 +219,16 @@ bool DelVolunteer(long volunteerID) {
 	FILE* fp = { 0 };
 	FILE* fpw = { 0 };
 	bool del = false;
-	fp = fopen(".\\data\\volinfo", "r, ccs=utf-8");
+	fp = fopen(".\\data\\volinfo", "r");
 	rewind(fp);
-	fpw = fopen(".\\data\\tmp", "w+, ccs=utf-8");
+	fpw = fopen(".\\data\\tmp", "w+");
 	volunteer tmp = { 0 };
-	while (fwscanf_s(fp, L"%ls ,%s ,%ld ,%d ,%d ,%ls ,%llu ,%ls ,%ls",
+	while (fscanf_s(fp, "%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s",
 		tmp.name, 50, tmp.passwd, 128, &tmp.ID, &tmp.age, &tmp.sex,
 		tmp.department, 64, &tmp.phone, tmp.wechat, 64, tmp.position, 32
 	) == 9) {
 		if (tmp.ID != volunteerID) {
-			fwprintf(fpw, L"%ls ,%s ,%ld ,%d ,%d ,%ls ,%llu ,%ls ,%ls\n",
+			fprintf(fpw, "%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
 				tmp.name, tmp.passwd, tmp.ID, tmp.age, tmp.sex, tmp.department, tmp.phone, tmp.wechat, tmp.position
 			);
 		}
@@ -237,12 +237,12 @@ bool DelVolunteer(long volunteerID) {
 		}
 	}
 	fclose(fp);
-	fp = fopen(".\\data\\volinfo", "w, ccs=utf-8");
+	fp = fopen(".\\data\\volinfo", "w");
 	rewind(fpw);
-	while (fwscanf_s(fpw, L"%ls ,%s ,%ld ,%d ,%d ,%ls ,%llu ,%ls ,%ls",
+	while (fscanf_s(fpw, "%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s",
 		tmp.name, 50, tmp.passwd, 128, &tmp.ID, &tmp.age, &tmp.sex, tmp.department, 64,
 		&tmp.phone, tmp.wechat, 64, tmp.position, 32) == 9) {
-		fwprintf(fp, L"%ls ,%s ,%ld ,%d ,%d ,%ls ,%llu ,%ls ,%ls\n",
+		fprintf(fp, "%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
 			tmp.name, tmp.passwd, tmp.ID, tmp.age, tmp.sex, tmp.department, tmp.phone, tmp.wechat, tmp.position);
 	}
 	fclose(fp);
@@ -252,13 +252,13 @@ bool DelVolunteer(long volunteerID) {
 
 void SaveInResiModify() {
 	FILE* fp;
-	fopen_s(&fp, "data/resinfo", "w, ccs=utf-8");
+	fopen_s(&fp, "data/resinfo", "w");
 	if (fp == NULL) {
 		return;
 	}
 	for (int i = 0; i < numOfRes; i++) {
 		if (residentInfo[i].ID != 0) {
-			fwprintf(fp, L"%ls ,%s ,%ls ,%ld ,%ls ,%u ,%ls ,%d ,%d\n",
+			fprintf(fp, "%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d\n",
 				residentInfo[i].name, residentInfo[i].passwd, residentInfo[i].fromProvince, residentInfo[i].ID, residentInfo[i].belong,
 				residentInfo[i].building, residentInfo[i].district, residentInfo[i].ifRead, residentInfo[i].ifRisky);
 		}
@@ -268,13 +268,13 @@ void SaveInResiModify() {
 
 void SaveInVolModify() {
 	FILE* fp;
-	fopen_s(&fp, "data/volinfo", "w, ccs=utf-8");
+	fopen_s(&fp, "data/volinfo", "w");
 	if (fp == NULL) {
 		return;
 	}
 	for (int i = 0; i < numOfVol; i++) {
 		if (volunteerInfo[i].ID != 0) {
-			fwprintf(fp, L"%ls ,%s ,%ld ,%d ,%d ,%ls ,%llu ,%ls ,%ls\n",
+			fprintf(fp, "%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
 				volunteerInfo[i].name, volunteerInfo[i].passwd, volunteerInfo[i].ID, volunteerInfo[i].age, volunteerInfo[i].sex, volunteerInfo[i].department, volunteerInfo[i].phone, volunteerInfo[i].wechat, volunteerInfo[i].position);
 		}
 		fclose(fp);
@@ -290,8 +290,8 @@ bool LoadResidentInfoFile() {
 	int size = 5, index = 0;
 	resident tmp = { 0 };
 	resident* tmpArray;
-	FILE* fp = fopen(".\\data\\resinfo", "r, ccs=utf-8");
-	while (fwscanf_s(fp, L"%ls ,%s ,%ls ,%ld ,%ls ,%u ,%ls ,%d ,%d",
+	FILE* fp = fopen(".\\data\\resinfo", "r");
+	while (fscanf_s(fp, "%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d",
 		tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID, tmp.belong, 50, 
 		&tmp.building, tmp.district, 32, &tmp.ifRead, &tmp.ifRisky) == 9
 		) {
@@ -325,8 +325,8 @@ bool LoadVolInfoFile(){
 	int size = 5, index = 0;
 	volunteer tmp = { 0 };
 	volunteer* tmpArray;
-	FILE* fp = fopen(".\\data\\volinfo", "r, ccs=utf-8");
-	while (fwscanf_s(fp, L"%ls ,%s ,%ld ,%d ,%d ,%ls ,%llu ,%ls ,%ls",
+	FILE* fp = fopen(".\\data\\volinfo", "r");
+	while (fscanf_s(fp, "%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s",
 		tmp.name, 50, tmp.passwd, 128, tmp.ID, 32, &tmp.age, &tmp.sex,
 		&tmp.department, tmp.phone, 32, &tmp.wechat, &tmp.position) == 9
 		) {
@@ -345,7 +345,7 @@ bool LoadVolInfoFile(){
 		}
 		index++;
 	}
-	//numOfVol = index;
+	numOfVol = index;
 	return true;
 }
 
