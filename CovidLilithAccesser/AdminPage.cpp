@@ -311,7 +311,7 @@ bool LoadResidentInfoFile() {
 		index++;
 		
 	}
-	//numOfRes = index;
+	numOfRes = index;
 	return true;
 }
 
