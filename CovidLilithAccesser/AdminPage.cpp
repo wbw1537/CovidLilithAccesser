@@ -7,11 +7,14 @@ resident* residentInfo;
 void AdminPage()
 {
 	MOUSEMSG m2;
+	AdminPageOpen = 1;
+
 	ADM adminUser;
-	rectProperties text1,text2,text3;
+	rectProperties text1, text2, text3, exitButtonCorr;
 	text1 = { 60,45,500,100 };
 	text2 = { 60,85,500,200 };
 	text3 = { 120,120,960,540 };
+	exitButtonCorr = { 800,480,860,510,0,1 };
 
 	//read the file to get the login account and passwd.
 	FILE* fp;
@@ -32,6 +35,7 @@ void AdminPage()
 	char adminText1[50] = { "管理员操作界面:" };
 	char adminText2[50];
 	char adminText3[200];
+	char exitButtonText[50] = { "退出" };
 	sprintf_s(adminText2, 50, "欢迎您，%s", adminUser.name, 20);
 	sprintf_s(adminText3, 50, "当前共有社区工作者%d名，用户%d名。", numOfVol, numOfRes);
 
@@ -53,7 +57,8 @@ void AdminPage()
 	DrawButton(messageButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, firstRect, 20);
 	DrawButton(volButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, secendRect, 20);
 	DrawButton(resiButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, thirdRect, 20);
-	
+	DrawButton(exitButtonCorr, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, exitButtonText, 20);
+
 	DrawTextsSingle(text3, songTi, adminText3, 25, 600, 0, blackOfText);
 	do{
 
@@ -63,7 +68,7 @@ void AdminPage()
 		CheckButton(m2,messageButton,InfoPage,firstRect,20);
 		CheckButton(m2, volButton, VolManageMenu, secendRect, 20);
 		CheckButton(m2, resiButton, ReciManageMenu, thirdRect, 20);
-		
+		CheckButton(m2, exitButtonCorr, EndAdminButton, exitButtonText, 20);
 		/*
 		//init the mouce activity to not in
 		messageButton.mouceActiv = 0;
@@ -95,7 +100,12 @@ void AdminPage()
 			}
 		}
 		*/
-	} while (1);
+	} while (AdminPageOpen);
+}
+
+void EndAdminButton() {
+	AdminPageOpen = 0;
+	LoadLoginPage();
 }
 //release info to the resident or volunteer
 void ReleaseInfo(int towards) {

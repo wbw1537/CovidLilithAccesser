@@ -2,11 +2,14 @@
 #include"Global.h"
 #include"DrawItems.h"
 #include"InfoPage.h"
+#include"CovidLilithAccesser.h"
 #include<graphics.h>
 #include<stdio.h>
 #include<stdlib.h>
 
 void AdminPage();
+
+void EndAdminButton();
 
 void ReleaseInfo(int towards);
 

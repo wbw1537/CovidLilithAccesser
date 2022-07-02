@@ -7,6 +7,8 @@ void InfoPage()
 
 void ReciManageMenu(){
 	MOUSEMSG m3;
+	ResiManagePageOpen = 1;
+	//print background
 	cleardevice();
 	IMAGE backGround, title;
 	loadimage(&backGround, "resources/backGround.jpg");
@@ -14,19 +16,21 @@ void ReciManageMenu(){
 	putimage(0, 0, &backGround);
 	drawAlpha(&title, 630, 30);
 
-
-	rectProperties text1, text2, text3;
+	//print texts
+	rectProperties text1, text2, exitButtonCorr;
 	text1 = { 60,45,500,100 };
 	text2 = { 60,85,500,200 };
-
+	exitButtonCorr = { 800,480,860,510,0,1 };
 	char adminText1[50] = { "用户信息管理系统:" };
 	char adminText2[50] = {"点击各个单元格可修改单元格内容"};
-
+	char exitButtonText[50] = { "退出" };
 	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
 	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
 
+	//print sheet
 	int leftCoor = 22, topCoor = 170, rectWidth = 115, rectHeight = 30;
 	
+	rectProperties rects0[20];
 	rectProperties rects1[20];
 	rectProperties rects2[20];
 	rectProperties rects3[20];
@@ -38,6 +42,11 @@ void ReciManageMenu(){
 	rectProperties rects9[20];
 	
 	int tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects0[i] = { tempLeftCoor,tempTopCoor - 1 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 0 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
 	for (int i = 0; i < 8; i++) {
 		rects1[i] = { tempLeftCoor,tempTopCoor + 0 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 1*rectHeight ,0,1 };
 		tempLeftCoor += rectWidth;
@@ -83,7 +92,14 @@ void ReciManageMenu(){
 		tempLeftCoor += rectWidth;
 	}
 
+	char outputText1[10][50] = { "姓名","用户密码","来源地","编号","所属","楼栋","辖区","风险等级" };
 	
+	DrawButton(exitButtonCorr, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, exitButtonText, 20);
+
+	//output the title of the sheet
+	for (int i = 0; i < 8; i++) {
+		DrawButton(rects0[i], colorOfBackGround, colorOfBackGround, colorOfBackGround, outputText1[i], 20);
+	}
 	do {
 		m3 = GetMouseMsg();
 		DrawLineButtonOfRes(rects1, 15, &residentInfo[0], m3);
@@ -95,9 +111,15 @@ void ReciManageMenu(){
 		DrawLineButtonOfRes(rects7, 15, &residentInfo[6], m3);
 		DrawLineButtonOfRes(rects8, 15, &residentInfo[7], m3);
 		DrawLineButtonOfRes(rects9, 15, &residentInfo[8], m3);
-
 		
-	} while (1);
+		CheckButton(m3, exitButtonCorr, EndResiManageMenu, exitButtonText, 20);
+		
+	} while (ResiManagePageOpen);
+}
+
+void EndResiManageMenu(){
+	ResiManagePageOpen = 0;
+	AdminPage();
 }
 
 void VolManageMenu() {
