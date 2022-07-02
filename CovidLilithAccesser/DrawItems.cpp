@@ -136,72 +136,80 @@ void DrawLineButtonOfRes(int leftCoor, int topCoor, int rectWidth, int rectHeigh
 			}
 			if (m.uMsg == WM_LBUTTONUP) {
 				switch (i) {
-				case 0://name
-					char* changeName;
+				case 0: {//name
+					char* changeName = {0};
 					TCHAR InputName[] = _T("请输入要修改的姓名");
 					InputBox(changeName, 20, InputName);
 					wchar_t* returnName;
-					int iSize;
-					iSize = MultiByteToWideChar(CP_ACP, 0, changeName, -1, NULL, 0);
-					returnName = (wchar_t*)malloc(iSize * sizeof(wchar_t));
-					MultiByteToWideChar(CP_ACP, 0, changeName, -1, returnName, iSize);
-					wcscpy(resinfo->name, returnName);
-				case 1://passwd
-					char* changePasswd;
+					int iSize1;
+					iSize1 = MultiByteToWideChar(CP_ACP, 0, changeName, -1, NULL, 0);
+					returnName = (wchar_t*)malloc(iSize1 * sizeof(wchar_t));
+					MultiByteToWideChar(CP_ACP, 0, changeName, -1, returnName, iSize1);
+					wcscpy_s(resinfo->name, returnName);
+				}
+				case 1: {//passwd
+					char* changePasswd = { 0 };
 					TCHAR InputPasswd[] = _T("请输入要修改的用户密码");
 					InputBox(changePasswd, 20, InputPasswd);
-					strcpy(resinfo->passwd, changePasswd);
-				case 2://from Province
-					char* changeProv;
+					strcpy_s(resinfo->passwd, changePasswd);
+				}
+				case 2: {//from Province
+					char* changeProv = { 0 };
 					TCHAR InputProv[] = _T("请输入要修改的省份");
 					InputBox(changeProv, 20, InputProv);
 					wchar_t* returnProv;
-					int iSize;
-					iSize = MultiByteToWideChar(CP_ACP, 0, changeProv, -1, NULL, 0);
-					returnProv = (wchar_t*)malloc(iSize * sizeof(wchar_t));
-					MultiByteToWideChar(CP_ACP, 0, changeProv, -1, returnProv, iSize);
-					wcscpy(resinfo->fromProvince, returnProv);
-				case 3://ID
-					char* changeID;
+					int iSize2;
+					iSize2 = MultiByteToWideChar(CP_ACP, 0, changeProv, -1, NULL, 0);
+					returnProv = (wchar_t*)malloc(iSize2 * sizeof(wchar_t));
+					MultiByteToWideChar(CP_ACP, 0, changeProv, -1, returnProv, iSize2);
+					wcscpy_s(resinfo->fromProvince, returnProv);
+				}
+				case 3: {//ID
+					char* changeID = { 0 };
 					TCHAR InputID[] = _T("请输入要修改的ID");
 					InputBox(changeID, 20, InputID);
 					int returnID;
 					returnID = strtol(changeID, NULL, 10);
 					resinfo->ID = returnID;
-				case 4://belong to any volunteer
-					char* changeBelongName;
+				}
+				case 4: {//belong to any volunteer
+					char* changeBelongName = { 0 };
 					TCHAR InputBelongName[] = _T("请输入要修改的管理员姓名");
 					InputBox(changeBelongName, 20, InputBelongName);
 					wchar_t* returnBelongName;
-					int iSize;
-					iSize = MultiByteToWideChar(CP_ACP, 0, changeBelongName, -1, NULL, 0);
-					returnBelongName = (wchar_t*)malloc(iSize * sizeof(wchar_t));
-					MultiByteToWideChar(CP_ACP, 0, changeBelongName, -1, returnBelongName, iSize);
-					wcscpy(resinfo->belong, returnBelongName);
-				case 5://building
-					char* changeBuilding;
+					int iSize3;
+					iSize3 = MultiByteToWideChar(CP_ACP, 0, changeBelongName, -1, NULL, 0);
+					returnBelongName = (wchar_t*)malloc(iSize3 * sizeof(wchar_t));
+					MultiByteToWideChar(CP_ACP, 0, changeBelongName, -1, returnBelongName, iSize3);
+					wcscpy_s(resinfo->belong, returnBelongName);
+				}
+				case 5: {//building
+					char* changeBuilding = { 0 };
 					TCHAR InputBuilding[] = _T("请输入要修改的楼栋");
 					InputBox(changeBuilding, 20, InputBuilding);
 					int returnBuilding;
 					returnBuilding = strtol(changeBuilding, NULL, 10);
 					resinfo->building = returnBuilding;
-				case 6://district
-					char* changeDistrict;
+				}
+				case 6: {//district
+					char* changeDistrict = { 0 };
 					TCHAR InputDistrict[] = _T("请输入要修改的小区名称");
 					InputBox(changeDistrict, 20, InputDistrict);
 					wchar_t* returnDistrict;
-					int iSize;
-					iSize = MultiByteToWideChar(CP_ACP, 0, changeDistrict, -1, NULL, 0);
-					returnDistrict = (wchar_t*)malloc(iSize * sizeof(wchar_t));
-					MultiByteToWideChar(CP_ACP, 0, changeDistrict, -1, returnDistrict, iSize);
-					wcscpy(resinfo->belong, returnDistrict);
-				case 7://ifrisky
-					char* changeIfRisky;
+					int iSize4;
+					iSize4 = MultiByteToWideChar(CP_ACP, 0, changeDistrict, -1, NULL, 0);
+					returnDistrict = (wchar_t*)malloc(iSize4 * sizeof(wchar_t));
+					MultiByteToWideChar(CP_ACP, 0, changeDistrict, -1, returnDistrict, iSize4);
+					wcscpy_s(resinfo->belong, returnDistrict);
+				}
+				case 7: {//ifrisky
+					char* changeIfRisky = { 0 };
 					TCHAR InputIfRisky[] = _T("请输入要修改的风险等级，请输入1或0");
 					InputBox(changeIfRisky, 20, InputIfRisky);
 					int returnIfRisky;
 					returnIfRisky = strtol(changeIfRisky, NULL, 10);
 					resinfo->ifRisky = returnIfRisky;
+				}
 				}
 			}
 			DrawButton(rects[i], colorOutOfTheButton, colorInTheButton, colorClickingTheButton, outPutText1[i], sizeOfFont);
