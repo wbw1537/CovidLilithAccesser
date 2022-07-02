@@ -31,6 +31,7 @@ bool DelVolunteer(long volunteerID);
 
 void JumpLines(int lines, FILE* fp);
 
+//rewrite the file with the data in the memory
 void SaveInResiModify();
 void SaveInVolModify();
 

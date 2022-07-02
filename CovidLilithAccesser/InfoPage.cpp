@@ -153,7 +153,9 @@ void ReciManageMenu(){
 		CheckButton(m3, nextPageButtonCorr, NextPageButton, nextPageButtonText, 20);
 		CheckButton(m3, lastPageButtonCorr, LastPageButton, lastPageButtonText, 20);
 		CheckButton(m3, addUserInfoCorr, AddResidentFront, addUserInfoText, 20);
-
+		CheckButton(m3, delUserInfoCorr, DelResidentFront, delUserInfoText, 20);
+		CheckButton(m3, reWriteUserInfoCorr, ReWriteResFront, reWriteUserInfoText, 20);
+	
 	} while (ResiManagePageOpen);
 }
 
@@ -201,9 +203,37 @@ void AddResidentFront() {
 	strcpy_s(residentInfo.district, resDistrict);
 	residentInfo.ifRisky = strtol(resIfRisky, NULL, 10);
 	residentInfo.ifRead = 0;
-	AddResident(residentInfo);
+	if (AddResident(residentInfo)) {
+		HWND SignError = GetHWnd();
+		int isok = MessageBox(SignError, "该编号已经存在，请重新添加", "提示", MB_OK);
+	}
 	LoadResidentInfoFile();
 	forceToFlashButton = 1;
+}
+
+void DelResidentFront(){
+	char toDelResID[64];
+	TCHAR InputID[] = _T("请输入要删除的用户编号");
+	InputBox(toDelResID, 128, InputID);
+	int intOfToDelResID = strtol(toDelResID, NULL, 10);
+	if (!DelResident(intOfToDelResID)) {
+		HWND SignError = GetHWnd();
+		int isok = MessageBox(SignError, "未查询到该编号用户，请重新输入", "提示", MB_OK);
+	}
+	LoadResidentInfoFile();
+	forceToFlashButton = 1;
+}
+
+void ReWriteResFront() {
+	SaveInResiModify();
+	HWND hndtipsDS = GetHWnd();
+	int isok = MessageBox(hndtipsDS, "确定覆盖源文件？", "提示", MB_OKCANCEL);
+	if (isok == IDOK) {
+		
+	}
+	else if (isok == IDCANCEL) {
+		return;
+	}
 }
 
 

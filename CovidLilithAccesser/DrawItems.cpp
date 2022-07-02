@@ -156,9 +156,16 @@ void DrawLineButtonOfRes(rectProperties rects[], int sizeOfFont, resident* resin
 					char changeID[64];
 					TCHAR InputID[] = _T("请输入要修改的ID");
 					InputBox(changeID, 20, InputID);
-					int returnID;
+					long returnID;
 					returnID = strtol(changeID, NULL, 10);
-					resinfo->ID = returnID;
+					for (int i = 0; i < numOfRes; i++) {
+						if (residentInfo[i].ID = returnID) {
+							HWND SignError = GetHWnd();
+							int isok = MessageBox(SignError, "该编号已经存在，请重新输入", "提示", MB_OK);
+							break;
+						}
+						resinfo->ID = returnID;
+					}
 					break;
 				}
 				case 4: {//belong to any volunteer

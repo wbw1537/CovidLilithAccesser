@@ -10,6 +10,8 @@ void ReciManageMenu();
 void NextPageButton();
 void LastPageButton();
 void AddResidentFront();
+void DelResidentFront();
+void ReWriteResFront();
 
 void VolManageMenu();
 
