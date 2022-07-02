@@ -8,9 +8,10 @@ void AdminPage()
 {
 	MOUSEMSG m2;
 	ADM adminUser;
-	rectProperties text1,text2;
+	rectProperties text1,text2,text3;
 	text1 = { 60,45,500,100 };
 	text2 = { 60,85,500,200 };
+	text3 = { 120,120,960,540 };
 
 	//read the file to get the login account and passwd.
 	FILE* fp;
@@ -32,6 +33,7 @@ void AdminPage()
 	char adminText2[50];
 	char adminText3[200];
 	sprintf_s(adminText2, 50, "欢迎您，%s", adminUser.name, 20);
+	sprintf_s(adminText3, 50, "当前共有社区工作者%d名，用户%d名。", numOfVol, numOfRes);
 
 	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
 	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
@@ -52,6 +54,7 @@ void AdminPage()
 	DrawButton(volButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, secendRect, 20);
 	DrawButton(resiButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, thirdRect, 20);
 	
+	DrawTextsSingle(text3, songTi, adminText3, 25, 600, 0, blackOfText);
 	do{
 
 		//get the mouce position and operation
@@ -163,7 +166,7 @@ int AddVolunteer(volunteer toadd) {
 	fclose(fp);
 
 	fp = fopen(".\\data\\volinfo", "a, ccs=utf-8");
-	fwprintf(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
+	fwprintf(fp, L"%ls ,%s ,%ld ,%d ,%d ,%ls ,%llu ,%ls ,%ls\n",
 		toadd.name, toadd.passwd, toadd.ID, toadd.age, toadd.sex,
 		toadd.department, toadd.phone, toadd.wechat, toadd.position
 	);
@@ -179,13 +182,13 @@ bool DelResident(long residentID) {
 	rewind(fp);
 	fpw = fopen(".\\data\\tmp", "w+, ccs=utf-8");
 	resident tmp = { 0 };
-	while (fwscanf_s(fp, L"%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d",
+	while (fwscanf_s(fp, L"%ls ,%s ,%ls ,%ld ,%ls ,%u ,%ls ,%d ,%d",
 		tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID,
 		&tmp.belong, &tmp.building, tmp.district, 32, &tmp.ifRead, &tmp.ifRisky
 		) == 9
 	) {
 		if (tmp.ID != residentID) {
-			fwprintf(fpw, L"%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d\n",
+			fwprintf(fpw, L"%ls ,%s ,%ls ,%ld ,%ls ,%u ,%ls ,%d ,%d\n",
 				tmp.name, tmp.passwd, tmp.fromProvince, tmp.ID, tmp.belong,
 				tmp.building, tmp.district, tmp.ifRead, tmp.ifRisky
 			);
@@ -197,12 +200,12 @@ bool DelResident(long residentID) {
 	fclose(fp);
 	fp = fopen(".\\data\\resinfo", "w, ccs=utf-8");
 	rewind(fpw);
-	while (fwscanf_s(fpw, L"%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d",
+	while (fwscanf_s(fpw, L"%ls ,%s ,%ls ,%ld ,%ls ,%u ,%ls ,%d ,%d",
 		tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID,
 		&tmp.belong, &tmp.building, tmp.district, 32, &tmp.ifRead, &tmp.ifRisky
 		) == 9
 	) {
-		fwprintf(fp, L"%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d\n",
+		fwprintf(fp, L"%ls ,%s ,%ls ,%ld ,%ls ,%u ,%ls ,%d ,%d\n",
 			tmp.name, tmp.passwd, tmp.fromProvince, tmp.ID, tmp.belong,
 			tmp.building, tmp.district, tmp.ifRead, tmp.ifRisky
 		);
@@ -220,12 +223,12 @@ bool DelVolunteer(long volunteerID) {
 	rewind(fp);
 	fpw = fopen(".\\data\\tmp", "w+, ccs=utf-8");
 	volunteer tmp = { 0 };
-	while (fwscanf_s(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s",
+	while (fwscanf_s(fp, L"%ls ,%s ,%ld ,%d ,%d ,%ls ,%llu ,%ls ,%ls",
 		tmp.name, 50, tmp.passwd, 128, &tmp.ID, &tmp.age, &tmp.sex,
 		tmp.department, 64, &tmp.phone, tmp.wechat, 64, tmp.position, 32
 	) == 9) {
 		if (tmp.ID != volunteerID) {
-			fwprintf(fpw, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
+			fwprintf(fpw, L"%ls ,%s ,%ld ,%d ,%d ,%ls ,%llu ,%ls ,%ls\n",
 				tmp.name, tmp.passwd, tmp.ID, tmp.age, tmp.sex, tmp.department, tmp.phone, tmp.wechat, tmp.position
 			);
 		}
@@ -236,10 +239,10 @@ bool DelVolunteer(long volunteerID) {
 	fclose(fp);
 	fp = fopen(".\\data\\volinfo", "w, ccs=utf-8");
 	rewind(fpw);
-	while (fwscanf_s(fpw, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s",
+	while (fwscanf_s(fpw, L"%ls ,%s ,%ld ,%d ,%d ,%ls ,%llu ,%ls ,%ls",
 		tmp.name, 50, tmp.passwd, 128, &tmp.ID, &tmp.age, &tmp.sex, tmp.department, 64,
 		&tmp.phone, tmp.wechat, 64, tmp.position, 32) == 9) {
-		fwprintf(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
+		fwprintf(fp, L"%ls ,%s ,%ld ,%d ,%d ,%ls ,%llu ,%ls ,%ls\n",
 			tmp.name, tmp.passwd, tmp.ID, tmp.age, tmp.sex, tmp.department, tmp.phone, tmp.wechat, tmp.position);
 	}
 	fclose(fp);
@@ -255,7 +258,7 @@ void SaveInResiModify() {
 	}
 	for (int i = 0; i < numOfRes; i++) {
 		if (residentInfo[i].ID != 0) {
-			fwprintf(fp, L"%s ,%s ,%s ,%ld ,%s ,%u ,%s ,%d ,%d\n",
+			fwprintf(fp, L"%ls ,%s ,%ls ,%ld ,%ls ,%u ,%ls ,%d ,%d\n",
 				residentInfo[i].name, residentInfo[i].passwd, residentInfo[i].fromProvince, residentInfo[i].ID, residentInfo[i].belong,
 				residentInfo[i].building, residentInfo[i].district, residentInfo[i].ifRead, residentInfo[i].ifRisky);
 		}
@@ -271,7 +274,7 @@ void SaveInVolModify() {
 	}
 	for (int i = 0; i < numOfVol; i++) {
 		if (volunteerInfo[i].ID != 0) {
-			fwprintf(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
+			fwprintf(fp, L"%ls ,%s ,%ld ,%d ,%d ,%ls ,%llu ,%ls ,%ls\n",
 				volunteerInfo[i].name, volunteerInfo[i].passwd, volunteerInfo[i].ID, volunteerInfo[i].age, volunteerInfo[i].sex, volunteerInfo[i].department, volunteerInfo[i].phone, volunteerInfo[i].wechat, volunteerInfo[i].position);
 		}
 		fclose(fp);
@@ -288,7 +291,7 @@ bool LoadResidentInfoFile() {
 	resident tmp = { 0 };
 	resident* tmpArray;
 	FILE* fp = fopen(".\\data\\resinfo", "r, ccs=utf-8");
-	while (fwscanf_s(fp, L"%s ,%s ,%s ,%ld ,%ld ,%u ,%s ,%d ,%d",
+	while (fwscanf_s(fp, L"%ls ,%s ,%ls ,%ld ,%ls ,%u ,%ls ,%d ,%d",
 		tmp.name, 50, tmp.passwd, 128, tmp.fromProvince, 32, &tmp.ID, &tmp.belong,
 		&tmp.building, tmp.district, 32, &tmp.ifRead, &tmp.ifRisky) == 9
 		) {
@@ -308,7 +311,7 @@ bool LoadResidentInfoFile() {
 		index++;
 		
 	}
-	numOfRes = index;
+	//numOfRes = index;
 	return true;
 }
 
@@ -323,7 +326,7 @@ bool LoadVolInfoFile(){
 	volunteer tmp = { 0 };
 	volunteer* tmpArray;
 	FILE* fp = fopen(".\\data\\volinfo", "r, ccs=utf-8");
-	while (fwscanf_s(fp, L"%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s",
+	while (fwscanf_s(fp, L"%ls ,%s ,%ld ,%d ,%d ,%ls ,%llu ,%ls ,%ls",
 		tmp.name, 50, tmp.passwd, 128, tmp.ID, 32, &tmp.age, &tmp.sex,
 		&tmp.department, tmp.phone, 32, &tmp.wechat, &tmp.position) == 9
 		) {
@@ -342,7 +345,7 @@ bool LoadVolInfoFile(){
 		}
 		index++;
 	}
-	numOfVol = index;
+	//numOfVol = index;
 	return true;
 }
 

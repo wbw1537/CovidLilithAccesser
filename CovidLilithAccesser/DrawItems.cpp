@@ -114,17 +114,17 @@ void DrawLineButtonOfRes(int leftCoor, int topCoor, int rectWidth, int rectHeigh
 	for (int i = 0; i < 8; i++) {
 		rects[i] = { tempLeftCoor,tempTopCoor,tempLeftCoor + rectWidth,tempTopCoor + rectHeight ,0,1 };
 		tempLeftCoor += rectWidth;
-		tempTopCoor += rectHeight;
 	}
 	//init the texts to print in the button
+
 	char outPutText1[9][200];
-	sprintf_s(outPutText1[0], 50,"%s",resinfo->name);
+	sprintf_s(outPutText1[0], 50,"%ls",resinfo->name);
 	sprintf_s(outPutText1[1], 50, "%s", resinfo->passwd);
-	sprintf_s(outPutText1[2], 50, "%s", resinfo->fromProvince);
+	sprintf_s(outPutText1[2], 50, "%ls", resinfo->fromProvince);
 	sprintf_s(outPutText1[3], 50, "%ld", resinfo->ID);
-	sprintf_s(outPutText1[4], 50, "%s", resinfo->belong);
+	sprintf_s(outPutText1[4], 50, "%ls", resinfo->belong);
 	sprintf_s(outPutText1[5], 50, "%u", resinfo->building);
-	sprintf_s(outPutText1[6], 50, "%s", resinfo->district);
+	sprintf_s(outPutText1[6], 50, "%ls", resinfo->district);
 	sprintf_s(outPutText1[7], 50, "%d", resinfo->ifRisky);
 
 	for (int i = 0; i < 8; i++) {
@@ -212,9 +212,10 @@ void DrawLineButtonOfRes(int leftCoor, int topCoor, int rectWidth, int rectHeigh
 				}
 				}
 			}
-			DrawButton(rects[i], colorOutOfTheButton, colorInTheButton, colorClickingTheButton, outPutText1[i], sizeOfFont);
-			rects[i].mouceActivBefore = rects[i].mouceActiv;
+			
 		}
+		DrawButton(rects[i], colorOutOfTheButton, colorInTheButton, colorClickingTheButton, outPutText1[i], sizeOfFont);
+		rects[i].mouceActivBefore = rects[i].mouceActiv;
 
 	}
 
