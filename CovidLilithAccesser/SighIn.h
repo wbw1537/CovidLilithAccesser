@@ -5,6 +5,7 @@
 #include"DrawItems.h"
 #include"AdminPage.h"
 #include"ResiPage.h"
+#include"VolPage.h"
 
 void AdminSighIn();
 

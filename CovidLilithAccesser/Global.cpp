@@ -15,6 +15,7 @@ bool ResiManagePageOpen;
 bool AdminPageOpen;
 bool VolManagePageOpen;
 bool ResiPageOpen;
+bool VolPageOpen;
 
 /*
 bool VolPageOpen;

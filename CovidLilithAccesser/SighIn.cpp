@@ -99,5 +99,30 @@ void UserSignIn(){
 }
 
 void VolSignIn() {
-
+	char volInputID[64], volInputPasswd[64];
+	TCHAR InputAcct[] = _T("请输入账号：");
+	InputBox(volInputID, 20, InputAcct);
+	int returnVolID = strtol(volInputID, NULL, 10);
+	bool foundID = 0;
+	for (int i = 0; i < numOfVol; i++) {
+		if (volunteerInfo[i].ID == returnVolID) {
+			TCHAR InputPasswd[] = _T("请输入密码：");
+			InputBox(volInputPasswd, 20, InputPasswd);
+			foundID = 1;
+			if (!strcmp(volInputPasswd, volunteerInfo[i].passwd)) {
+				nowLoginVol = volunteerInfo[i];
+				loadLoginPageOpen = 0;
+				VolPage();
+			}
+			else {
+				HWND SignError = GetHWnd();
+				int isok = MessageBox(SignError, "用户名或密码错误！", "提示", MB_OK);
+			}
+			break;
+		}
+	}
+	if (!foundID) {
+		HWND SignError = GetHWnd();
+		int isok = MessageBox(SignError, "未找到账号，请重新输入！", "提示", MB_OK);
+	}
 }
