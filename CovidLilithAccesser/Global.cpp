@@ -13,6 +13,7 @@ extern char songTi[64] = "ËÎÌו";
 bool loadLoginPageOpen;
 bool ResiManagePageOpen;
 bool AdminPageOpen;
+bool VolManagePageOpen;
 
 /*
 bool VolPageOpen;

@@ -150,8 +150,8 @@ void ReciManageMenu(){
 		forceToFlashButton = 0;
 
 		CheckButton(m3, exitButtonCorr, EndResiManageMenu, exitButtonText, 20);
-		CheckButton(m3, nextPageButtonCorr, NextPageButton, nextPageButtonText, 20);
-		CheckButton(m3, lastPageButtonCorr, LastPageButton, lastPageButtonText, 20);
+		CheckButton(m3, nextPageButtonCorr, NextPageButtonRes, nextPageButtonText, 20);
+		CheckButton(m3, lastPageButtonCorr, LastPageButtonRes, lastPageButtonText, 20);
 		CheckButton(m3, addUserInfoCorr, AddResidentFront, addUserInfoText, 20);
 		CheckButton(m3, delUserInfoCorr, DelResidentFront, delUserInfoText, 20);
 		CheckButton(m3, reWriteUserInfoCorr, ReWriteResFront, reWriteUserInfoText, 20);
@@ -159,7 +159,7 @@ void ReciManageMenu(){
 	} while (ResiManagePageOpen);
 }
 
-void NextPageButton() {
+void NextPageButtonRes() {
 	if (indexToDrawPage < numOfRes) {
 		indexToDrawPage++;
 	}
@@ -167,12 +167,13 @@ void NextPageButton() {
 		return;
 	}
 }
-void LastPageButton() {
+void LastPageButtonRes() {
 	if (indexToDrawPage > 0) {
 		indexToDrawPage--;
 	}
 	else return;
 }
+
 
 void AddResidentFront() {
 	resident residentInfo;
@@ -225,11 +226,10 @@ void DelResidentFront(){
 }
 
 void ReWriteResFront() {
-	SaveInResiModify();
 	HWND hndtipsDS = GetHWnd();
 	int isok = MessageBox(hndtipsDS, "确定覆盖源文件？", "提示", MB_OKCANCEL);
 	if (isok == IDOK) {
-		
+		SaveInResiModify();
 	}
 	else if (isok == IDCANCEL) {
 		return;
@@ -243,6 +243,9 @@ void EndResiManageMenu(){
 }
 
 void VolManageMenu() {
+	MOUSEMSG m3;
+	ResiManagePageOpen = 1;
+	//print background
 	cleardevice();
 	IMAGE backGround, title;
 	loadimage(&backGround, "resources/backGround.jpg");
@@ -250,10 +253,250 @@ void VolManageMenu() {
 	putimage(0, 0, &backGround);
 	drawAlpha(&title, 630, 30);
 
-	do {
+	//print texts
+	rectProperties text1, text2;
+	text1 = { 60,45,500,100 };
+	text2 = { 60,85,500,200 };
 
-	} while (1);
+	char adminText1[50] = { "社区工作者信息管理系统:" };
+	char adminText2[50] = { "点击各个单元格可修改单元格内容" };
+
+	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
+	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
+
+
+
+	rectProperties exitButtonCorr, nextPageButtonCorr, lastPageButtonCorr;
+	rectProperties addUserInfoCorr, delUserInfoCorr, reWriteUserInfoCorr;
+	int downLeftCorr = 100, downTopCorr = 470, downButtonWidth = 120, downButtonHeight = 40;
+	//int tempDownLeftCorr = downLeftCorr;
+
+	addUserInfoCorr = { downLeftCorr,downTopCorr,downLeftCorr + 1 * downButtonWidth + 0 * 10,downTopCorr + downButtonHeight,0,1 };
+	delUserInfoCorr = { downLeftCorr + 1 * downButtonWidth + 1 * 10,downTopCorr,downLeftCorr + 2 * downButtonWidth + 1 * 10,downTopCorr + downButtonHeight,0,1 };
+	reWriteUserInfoCorr = { downLeftCorr + 2 * downButtonWidth + 2 * 10,downTopCorr,downLeftCorr + 3 * downButtonWidth + 2 * 10,downTopCorr + downButtonHeight,0,1 };
+	lastPageButtonCorr = { downLeftCorr + 3 * downButtonWidth + 3 * 10,downTopCorr,downLeftCorr + 4 * downButtonWidth + 3 * 10,downTopCorr + downButtonHeight,0,1 };
+	nextPageButtonCorr = { downLeftCorr + 4 * downButtonWidth + 4 * 10,downTopCorr,downLeftCorr + 5 * downButtonWidth + 4 * 10,downTopCorr + downButtonHeight,0,1 };
+	exitButtonCorr = { downLeftCorr + 5 * downButtonWidth + 5 * 10,downTopCorr,downLeftCorr + 6 * downButtonWidth + 5 * 10,downTopCorr + downButtonHeight,0,1 };
+
+
+	char exitButtonText[50] = { "退出" };
+	char nextPageButtonText[50] = { "下移" };
+	char lastPageButtonText[50] = { "上移" };
+	char addUserInfoText[50] = { "添加工作者" };
+	char delUserInfoText[50] = { "删除工作者" };
+	char reWriteUserInfoText[50] = { "覆写文件" };
+
+	//print sheet
+	int leftCoor = 22, topCoor = 170, rectWidth = 115, rectHeight = 30;
+
+	rectProperties rects0[20];
+	rectProperties rects1[20];
+	rectProperties rects2[20];
+	rectProperties rects3[20];
+	rectProperties rects4[20];
+	rectProperties rects5[20];
+	rectProperties rects6[20];
+	rectProperties rects7[20];
+	rectProperties rects8[20];
+	rectProperties rects9[20];
+
+	int tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects0[i] = { tempLeftCoor,tempTopCoor - 1 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 0 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects1[i] = { tempLeftCoor,tempTopCoor + 0 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 1 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects2[i] = { tempLeftCoor,tempTopCoor + 1 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 2 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects3[i] = { tempLeftCoor,tempTopCoor + 2 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 3 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects4[i] = { tempLeftCoor,tempTopCoor + 3 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 4 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects5[i] = { tempLeftCoor,tempTopCoor + 4 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 5 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects6[i] = { tempLeftCoor,tempTopCoor + 5 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 6 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects7[i] = { tempLeftCoor,tempTopCoor + 6 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 7 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects8[i] = { tempLeftCoor,tempTopCoor + 7 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 8 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects9[i] = { tempLeftCoor,tempTopCoor + 8 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 9 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+
+	char outputText1[10][50] = { "姓名","密码","编号","年龄","性别","部门","手机号码","职务" };
+
+	DrawButton(exitButtonCorr, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, exitButtonText, 20);
+	DrawButton(lastPageButtonCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, lastPageButtonText, 20);
+	DrawButton(nextPageButtonCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, nextPageButtonText, 20);
+	DrawButton(addUserInfoCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, addUserInfoText, 20);
+	DrawButton(delUserInfoCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, delUserInfoText, 20);
+	DrawButton(reWriteUserInfoCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, reWriteUserInfoText, 20);
+
+
+
+
+	//output the title of the sheet
+	for (int i = 0; i < 8; i++) {
+		DrawButton(rects0[i], colorOfBackGround, colorOfBackGround, colorOfBackGround, outputText1[i], 20);
+	}
+
+	indexToDrawPage = 0;
+
+	do {
+		m3 = GetMouseMsg();
+		DrawLineButtonOfVol(rects1, 15, &volunteerInfo[indexToDrawPage + 0], m3);
+		DrawLineButtonOfVol(rects2, 15, &volunteerInfo[indexToDrawPage + 1], m3);
+		DrawLineButtonOfVol(rects3, 15, &volunteerInfo[indexToDrawPage + 2], m3);
+		DrawLineButtonOfVol(rects4, 15, &volunteerInfo[indexToDrawPage + 3], m3);
+		DrawLineButtonOfVol(rects5, 15, &volunteerInfo[indexToDrawPage + 4], m3);
+		DrawLineButtonOfVol(rects6, 15, &volunteerInfo[indexToDrawPage + 5], m3);
+		DrawLineButtonOfVol(rects7, 15, &volunteerInfo[indexToDrawPage + 6], m3);
+		DrawLineButtonOfVol(rects8, 15, &volunteerInfo[indexToDrawPage + 7], m3);
+		DrawLineButtonOfVol(rects9, 15, &volunteerInfo[indexToDrawPage + 8], m3);
+
+		lastIndexToDrawPage = indexToDrawPage;
+		forceToFlashButton = 0;
+
+		CheckButton(m3, exitButtonCorr, EndResiManageMenu, exitButtonText, 20);
+		CheckButton(m3, nextPageButtonCorr, NextPageButtonVol, nextPageButtonText, 20);
+		CheckButton(m3, lastPageButtonCorr, LastPageButtonVol, lastPageButtonText, 20);
+		CheckButton(m3, addUserInfoCorr, AddResidentFront, addUserInfoText, 20);
+		CheckButton(m3, delUserInfoCorr, DelResidentFront, delUserInfoText, 20);
+		CheckButton(m3, reWriteUserInfoCorr, ReWriteResFront, reWriteUserInfoText, 20);
+
+	} while (VolManagePageOpen);
 }
+
+void NextPageButtonVol() {
+	if (indexToDrawPage < numOfVol) {
+		indexToDrawPage++;
+	}
+	else {
+		return;
+	}
+}
+void LastPageButtonVol() {
+	if (indexToDrawPage > 0) {
+		indexToDrawPage--;
+	}
+	else return;
+}
+
+
+
+
+void AddVolFront() {
+	volunteer volinfo;
+
+	char changeName[64];
+	TCHAR InputName[] = _T("请输入要修改的姓名");
+	InputBox(changeName, 20, InputName);
+
+	char changePasswd[64];
+	TCHAR InputPasswd[] = _T("请输入要修改的用户密码");
+	InputBox(changePasswd, 20, InputPasswd);
+
+	char changeID[64];
+	TCHAR InputID[] = _T("请输入要修改的ID");
+	InputBox(changeID, 20, InputID);
+
+	char changeAge[64];
+	TCHAR InputAge[] = _T("请输入要修改的年龄");
+	InputBox(changeAge, 20, InputAge);
+
+	char changeSex[64];
+	TCHAR InputSex[] = _T("请输入要修改的性别");
+	InputBox(changeSex, 20, InputSex);
+
+	char changeDepartments[64];
+	TCHAR InputDepartments[] = _T("请输入要修改的部门");
+	InputBox(changeDepartments, 20, InputDepartments);
+
+	char changePhone[64];
+	TCHAR InputPhone[] = _T("请输入要修改的电话号码");
+	InputBox(changePhone, 20, InputPhone);
+
+	char changePosition[64];
+	TCHAR InputPosition[] = _T("请输入要修改的职务");
+	InputBox(changePosition, 20, InputPosition);
+
+	strcpy_s(volinfo.name, changeName);
+	strcpy_s(volinfo.passwd, changePasswd);
+	volinfo.ID = strtol(changeID, NULL, 10);
+	volinfo.age = strtol(changeAge, NULL, 10);
+	volinfo.sex = strtol(changeSex, NULL, 10);
+	strcpy_s(volinfo.department, changeDepartments);
+	volinfo.phone = strtol(changePhone, NULL, 10);
+	strcpy_s(volinfo.position, changePosition);
+	if (AddVolunteer(volinfo)) {
+		HWND SignError = GetHWnd();
+		int isok = MessageBox(SignError, "该编号已经存在，请重新添加", "提示", MB_OK);
+	}
+	LoadResidentInfoFile();
+	forceToFlashButton = 1;
+}
+
+void DelVolFront() {
+	char toDelVolID[64];
+	TCHAR InputID[] = _T("请输入要删除的工作者编号");
+	InputBox(toDelVolID, 128, InputID);
+	int intOfToDelVolID = strtol(toDelVolID, NULL, 10);
+	if (!DelVolunteer(intOfToDelVolID)) {
+		HWND SignError = GetHWnd();
+		int isok = MessageBox(SignError, "未查询到该编号工作者，请重新输入", "提示", MB_OK);
+	}
+	LoadResidentInfoFile();
+	forceToFlashButton = 1;
+}
+
+void ReWriteResFront() {
+	HWND hndtipsDS = GetHWnd();
+	int isok = MessageBox(hndtipsDS, "确定覆盖源文件？", "提示", MB_OKCANCEL);
+	if (isok == IDOK) {
+		SaveInVolModify();
+	}
+	else if (isok == IDCANCEL) {
+		return;
+	}
+}
+
+
+void EndVolManageMenu() {
+	VolManagePageOpen = 0;
+	AdminPage();
+}
+
+
+
+
 bool WriteVolMessageFile(TextExchange toadd) {
 	FILE* fp = { 0 };
 	fp = fopen(".\\data\\resimessage", "a, ccs=utf-8");

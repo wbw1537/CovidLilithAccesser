@@ -210,6 +210,117 @@ void DrawLineButtonOfRes(rectProperties rects[], int sizeOfFont, resident* resin
 	}
 
 }
+
+void DrawLineButtonOfVol(rectProperties rects[], int sizeOfFont, volunteer* volinfo, MOUSEMSG m) {
+	//init the texts to print in the button
+
+	char outPutText1[9][200];
+	sprintf_s(outPutText1[0], 50, "%s", volinfo->name);
+	sprintf_s(outPutText1[1], 50, "%s", volinfo->passwd);
+	sprintf_s(outPutText1[2], 50, "%ld", volinfo->ID);
+	sprintf_s(outPutText1[3], 50, "%d", volinfo->age);
+	if (volinfo->sex == 0) {
+		sprintf_s(outPutText1[4], 50, "女");
+	}
+	if (volinfo->sex == 1) {
+		sprintf_s(outPutText1[4], 50, "男");
+	}
+	sprintf_s(outPutText1[4], 50, "%d", volinfo->sex);
+	sprintf_s(outPutText1[5], 50, "%llu", volinfo->department);
+	sprintf_s(outPutText1[6], 50, "%s", volinfo->phone);
+	sprintf_s(outPutText1[7], 50, "%s", volinfo->position);
+
+	for (int i = 0; i < 8; i++) {
+		rects[i].mouceActiv = 0;
+		if (m.x > rects[i].left && m.y > rects[i].top && m.y < rects[i].buttom && m.x < rects[i].right) {
+			rects[i].mouceActiv = 1;
+			if (m.uMsg == WM_LBUTTONDOWN) {
+				rects[i].mouceActiv = 2;
+			}
+			if (m.uMsg == WM_LBUTTONUP) {
+				switch (i) {
+				case 0: {//name
+					char changeName[64];
+					TCHAR InputName[] = _T("请输入要修改的姓名");
+					InputBox(changeName, 20, InputName);
+					strcpy_s(volinfo->name, changeName);
+					break;
+				}
+				case 1: {//passwd
+					char changePasswd[64];
+					TCHAR InputPasswd[] = _T("请输入要修改的用户密码");
+					InputBox(changePasswd, 20, InputPasswd);
+					strcpy_s(volinfo->passwd, changePasswd);
+					break;
+				}
+				case 2: {//ID
+					char changeID[64];
+					TCHAR InputID[] = _T("请输入要修改的ID");
+					InputBox(changeID, 20, InputID);
+					long returnID;
+					returnID = strtol(changeID, NULL, 10);
+					for (int i = 0; i < numOfVol; i++) {
+						if (residentInfo[i].ID = returnID) {
+							HWND SignError = GetHWnd();
+							int isok = MessageBox(SignError, "该编号已经存在，请重新输入", "提示", MB_OK);
+							break;
+						}
+						volinfo->ID = returnID;
+					}
+					break;
+				}
+				case 3: {//age
+					char changeAge[64];
+					TCHAR InputAge[] = _T("请输入要修改的年龄");
+					InputBox(changeAge, 20, InputAge);
+					int returnAge;
+					returnAge = strtol(changeAge, NULL, 10);
+					volinfo->age = returnAge;
+					break;
+				}
+				case 4: {//sex
+					char changeSex[64];
+					TCHAR InputSex[] = _T("请输入要修改的性别");
+					InputBox(changeSex, 20, InputSex);
+					int returnSex;
+					returnSex = strtol(changeSex, NULL, 10);
+					volinfo->sex = returnSex;
+					break;
+				}
+				case 5: {//departments
+					char changeDepartments[64];
+					TCHAR InputDepartments[] = _T("请输入要修改的部门");
+					InputBox(changeDepartments, 20, InputDepartments);
+					strcpy_s(volinfo->department, changeDepartments);
+					break;
+				}
+				case 6: {//phone
+					char changePhone[64];
+					TCHAR InputPhone[] = _T("请输入要修改的电话号码");
+					InputBox(changePhone, 20, InputPhone);
+					int returnPhone;
+					returnPhone = strtol(changePhone, NULL, 10);
+					volinfo->phone = returnPhone;
+					break;
+				}
+				case 7: {//position
+					char changePosition[64];
+					TCHAR InputPosition[] = _T("请输入要修改的职务");
+					InputBox(changePosition, 20, InputPosition);
+					strcpy_s(volinfo->position, changePosition);
+					break;
+				}
+				}
+			}
+
+		}
+		DrawButton(rects[i], colorOutOfTheButton, colorInTheButton, colorClickingTheButton, outPutText1[i], sizeOfFont);
+		rects[i].mouceActivBefore = rects[i].mouceActiv;
+
+	}
+
+}
+
 	//void DrawResiProfiles();
 	//函数声明
 	void drawAlpha(IMAGE * picture, int  picture_x, int picture_y); //x为要载入图片的X坐标，y为Y坐标

@@ -7,15 +7,20 @@
 void InfoPage();
 
 void ReciManageMenu();
-void NextPageButton();
-void LastPageButton();
+void NextPageButtonRes();
+void LastPageButtonRes();
 void AddResidentFront();
 void DelResidentFront();
 void ReWriteResFront();
+void EndResiManageMenu();
 
 void VolManageMenu();
+void NextPageButtonVol();
+void LastPageButtonVol();
+void AddVolFront();
+void DelVolFront();
+void EndVolManageMenu();
 
-void EndResiManageMenu();
 
 bool WriteVolMessageFile(TextExchange toadd);
 bool WriteResMessageFile(TextExchange toadd);

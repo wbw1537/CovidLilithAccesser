@@ -59,7 +59,7 @@ typedef struct {
 	long ID;
 	int age;
 	int sex;
-	char department[32];
+	char department[32];//≤ø√≈
 	unsigned long long phone;
 	char wechat[64];
 	char position[32];
@@ -90,6 +90,7 @@ extern bool AdminPageOpen;
 extern int indexToDrawPage;
 extern int lastIndexToDrawPage;
 extern bool forceToFlashButton;
+extern bool VolManagePageOpen;
 
 extern int numOfRes;
 extern int numOfVol;
