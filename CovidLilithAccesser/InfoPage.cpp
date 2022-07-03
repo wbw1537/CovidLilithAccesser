@@ -244,7 +244,7 @@ void EndResiManageMenu(){
 
 void VolManageMenu() {
 	MOUSEMSG m3;
-	ResiManagePageOpen = 1;
+	VolManagePageOpen = 1;
 	//print background
 	cleardevice();
 	IMAGE backGround, title;
@@ -385,12 +385,12 @@ void VolManageMenu() {
 		lastIndexToDrawPage = indexToDrawPage;
 		forceToFlashButton = 0;
 
-		CheckButton(m3, exitButtonCorr, EndResiManageMenu, exitButtonText, 20);
+		CheckButton(m3, exitButtonCorr, EndVolManageMenu, exitButtonText, 20);
 		CheckButton(m3, nextPageButtonCorr, NextPageButtonVol, nextPageButtonText, 20);
 		CheckButton(m3, lastPageButtonCorr, LastPageButtonVol, lastPageButtonText, 20);
-		CheckButton(m3, addUserInfoCorr, AddResidentFront, addUserInfoText, 20);
-		CheckButton(m3, delUserInfoCorr, DelResidentFront, delUserInfoText, 20);
-		CheckButton(m3, reWriteUserInfoCorr, ReWriteResFront, reWriteUserInfoText, 20);
+		CheckButton(m3, addUserInfoCorr, AddVolFront, addUserInfoText, 20);
+		CheckButton(m3, delUserInfoCorr, DelVolFront, delUserInfoText, 20);
+		CheckButton(m3, reWriteUserInfoCorr, ReWriteVolFront, reWriteUserInfoText, 20);
 
 	} while (VolManagePageOpen);
 }
@@ -416,37 +416,38 @@ void LastPageButtonVol() {
 void AddVolFront() {
 	volunteer volinfo;
 
-	char changeName[64];
-	TCHAR InputName[] = _T("请输入要修改的姓名");
+	char changeName[64] = {0};
+	TCHAR InputName[] = _T("请输入姓名");
 	InputBox(changeName, 20, InputName);
 
-	char changePasswd[64];
-	TCHAR InputPasswd[] = _T("请输入要修改的用户密码");
+	char changePasswd[64] = { 0 };
+	TCHAR InputPasswd[] = _T("请输入密码");
 	InputBox(changePasswd, 20, InputPasswd);
 
-	char changeID[64];
-	TCHAR InputID[] = _T("请输入要修改的ID");
+	char changeID[64] = { 0 };
+	TCHAR InputID[] = _T("请输入编号");
 	InputBox(changeID, 20, InputID);
 
-	char changeAge[64];
-	TCHAR InputAge[] = _T("请输入要修改的年龄");
+	char changeAge[64] = { 0 };
+	TCHAR InputAge[] = _T("请输入年龄");
 	InputBox(changeAge, 20, InputAge);
 
-	char changeSex[64];
-	TCHAR InputSex[] = _T("请输入要修改的性别");
+	char changeSex[64] = { 0 };
+	TCHAR InputSex[] = _T("请输入性别");
 	InputBox(changeSex, 20, InputSex);
 
-	char changeDepartments[64];
-	TCHAR InputDepartments[] = _T("请输入要修改的部门");
+	char changeDepartments[64] = { 0 };
+	TCHAR InputDepartments[] = _T("请输入部门");
 	InputBox(changeDepartments, 20, InputDepartments);
 
-	char changePhone[64];
-	TCHAR InputPhone[] = _T("请输入要修改的电话号码");
+	char changePhone[64] = { 0 };
+	TCHAR InputPhone[] = _T("请输入电话号码");
 	InputBox(changePhone, 20, InputPhone);
 
-	char changePosition[64];
-	TCHAR InputPosition[] = _T("请输入要修改的职务");
+	char changePosition[64] = { 0 };
+	TCHAR InputPosition[] = _T("请输入职务");
 	InputBox(changePosition, 20, InputPosition);
+	char changeWechat[64] = { "0"};
 
 	strcpy_s(volinfo.name, changeName);
 	strcpy_s(volinfo.passwd, changePasswd);
@@ -454,13 +455,15 @@ void AddVolFront() {
 	volinfo.age = strtol(changeAge, NULL, 10);
 	volinfo.sex = strtol(changeSex, NULL, 10);
 	strcpy_s(volinfo.department, changeDepartments);
-	volinfo.phone = strtol(changePhone, NULL, 10);
+	strcpy_s(volinfo.phone, changePhone);
 	strcpy_s(volinfo.position, changePosition);
+	strcpy_s(volinfo.wechat, changeWechat);
+	
 	if (AddVolunteer(volinfo)) {
 		HWND SignError = GetHWnd();
 		int isok = MessageBox(SignError, "该编号已经存在，请重新添加", "提示", MB_OK);
 	}
-	LoadResidentInfoFile();
+	LoadVolInfoFile();
 	forceToFlashButton = 1;
 }
 
@@ -473,11 +476,11 @@ void DelVolFront() {
 		HWND SignError = GetHWnd();
 		int isok = MessageBox(SignError, "未查询到该编号工作者，请重新输入", "提示", MB_OK);
 	}
-	LoadResidentInfoFile();
+	LoadVolInfoFile();
 	forceToFlashButton = 1;
 }
 
-void ReWriteResFront() {
+void ReWriteVolFront() {
 	HWND hndtipsDS = GetHWnd();
 	int isok = MessageBox(hndtipsDS, "确定覆盖源文件？", "提示", MB_OKCANCEL);
 	if (isok == IDOK) {

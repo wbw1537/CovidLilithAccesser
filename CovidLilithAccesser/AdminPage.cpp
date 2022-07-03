@@ -168,7 +168,7 @@ int AddVolunteer(volunteer toadd) {
 	fp = fopen(".\\data\\volinfo", "r");
 	long testID = 0;
 	bool have = false;
-	while (fscanf(fp, "%*s ,%*s ,%ld ,%*d ,%*d ,%*s ,%*llu ,%*s ,%*s", &testID) == 1) {
+	while (fscanf(fp, "%*s ,%*s ,%ld ,%*d ,%*d ,%*s ,%*s ,%*s ,%*s", &testID) == 1) {
 		if (testID == toadd.ID) {
 			return 1;
 		}
@@ -176,7 +176,7 @@ int AddVolunteer(volunteer toadd) {
 	fclose(fp);
 
 	fp = fopen(".\\data\\volinfo", "a");
-	fprintf(fp, "%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
+	fprintf(fp, "%s ,%s ,%ld ,%d ,%d ,%s ,%s ,%s ,%s\n",
 		toadd.name, toadd.passwd, toadd.ID, toadd.age, toadd.sex,
 		toadd.department, toadd.phone, toadd.wechat, toadd.position
 	);
@@ -233,12 +233,12 @@ bool DelVolunteer(long volunteerID) {
 	rewind(fp);
 	fpw = fopen(".\\data\\tmp", "w+");
 	volunteer tmp = { 0 };
-	while (fscanf(fp, "%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s",
+	while (fscanf(fp, "%s ,%s ,%ld ,%d ,%d ,%s ,%s ,%s ,%s",
 		tmp.name,  tmp.passwd,  &tmp.ID, &tmp.age, &tmp.sex,
-		tmp.department,  &tmp.phone, tmp.wechat,  tmp.position
+		tmp.department,  tmp.phone, tmp.wechat,  tmp.position
 	) == 9) {
 		if (tmp.ID != volunteerID) {
-			fprintf(fpw, "%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
+			fprintf(fpw, "%s ,%s ,%ld ,%d ,%d ,%s ,%s ,%s ,%s\n",
 				tmp.name, tmp.passwd, tmp.ID, tmp.age, tmp.sex, tmp.department, tmp.phone, tmp.wechat, tmp.position
 			);
 		}
@@ -279,17 +279,17 @@ void SaveInResiModify() {
 
 void SaveInVolModify() {
 	FILE* fp;
-	fopen_s(&fp, "data/volinfo", "w");
+	fp = fopen(".\\data\\volinfo", "w");
 	if (fp == NULL) {
 		return;
 	}
 	for (int i = 0; i < numOfVol; i++) {
 		if (volunteerInfo[i].ID != 0) {
-			fprintf(fp, "%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s\n",
+			fprintf(fp, "%s ,%s ,%ld ,%d ,%d ,%s ,%s ,%s ,%s\n",
 				volunteerInfo[i].name, volunteerInfo[i].passwd, volunteerInfo[i].ID, volunteerInfo[i].age, volunteerInfo[i].sex, volunteerInfo[i].department, volunteerInfo[i].phone, volunteerInfo[i].wechat, volunteerInfo[i].position);
 		}
-		fclose(fp);
 	}
+	fclose(fp);
 }
 
 bool LoadResidentInfoFile() {
@@ -337,9 +337,9 @@ bool LoadVolInfoFile(){
 	volunteer tmp = { 0 };
 	volunteer* tmpArray;
 	FILE* fp = fopen(".\\data\\volinfo", "r");
-	while (fscanf_s(fp, "%s ,%s ,%ld ,%d ,%d ,%s ,%llu ,%s ,%s",
-		tmp.name, 50, tmp.passwd, 128, tmp.ID, 32, &tmp.age, &tmp.sex,
-		&tmp.department, tmp.phone, 32, &tmp.wechat, &tmp.position) == 9
+	while (fscanf_s(fp, "%s ,%s ,%ld ,%d ,%d ,%s ,%s ,%s ,%s",
+		tmp.name, 50, tmp.passwd, 128 , &tmp.ID, &tmp.age,&tmp.sex,
+		tmp.department, 50,tmp.phone,50, tmp.wechat, 64,tmp.position,50) == 9
 		) {
 		volunteerInfo[index] = tmp;
 		if (index == size - 1) {

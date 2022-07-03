@@ -19,6 +19,7 @@ void NextPageButtonVol();
 void LastPageButtonVol();
 void AddVolFront();
 void DelVolFront();
+void ReWriteVolFront();
 void EndVolManageMenu();
 
 

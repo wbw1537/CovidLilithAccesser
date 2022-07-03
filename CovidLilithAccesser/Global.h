@@ -59,10 +59,10 @@ typedef struct {
 	long ID;
 	int age;
 	int sex;
-	char department[32];//部门
-	unsigned long long phone;
+	char department[50];//部门
+	char phone[64];
 	char wechat[64];
-	char position[32];
+	char position[50];
 }volunteer;
 
 typedef struct {

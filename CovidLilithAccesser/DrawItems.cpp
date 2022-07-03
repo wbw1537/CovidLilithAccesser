@@ -157,15 +157,17 @@ void DrawLineButtonOfRes(rectProperties rects[], int sizeOfFont, resident* resin
 					TCHAR InputID[] = _T("请输入要修改的ID");
 					InputBox(changeID, 20, InputID);
 					long returnID;
+					bool changeValue = 0;
 					returnID = strtol(changeID, NULL, 10);
 					for (int i = 0; i < numOfRes; i++) {
-						if (residentInfo[i].ID = returnID) {
+						if (residentInfo[i].ID == returnID) {
 							HWND SignError = GetHWnd();
 							int isok = MessageBox(SignError, "该编号已经存在，请重新输入", "提示", MB_OK);
+							changeValue = 1;
 							break;
 						}
-						resinfo->ID = returnID;
 					}
+					if(!changeValue) resinfo->ID = returnID;
 					break;
 				}
 				case 4: {//belong to any volunteer
@@ -225,8 +227,7 @@ void DrawLineButtonOfVol(rectProperties rects[], int sizeOfFont, volunteer* voli
 	if (volinfo->sex == 1) {
 		sprintf_s(outPutText1[4], 50, "男");
 	}
-	sprintf_s(outPutText1[4], 50, "%d", volinfo->sex);
-	sprintf_s(outPutText1[5], 50, "%llu", volinfo->department);
+	sprintf_s(outPutText1[5], 50, "%s", volinfo->department);
 	sprintf_s(outPutText1[6], 50, "%s", volinfo->phone);
 	sprintf_s(outPutText1[7], 50, "%s", volinfo->position);
 
@@ -258,15 +259,17 @@ void DrawLineButtonOfVol(rectProperties rects[], int sizeOfFont, volunteer* voli
 					TCHAR InputID[] = _T("请输入要修改的ID");
 					InputBox(changeID, 20, InputID);
 					long returnID;
+					bool changeValue = 0;
 					returnID = strtol(changeID, NULL, 10);
 					for (int i = 0; i < numOfVol; i++) {
-						if (residentInfo[i].ID = returnID) {
+						if (volinfo[i].ID == returnID) {
 							HWND SignError = GetHWnd();
 							int isok = MessageBox(SignError, "该编号已经存在，请重新输入", "提示", MB_OK);
+							changeValue = 1;
 							break;
 						}
-						volinfo->ID = returnID;
 					}
+					if (!changeValue) volinfo->ID = returnID;
 					break;
 				}
 				case 3: {//age
@@ -296,11 +299,9 @@ void DrawLineButtonOfVol(rectProperties rects[], int sizeOfFont, volunteer* voli
 				}
 				case 6: {//phone
 					char changePhone[64];
-					TCHAR InputPhone[] = _T("请输入要修改的电话号码");
+					TCHAR InputPhone[] = _T("请输入要修改的部门");
 					InputBox(changePhone, 20, InputPhone);
-					int returnPhone;
-					returnPhone = strtol(changePhone, NULL, 10);
-					volinfo->phone = returnPhone;
+					strcpy_s(volinfo->phone, changePhone);
 					break;
 				}
 				case 7: {//position
