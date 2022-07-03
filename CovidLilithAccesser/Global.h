@@ -93,6 +93,9 @@ extern int lastIndexToDrawPage;
 extern bool forceToFlashButton;
 extern bool VolManagePageOpen;
 extern bool VolPageOpen;
+extern bool InfoPageOpen;
+extern bool ReciManageMenuForVolOpen;
+extern bool ResiManageMenuForResiOpen;
 
 extern int numOfRes;
 extern int numOfVol;

@@ -22,6 +22,11 @@ void DelVolFront();
 void ReWriteVolFront();
 void EndVolManageMenu();
 
+void ReciManageMenuForVol();
+void EndResiManageMenuForVol();
+
+void ReciManageMenuForResi();
+void EndResiManageMenuForResi();
 
 bool WriteVolMessageFile(TextExchange toadd);
 bool WriteResMessageFile(TextExchange toadd);

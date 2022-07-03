@@ -1,9 +1,24 @@
 #include"InfoPage.h"
 #pragma warning(disable : 4996)
 
-void InfoPage()
-{
+void InfoPage(){
+	MOUSEMSG m4;
+	InfoPageOpen = 1;
 
+	cleardevice();
+	IMAGE backGround, title;
+	loadimage(&backGround, "resources/backGround.jpg");
+	loadimage(&title, "resources/title.png", 290, 109);
+	putimage(0, 0, &backGround);
+	drawAlpha(&title, 630, 30);
+
+	//print texts
+	rectProperties text1, text2;
+	text1 = { 60,45,500,100 };
+	text2 = { 60,85,500,200 };
+
+	char adminText1[50] = { "信息发布系统:" };
+	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
 }
 
 void ReciManageMenu(){
@@ -159,6 +174,246 @@ void ReciManageMenu(){
 	} while (ResiManagePageOpen);
 }
 
+
+
+void ReciManageMenuForVol() {
+	MOUSEMSG m3;
+	ReciManageMenuForVolOpen = 1;
+	//print background
+	cleardevice();
+	IMAGE backGround, title;
+	loadimage(&backGround, "resources/backGround.jpg");
+	loadimage(&title, "resources/title.png", 290, 109);
+	putimage(0, 0, &backGround);
+	drawAlpha(&title, 630, 30);
+
+	//print texts
+	rectProperties text1, text2;
+	text1 = { 60,45,500,100 };
+	text2 = { 60,85,500,200 };
+
+	char adminText1[50] = { "用户信息管理系统:" };
+	char adminText2[50] = { "点击各个单元格可修改单元格内容" };
+
+	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
+	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
+
+
+
+	rectProperties exitButtonCorr, nextPageButtonCorr, lastPageButtonCorr;
+	rectProperties addUserInfoCorr, delUserInfoCorr, reWriteUserInfoCorr;
+	int downLeftCorr = 100, downTopCorr = 470, downButtonWidth = 120, downButtonHeight = 40;
+	//int tempDownLeftCorr = downLeftCorr;
+
+	addUserInfoCorr = { downLeftCorr,downTopCorr,downLeftCorr + 1 * downButtonWidth + 0 * 10,downTopCorr + downButtonHeight,0,1 };
+	delUserInfoCorr = { downLeftCorr + 1 * downButtonWidth + 1 * 10,downTopCorr,downLeftCorr + 2 * downButtonWidth + 1 * 10,downTopCorr + downButtonHeight,0,1 };
+	reWriteUserInfoCorr = { downLeftCorr + 2 * downButtonWidth + 2 * 10,downTopCorr,downLeftCorr + 3 * downButtonWidth + 2 * 10,downTopCorr + downButtonHeight,0,1 };
+	lastPageButtonCorr = { downLeftCorr + 3 * downButtonWidth + 3 * 10,downTopCorr,downLeftCorr + 4 * downButtonWidth + 3 * 10,downTopCorr + downButtonHeight,0,1 };
+	nextPageButtonCorr = { downLeftCorr + 4 * downButtonWidth + 4 * 10,downTopCorr,downLeftCorr + 5 * downButtonWidth + 4 * 10,downTopCorr + downButtonHeight,0,1 };
+	exitButtonCorr = { downLeftCorr + 5 * downButtonWidth + 5 * 10,downTopCorr,downLeftCorr + 6 * downButtonWidth + 5 * 10,downTopCorr + downButtonHeight,0,1 };
+
+
+	char exitButtonText[50] = { "退出" };
+	char nextPageButtonText[50] = { "下移" };
+	char lastPageButtonText[50] = { "上移" };
+	char addUserInfoText[50] = { "添加用户" };
+	char delUserInfoText[50] = { "删除用户" };
+	char reWriteUserInfoText[50] = { "覆写文件" };
+
+	//print sheet
+	int leftCoor = 22, topCoor = 170, rectWidth = 115, rectHeight = 30;
+
+	rectProperties rects0[20];
+	rectProperties rects1[20];
+	rectProperties rects2[20];
+	rectProperties rects3[20];
+	rectProperties rects4[20];
+	rectProperties rects5[20];
+	rectProperties rects6[20];
+	rectProperties rects7[20];
+	rectProperties rects8[20];
+	rectProperties rects9[20];
+
+	int tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects0[i] = { tempLeftCoor,tempTopCoor - 1 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 0 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects1[i] = { tempLeftCoor,tempTopCoor + 0 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 1 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects2[i] = { tempLeftCoor,tempTopCoor + 1 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 2 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects3[i] = { tempLeftCoor,tempTopCoor + 2 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 3 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects4[i] = { tempLeftCoor,tempTopCoor + 3 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 4 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects5[i] = { tempLeftCoor,tempTopCoor + 4 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 5 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects6[i] = { tempLeftCoor,tempTopCoor + 5 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 6 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects7[i] = { tempLeftCoor,tempTopCoor + 6 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 7 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects8[i] = { tempLeftCoor,tempTopCoor + 7 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 8 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects9[i] = { tempLeftCoor,tempTopCoor + 8 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 9 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+
+	char outputText1[10][50] = { "姓名"," ","来源地","编号","所属","楼栋","辖区","风险等级" };
+
+	DrawButton(exitButtonCorr, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, exitButtonText, 20);
+	DrawButton(lastPageButtonCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, lastPageButtonText, 20);
+	DrawButton(nextPageButtonCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, nextPageButtonText, 20);
+	DrawButton(addUserInfoCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, addUserInfoText, 20);
+	DrawButton(delUserInfoCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, delUserInfoText, 20);
+	DrawButton(reWriteUserInfoCorr, colorInTheButton, colorInTheButton, colorClickingTheButton, reWriteUserInfoText, 20);
+
+
+
+
+	//output the title of the sheet
+	for (int i = 0; i < 8; i++) {
+		if (i == 1) continue;
+		DrawButton(rects0[i], colorOfBackGround, colorOfBackGround, colorOfBackGround, outputText1[i], 20);
+	}
+
+	indexToDrawPage = 0;
+
+	do {
+		m3 = GetMouseMsg();
+		DrawLineButtonOfResForVol(rects1, 15, &residentInfo[indexToDrawPage + 0], m3);
+		DrawLineButtonOfResForVol(rects2, 15, &residentInfo[indexToDrawPage + 1], m3);
+		DrawLineButtonOfResForVol(rects3, 15, &residentInfo[indexToDrawPage + 2], m3);
+		DrawLineButtonOfResForVol(rects4, 15, &residentInfo[indexToDrawPage + 3], m3);
+		DrawLineButtonOfResForVol(rects5, 15, &residentInfo[indexToDrawPage + 4], m3);
+		DrawLineButtonOfResForVol(rects6, 15, &residentInfo[indexToDrawPage + 5], m3);
+		DrawLineButtonOfResForVol(rects7, 15, &residentInfo[indexToDrawPage + 6], m3);
+		DrawLineButtonOfResForVol(rects8, 15, &residentInfo[indexToDrawPage + 7], m3);
+		DrawLineButtonOfResForVol(rects9, 15, &residentInfo[indexToDrawPage + 8], m3);
+
+		lastIndexToDrawPage = indexToDrawPage;
+		forceToFlashButton = 0;
+
+		CheckButton(m3, exitButtonCorr, EndResiManageMenuForVol, exitButtonText, 20);
+		CheckButton(m3, nextPageButtonCorr, NextPageButtonRes, nextPageButtonText, 20);
+		CheckButton(m3, lastPageButtonCorr, LastPageButtonRes, lastPageButtonText, 20);
+		CheckButton(m3, addUserInfoCorr, AddResidentFront, addUserInfoText, 20);
+		CheckButton(m3, delUserInfoCorr, DelResidentFront, delUserInfoText, 20);
+		CheckButton(m3, reWriteUserInfoCorr, ReWriteResFront, reWriteUserInfoText, 20);
+
+	} while (ReciManageMenuForVolOpen);
+}
+
+
+void ReciManageMenuForResi() {
+	MOUSEMSG m3;
+	ResiManageMenuForResiOpen = 1;
+	//print background
+	cleardevice();
+	IMAGE backGround, title;
+	loadimage(&backGround, "resources/backGround.jpg");
+	loadimage(&title, "resources/title.png", 290, 109);
+	putimage(0, 0, &backGround);
+	drawAlpha(&title, 630, 30);
+
+	//print texts
+	rectProperties text1, text2;
+	text1 = { 60,45,500,100 };
+	text2 = { 60,85,500,200 };
+
+	char adminText1[50] = { "用户信息管理系统:" };
+	char adminText2[50] = { "点击各个单元格可修改单元格内容" };
+
+	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
+	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
+
+
+
+	rectProperties exitButtonCorr, nextPageButtonCorr, lastPageButtonCorr;
+	rectProperties addUserInfoCorr, delUserInfoCorr, reWriteUserInfoCorr;
+	int downLeftCorr = 100, downTopCorr = 470, downButtonWidth = 120, downButtonHeight = 40;
+	//int tempDownLeftCorr = downLeftCorr;
+
+	addUserInfoCorr = { downLeftCorr,downTopCorr,downLeftCorr + 1 * downButtonWidth + 0 * 10,downTopCorr + downButtonHeight,0,1 };
+	delUserInfoCorr = { downLeftCorr + 1 * downButtonWidth + 1 * 10,downTopCorr,downLeftCorr + 2 * downButtonWidth + 1 * 10,downTopCorr + downButtonHeight,0,1 };
+	reWriteUserInfoCorr = { downLeftCorr + 2 * downButtonWidth + 2 * 10,downTopCorr,downLeftCorr + 3 * downButtonWidth + 2 * 10,downTopCorr + downButtonHeight,0,1 };
+	lastPageButtonCorr = { downLeftCorr + 3 * downButtonWidth + 3 * 10,downTopCorr,downLeftCorr + 4 * downButtonWidth + 3 * 10,downTopCorr + downButtonHeight,0,1 };
+	nextPageButtonCorr = { downLeftCorr + 4 * downButtonWidth + 4 * 10,downTopCorr,downLeftCorr + 5 * downButtonWidth + 4 * 10,downTopCorr + downButtonHeight,0,1 };
+	exitButtonCorr = { downLeftCorr + 5 * downButtonWidth + 5 * 10,downTopCorr,downLeftCorr + 6 * downButtonWidth + 5 * 10,downTopCorr + downButtonHeight,0,1 };
+
+
+	char exitButtonText[50] = { "退出" };
+	//print sheet
+	int leftCoor = 22, topCoor = 250, rectWidth = 115, rectHeight = 30;
+
+	rectProperties rects0[20];
+	rectProperties rects1[20];
+
+	int tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects0[i] = { tempLeftCoor,tempTopCoor - 1 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 0 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+	tempLeftCoor = leftCoor, tempTopCoor = topCoor;
+	for (int i = 0; i < 8; i++) {
+		rects1[i] = { tempLeftCoor,tempTopCoor + 0 * rectHeight,tempLeftCoor + rectWidth,tempTopCoor + 1 * rectHeight ,0,1 };
+		tempLeftCoor += rectWidth;
+	}
+
+	char outputText1[10][50] = { "姓名","用户密码","来源地","编号","所属","楼栋","辖区","风险等级" };
+
+	DrawButton(exitButtonCorr, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, exitButtonText, 20);
+
+	//output the title of the sheet
+	for (int i = 0; i < 8; i++) {
+		DrawButton(rects0[i], colorOfBackGround, colorOfBackGround, colorOfBackGround, outputText1[i], 20);
+	}
+
+	indexToDrawPage = 0;
+
+	do {
+		m3 = GetMouseMsg();
+		DrawLineButtonOfRes(rects1, 15, &nowLoginResi, m3);
+		
+		lastIndexToDrawPage = indexToDrawPage;
+		forceToFlashButton = 0;
+
+		CheckButton(m3, exitButtonCorr, EndResiManageMenuForResi, exitButtonText, 20);
+		
+	} while (ResiManageMenuForResiOpen);
+}
+
+void EndResiManageMenuForResi() {
+	ResiManageMenuForResiOpen = 0;
+	ResiPage();
+}
+
 void NextPageButtonRes() {
 	if (indexToDrawPage < numOfRes) {
 		indexToDrawPage++;
@@ -240,6 +495,11 @@ void ReWriteResFront() {
 void EndResiManageMenu(){
 	ResiManagePageOpen = 0;
 	AdminPage();
+}
+
+void EndResiManageMenuForVol() {
+	ReciManageMenuForVolOpen = 0;
+	VolPage();
 }
 
 void VolManageMenu() {

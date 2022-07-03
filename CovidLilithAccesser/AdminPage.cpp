@@ -13,7 +13,7 @@ void AdminPage()
 	rectProperties text1, text2, text3, exitButtonCorr;
 	text1 = { 60,45,500,100 };
 	text2 = { 60,85,500,200 };
-	text3 = { 120,120,960,540 };
+	text3 = { 180,180,960,540 };
 	exitButtonCorr = { 800,480,860,510,0,1 };
 
 	//read the file to get the login account and passwd.

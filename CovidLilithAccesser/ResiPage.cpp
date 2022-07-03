@@ -16,6 +16,11 @@ void ResiPage() {
 	text2 = { 60,85,500,200 };
 	text3 = { 120,120,960,540 };
 	exitButtonCorr = { 800,480,860,510,0,1 };
+	//button rect
+	rectProperties messageButton, volButton, resiButton;
+	messageButton = { 150,400,150 + 180,400 + 45,0,1 };
+	volButton = { 390,400,390 + 180,400 + 45,0,1 };
+	resiButton = { 630,400,630 + 180,400 + 45,0,1 };
 
 	char adminText1[50] = { "用户操作界面:" };
 	char adminText2[50];
@@ -26,13 +31,17 @@ void ResiPage() {
 	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
 	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
 
+	char firstRect[30] = { "信息阅读与发布" };
+	char secendRect[30] = { "用户信息修改" };
+
 	DrawButton(exitButtonCorr, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, exitButtonText, 20);
-	
-	
+	DrawButton(resiButton, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, secendRect, 20);
+
 	do {
 		m3 = GetMouseMsg();
 
 		CheckButton(m3, exitButtonCorr, ExitResiPage, exitButtonText, 20);
+		CheckButton(m3, resiButton, ReciManageMenuForResi, secendRect, 20);
 
 	} while (ResiPageOpen);
 
