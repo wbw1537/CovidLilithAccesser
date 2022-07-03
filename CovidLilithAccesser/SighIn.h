@@ -4,6 +4,7 @@
 #include"LoadLoginPage.h"
 #include"DrawItems.h"
 #include"AdminPage.h"
+#include"ResiPage.h"
 
 void AdminSighIn();
 

@@ -86,6 +86,7 @@ extern char songTi[64];
 extern bool loadLoginPageOpen;
 extern bool ResiManagePageOpen;
 extern bool AdminPageOpen;
+extern bool ResiPageOpen;
 
 extern int indexToDrawPage;
 extern int lastIndexToDrawPage;
@@ -97,5 +98,7 @@ extern int numOfVol;
 
 extern resident* residentInfo;
 extern volunteer* volunteerInfo;
+extern resident nowLoginResi;
+extern volunteer nowLoginVol;
 extern TextExchange* resMessageList ;
 extern TextExchange* volMessageList ;
