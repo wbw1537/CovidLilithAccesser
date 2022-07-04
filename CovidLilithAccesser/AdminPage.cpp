@@ -65,7 +65,7 @@ void AdminPage()
 		//get the mouce position and operation
 		m2 = GetMouseMsg();
 		
-		CheckButton(m2,messageButton,InfoPage,firstRect,20);
+		CheckButtonForInfoPage(m2, messageButton, InfoPage, firstRect, 20, AdminToVol, Administrator);
 		CheckButton(m2, volButton, VolManageMenu, secendRect, 20);
 		CheckButton(m2, resiButton, ReciManageMenu, thirdRect, 20);
 		CheckButton(m2, exitButtonCorr, EndAdminButton, exitButtonText, 20);

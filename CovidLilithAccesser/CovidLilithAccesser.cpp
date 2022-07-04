@@ -14,6 +14,26 @@ int main(void)
 		HWND SignError = GetHWnd();
 		int isok = MessageBox(SignError, "内存空间分配错误", "警告", MB_OK);
 	}
+
+	if (!ReadMessageFile(VolToResiMessageList,2,numOfVolToResiMessage)) {
+		HWND SignError = GetHWnd();
+		int isok = MessageBox(SignError, "内存空间分配错误", "警告", MB_OK);
+	}
+
+	if (!ReadMessageFile(AdminToVOlMessageList,1, numOfAdminToVolMessage)) {
+		HWND SignError = GetHWnd();
+		int isok = MessageBox(SignError, "内存空间分配错误", "警告", MB_OK);
+	}
+
+	if (!ReadMessageFile(VolToAdminMessageList, 3, numOfVolToAdminMessage)) {
+		HWND SignError = GetHWnd();
+		int isok = MessageBox(SignError, "内存空间分配错误", "警告", MB_OK);
+	}
+
+	if (!ReadMessageFile(ResiToVolMessageList, 4, numOfResiToVolMessage)) {
+		HWND SignError = GetHWnd();
+		int isok = MessageBox(SignError, "内存空间分配错误", "警告", MB_OK);
+	}
 	
 	initgraph(WINDOWWIDTH, WINDOWHEIGHT);
 	
@@ -25,6 +45,9 @@ int main(void)
 
 	free(residentInfo);
 	free(volunteerInfo);
-
+	free(VolToResiMessageList);
+	free(ResiToVolMessageList);
+	free(VolToAdminMessageList);
+	free(AdminToVOlMessageList);
 	return 0;
 }

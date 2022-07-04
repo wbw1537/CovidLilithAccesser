@@ -5,12 +5,14 @@
 #include<locale.h>
 #include<stdlib.h>
 
-#define AdminToResi 1
-#define AdminToVol 2
-#define VolToResi 3
-#define VolToAdmin 4
-#define ResiToVol 5
-#define ResiToAdmin 6
+#define AdminToVol 1
+#define VolToResi 2
+#define VolToAdmin 3
+#define ResiToVol 4
+
+#define Administrator 1
+#define Volunteer 2
+#define Residente 3
 
 //carify the width and height of the window
 const int WINDOWWIDTH = 960;
@@ -100,9 +102,16 @@ extern bool ResiManageMenuForResiOpen;
 extern int numOfRes;
 extern int numOfVol;
 
+extern int numOfVolToResiMessage;
+extern int numOfResiToVolMessage;
+extern int numOfAdminToVolMessage;
+extern int numOfVolToAdminMessage;
+
 extern resident* residentInfo;
 extern volunteer* volunteerInfo;
 extern resident nowLoginResi;
 extern volunteer nowLoginVol;
-extern TextExchange* resMessageList ;
-extern TextExchange* volMessageList ;
+extern TextExchange* VolToResiMessageList;
+extern TextExchange* ResiToVolMessageList;
+extern TextExchange* VolToAdminMessageList;
+extern TextExchange* AdminToVOlMessageList;

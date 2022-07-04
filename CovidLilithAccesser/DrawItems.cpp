@@ -94,6 +94,22 @@ void CheckButton(MOUSEMSG m, rectProperties &Button, void (*doSth)(void), char* 
 	Button.mouceActivBefore = Button.mouceActiv;
 }
 
+//use callback function
+void CheckButtonForInfoPage(MOUSEMSG m, rectProperties& Button, void (*doSth)(int,int), char* L_TEXT, int sizeOfChar,int type,int nowType) {
+	Button.mouceActiv = 0;
+	if (m.x > Button.left && m.y > Button.top && m.y < Button.buttom && m.x < Button.right) {
+		Button.mouceActiv = 1;
+		if (m.uMsg == WM_LBUTTONDOWN) {
+			Button.mouceActiv = 2;
+		}
+		if (m.uMsg == WM_LBUTTONUP) {
+			doSth(type,nowType);
+		}
+	}
+	DrawButton(Button, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, L_TEXT, sizeOfChar);
+	Button.mouceActivBefore = Button.mouceActiv;
+}
+
 void DrawTextsSingle(rectProperties position, char* fonts, char* L_TEXT, int sizeOfChar, int weightOfChar, int italic, rgbColor textColor) {
 	LOGFONT f;
 	gettextstyle(&f);
@@ -427,6 +443,18 @@ void DrawLineButtonOfVol(rectProperties rects[], int sizeOfFont, volunteer* voli
 
 	}
 
+}
+
+void DrawTextModule(MOUSEMSG m, TextExchange texts) {
+	rectProperties rectTitle, rectMessage, rectReply;
+	rectTitle = { 83,122,504,159 };
+	rectMessage = { 83,159,868,358 };
+	rectReply = { 83,358,868,465 };
+	if (forceToFlashButton) {
+		DrawTextsSingle(rectTitle, songTi, texts.title, 20, 600, 0, colorOfBackGround);
+		DrawTextsSingle(rectMessage, heiTi, texts.message, 18, 400, 0, colorOfBackGround);
+		DrawTextsSingle(rectReply, heiTi, texts.reply, 18, 400, 0, colorOfBackGround);
+	}
 }
 
 	//void DrawResiProfiles();

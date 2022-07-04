@@ -1,7 +1,8 @@
 #include"InfoPage.h"
 #pragma warning(disable : 4996)
 
-void InfoPage(){
+void InfoPage(int type,int nowType){
+
 	MOUSEMSG m4;
 	InfoPageOpen = 1;
 
@@ -17,8 +18,103 @@ void InfoPage(){
 	text1 = { 60,45,500,100 };
 	text2 = { 60,85,500,200 };
 
-	char adminText1[50] = { "信息发布系统:" };
+	char adminText1[50] = { "用户信息管理系统:" };
+	char adminText2[50];
+
+	if (type == AdminToVol && nowType == Administrator) {
+		char AdminToVolText[50] = {"管理员发件箱："};
+		strcpy(adminText2, AdminToVolText);
+	}
+	if (type == AdminToVol && nowType == Volunteer) {
+		char AdminToVolText[50] = { "工作人员收件箱：" };
+		strcpy(adminText2, AdminToVolText);
+	}
+	if (type == VolToAdmin && nowType == Administrator) {
+		char AdminToVolText[50] = { "管理员收件箱：" };
+		strcpy(adminText2, AdminToVolText);
+	}
+	if (type == VolToAdmin && nowType == Volunteer) {
+		char AdminToVolText[50] = { "工作人员发件箱：" };
+		strcpy(adminText2, AdminToVolText);
+	}
+	if (type == ResiToVol && nowType == Volunteer) {
+		char AdminToVolText[50] = { "工作人员收件箱：" };
+		strcpy(adminText2, AdminToVolText);
+	}
+	if (type == ResiToVol && nowType == Residente) {
+		char AdminToVolText[50] = { "用户发件箱：" };
+		strcpy(adminText2, AdminToVolText);
+	}
+	if (type == VolToResi && nowType == Residente) {
+		char AdminToVolText[50] = { "用户收件箱：" };
+		strcpy(adminText2, AdminToVolText);
+	}
+	if (type == VolToResi && nowType == Volunteer) {
+		char AdminToVolText[50] = { "工作人员发件箱：" };
+		strcpy(adminText2, AdminToVolText);
+	}
+
 	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
+	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
+
+	char exitButtonText[50] = { "退出" };
+	char nextPageButtonText[50] = { "下移" };
+	char lastPageButtonText[50] = { "上移" };
+	char addUserInfoText[50] = { "发布信息" };
+	char delUserInfoText[50] = { "删除信息" };
+	char reWriteUserInfoText[50] = { "切换发出/收到" };
+
+
+	rectProperties exitButtonCorr, nextPageButtonCorr, lastPageButtonCorr;
+	rectProperties addUserInfoCorr, delUserInfoCorr, reWriteUserInfoCorr;
+	int downLeftCorr = 100, downTopCorr = 470, downButtonWidth = 120, downButtonHeight = 40;
+	//int tempDownLeftCorr = downLeftCorr;
+	rectProperties rectSolve = { 528,122,637,159,0,1 };
+
+	addUserInfoCorr = { downLeftCorr,downTopCorr,downLeftCorr + 1 * downButtonWidth + 0 * 10,downTopCorr + downButtonHeight,0,1 };
+	delUserInfoCorr = { downLeftCorr + 1 * downButtonWidth + 1 * 10,downTopCorr,downLeftCorr + 2 * downButtonWidth + 1 * 10,downTopCorr + downButtonHeight,0,1 };
+	reWriteUserInfoCorr = { downLeftCorr + 2 * downButtonWidth + 2 * 10,downTopCorr,downLeftCorr + 3 * downButtonWidth + 2 * 10,downTopCorr + downButtonHeight,0,1 };
+	lastPageButtonCorr = { downLeftCorr + 3 * downButtonWidth + 3 * 10,downTopCorr,downLeftCorr + 4 * downButtonWidth + 3 * 10,downTopCorr + downButtonHeight,0,1 };
+	nextPageButtonCorr = { downLeftCorr + 4 * downButtonWidth + 4 * 10,downTopCorr,downLeftCorr + 5 * downButtonWidth + 4 * 10,downTopCorr + downButtonHeight,0,1 };
+	exitButtonCorr = { downLeftCorr + 5 * downButtonWidth + 5 * 10,downTopCorr,downLeftCorr + 6 * downButtonWidth + 5 * 10,downTopCorr + downButtonHeight,0,1 };
+
+	DrawButton(exitButtonCorr, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, exitButtonText, 20);
+	DrawButton(rectSolve, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, exitButtonText, 20);
+
+	
+	TextExchange *textExchage = {0};
+	if (type == AdminToVol) {
+		textExchage = AdminToVOlMessageList;
+	}
+	if (type == VolToAdmin) {
+		textExchage = VolToAdminMessageList;
+	}
+	if (type == ResiToVol) {
+		textExchage = ResiToVolMessageList;
+	}
+	if (type == VolToResi) {
+		textExchage = VolToResiMessageList;
+	}
+	
+	indexToDrawPage = 0;
+
+	do {
+
+		m4 = GetMouseMsg();
+		
+		CheckButton(m4, exitButtonCorr, ExitButtonForAdminInfoPage, exitButtonText, 20);
+		
+		DrawTextModule(m4, textExchage[indexToDrawPage]);
+
+		forceToFlashButton = 0;
+
+	} while (InfoPageOpen);
+	free(textExchage);
+}
+
+void ExitButtonForAdminInfoPage() {
+	InfoPageOpen = 0;
+	AdminPage();
 }
 
 void ReciManageMenu(){
@@ -349,6 +445,7 @@ void ReciManageMenuForResi() {
 
 	char adminText1[50] = { "用户信息管理系统:" };
 	char adminText2[50] = { "点击各个单元格可修改单元格内容" };
+	char reWriteUserInfoText[50] = { "覆写文件" };
 
 	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
 	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
@@ -405,7 +502,8 @@ void ReciManageMenuForResi() {
 		forceToFlashButton = 0;
 
 		CheckButton(m3, exitButtonCorr, EndResiManageMenuForResi, exitButtonText, 20);
-		
+		CheckButton(m3, reWriteUserInfoCorr, ReWriteResFront, reWriteUserInfoText, 20);
+
 	} while (ResiManageMenuForResiOpen);
 }
 
@@ -485,6 +583,7 @@ void ReWriteResFront() {
 	int isok = MessageBox(hndtipsDS, "确定覆盖源文件？", "提示", MB_OKCANCEL);
 	if (isok == IDOK) {
 		SaveInResiModify();
+		LoadResidentInfoFile();
 	}
 	else if (isok == IDCANCEL) {
 		return;
@@ -760,67 +859,41 @@ void EndVolManageMenu() {
 
 
 
-bool WriteVolMessageFile(TextExchange toadd) {
+bool WriteMessageFile(TextExchange toadd) {
 	FILE* fp = { 0 };
-	fp = fopen(".\\data\\resimessage", "a, ccs=utf-8");
-	fwprintf(fp, L"%d ,%d ,%s ,%s ,%s\n", toadd.messageType, toadd.isSolve, toadd.title, toadd.message, toadd.reply);
+	fp = fopen(".\\data\\message", "a");
+	fprintf(fp, "%d ,%d ,%s ,%s ,%s\n", toadd.messageType, toadd.isSolve, toadd.title, toadd.message, toadd.reply);
 	fclose(fp);
 	return 0;
 }
-bool WriteResMessageFile(TextExchange toadd) {
-	FILE* fp = { 0 };
-	fp = fopen(".\\data\\resimessage", "a, ccs=utf-8");
-	fwprintf(fp, L"%d ,%d ,%s ,%s ,%s\n", toadd.messageType, toadd.isSolve, toadd.title, toadd.message, toadd.reply);
-	fclose(fp);
-	return 0;
-}
-bool ReadVolMessageFile() {
-	volMessageList = (TextExchange*)malloc(5 * sizeof(TextExchange));
-	ZeroMemory(residentInfo, 5 * sizeof(TextExchange));
-	int size = 5, index = 0;
+
+bool ReadMessageFile(TextExchange* MessageList, int type, int num) {
+	MessageList = (TextExchange*)malloc(5 * sizeof(TextExchange));
+	ZeroMemory(MessageList, 5 * sizeof(TextExchange));
+	int size[5] = {5,5,5,5,5}, index[5] = {0};
 	TextExchange tmp = { 0 };
 	TextExchange* tmpArray;
-	FILE* fp = fopen(".\\data\\volmessage", "r, ccs=utf-8");
-	while (fwscanf_s(fp, L"%d ,%d ,%s ,%s ,%s",
+	FILE* fp = fopen(".\\data\\message", "r");
+	while (fscanf_s(fp, "%d ,%d ,%s ,%s ,%s",
 		&tmp.messageType, &tmp.isSolve, tmp.title, 500, tmp.message, 500, tmp.reply, 500) == 5
 		) {
-		volMessageList[index] = tmp;
-		if (index == size - 1) {
-			tmpArray = volMessageList;
-			volMessageList = (TextExchange*)malloc(2 * size * sizeof(TextExchange));
-			if (volMessageList == NULL) return false;
-			ZeroMemory(volMessageList, 2 * size * sizeof(TextExchange));
-			for (int i = 0; i < size; i++) {
-				volMessageList[i] = tmpArray[i];
-			}
-			size *= 2;
+		if (tmp.messageType == type) {
+			MessageList[index[type]] = tmp;
 		}
-		index++;
-	}
-	return true;
-}
-bool ReadResMessageFile() {
-	resMessageList = (TextExchange*)malloc(5 * sizeof(TextExchange));
-	ZeroMemory(residentInfo, 5 * sizeof(TextExchange));
-	int size = 5, index = 0;
-	TextExchange tmp = { 0 };
-	TextExchange* tmpArray;
-	FILE* fp = fopen(".\\data\\resimessage", "r, ccs=utf-8");
-	while (fwscanf_s(fp, L"%d ,%d ,%s ,%s ,%s",
-		&tmp.messageType, &tmp.isSolve, tmp.title, 500, tmp.message, 500, tmp.reply, 500) == 5
-		) {
-		resMessageList[index] = tmp;
-		if (index == size - 1) {
-			tmpArray = resMessageList;
-			resMessageList = (TextExchange*)malloc(2 * size * sizeof(TextExchange));
-			if (resMessageList == NULL) return false;
-			ZeroMemory(resMessageList, 2 * size * sizeof(TextExchange));
-			for (int i = 0; i < size; i++) {
-				resMessageList[i] = tmpArray[i];
+		if (index[type] == size[type] - 1) {
+			tmpArray = MessageList;
+			MessageList = (TextExchange*)malloc(2 * size[type] * sizeof(TextExchange));
+			if (MessageList == NULL) return false;
+			ZeroMemory(MessageList, 2 * size[type] * sizeof(TextExchange));
+			for (int i = 0; i < size[type]; i++) {
+				MessageList[i] = tmpArray[i];
 			}
-			size *= 2;
+			size[type] *= 2;
 		}
-		index++;
+		if (tmp.messageType == type) {
+			index[type]++;
+		}
 	}
+	num = index[type];
 	return true;
 }

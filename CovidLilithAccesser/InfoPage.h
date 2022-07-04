@@ -4,7 +4,8 @@
 #include"DrawItems.h"
 #include"AdminPage.h"
 
-void InfoPage();
+void InfoPage(int type,int nowType);
+void ExitButtonForAdminInfoPage();
 
 void ReciManageMenu();
 void NextPageButtonRes();
@@ -28,7 +29,5 @@ void EndResiManageMenuForVol();
 void ReciManageMenuForResi();
 void EndResiManageMenuForResi();
 
-bool WriteVolMessageFile(TextExchange toadd);
-bool WriteResMessageFile(TextExchange toadd);
-bool ReadVolMessageFile();
-bool ReadResMessageFile();
+bool WriteMessageFile(TextExchange toadd);
+bool ReadMessageFile(TextExchange* MessageList, int type, int num);
