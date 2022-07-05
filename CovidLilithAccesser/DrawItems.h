@@ -9,5 +9,5 @@ void CheckButtonForInfoPage(MOUSEMSG m, rectProperties& Button, void (*doSth)(in
 void DrawLineButtonOfRes(rectProperties rect[], int sizeOfFont, resident* resinfo, MOUSEMSG m);
 void DrawLineButtonOfResForVol(rectProperties rects[], int sizeOfFont, resident* resinfo, MOUSEMSG m);
 void DrawLineButtonOfVol(rectProperties rects[], int sizeOfFont, volunteer* volinfo, MOUSEMSG m);
-void DrawTextModule(MOUSEMSG m, TextExchange texts);
+void DrawTextModule(MOUSEMSG m, std::vector<TextExchange>texts);
 void drawAlpha(IMAGE* picture, int  picture_x, int picture_y); //x为要载入图片的X坐标，y为Y坐标

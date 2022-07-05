@@ -27,10 +27,12 @@ bool loadLoginPageOpen;
 
 extern resident* residentinfo = { 0 };
 extern volunteer* volunteerInfo = { 0 };
-extern TextExchange* VolToResiMessageList = { 0 };
-extern TextExchange* ResiToVolMessageList = { 0 };
-extern TextExchange* VolToAdminMessageList = { 0 };
-extern TextExchange* AdminToVOlMessageList = { 0 };
+
+std::vector<TextExchange> VolToResiMessageList;
+std::vector<TextExchange> ResiToVolMessageList;
+std::vector<TextExchange> VolToAdminMessageList;
+std::vector<TextExchange> AdminToVOlMessageList;
+
 extern resident nowLoginResi = {0};
 extern volunteer nowLoginVol = {0};
 extern int numOfRes = 0;

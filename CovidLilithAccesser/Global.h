@@ -4,6 +4,9 @@
 #include<wchar.h>
 #include<locale.h>
 #include<stdlib.h>
+#include<vector>
+
+using namespace std;
 
 #define AdminToVol 1
 #define VolToResi 2
@@ -107,11 +110,12 @@ extern int numOfResiToVolMessage;
 extern int numOfAdminToVolMessage;
 extern int numOfVolToAdminMessage;
 
+extern std::vector<TextExchange> VolToResiMessageList;
+extern std::vector<TextExchange> ResiToVolMessageList;
+extern std::vector<TextExchange> VolToAdminMessageList;
+extern std::vector<TextExchange> AdminToVOlMessageList;
+
 extern resident* residentInfo;
 extern volunteer* volunteerInfo;
 extern resident nowLoginResi;
 extern volunteer nowLoginVol;
-extern TextExchange* VolToResiMessageList;
-extern TextExchange* ResiToVolMessageList;
-extern TextExchange* VolToAdminMessageList;
-extern TextExchange* AdminToVOlMessageList;

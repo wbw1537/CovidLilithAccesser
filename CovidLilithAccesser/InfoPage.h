@@ -30,4 +30,7 @@ void ReciManageMenuForResi();
 void EndResiManageMenuForResi();
 
 bool WriteMessageFile(TextExchange toadd);
-bool ReadMessageFile(TextExchange* MessageList, int type, int num);
+void ReadVolToResiMessage();
+void ReadAdminToVOlMessage();
+void ReadVolToAdminMessage();
+void ReadResiToVolMessage();

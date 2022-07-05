@@ -10,10 +10,14 @@ void AdminPage()
 	AdminPageOpen = 1;
 
 	ADM adminUser;
-	rectProperties text1, text2, text3, exitButtonCorr;
+	rectProperties text1, text2, text3, text4,text5,text6,text7,exitButtonCorr;
 	text1 = { 60,45,500,100 };
 	text2 = { 60,85,500,200 };
 	text3 = { 180,180,960,540 };
+	text4 = { 180,230,960,540 };
+	text5 = { 180,280,960,540 };
+	text6 = { 180,330,960,540 };
+	text7 = { 180,380,960,540 };
 	exitButtonCorr = { 800,480,860,510,0,1 };
 
 	//read the file to get the login account and passwd.
@@ -35,9 +39,15 @@ void AdminPage()
 	char adminText1[50] = { "管理员操作界面:" };
 	char adminText2[50];
 	char adminText3[200];
+	char adminText4[200];
+	char adminText5[200];
+	char adminText6[200];
+	char adminText7[200];
 	char exitButtonText[50] = { "退出" };
 	sprintf_s(adminText2, 50, "欢迎您，%s", adminUser.name, 20);
 	sprintf_s(adminText3, 50, "当前共有社区工作者%d名，用户%d名。", numOfVol, numOfRes);
+
+	sprintf_s(adminText4, 50, "当前管理员信箱共有%d封邮件。", numOfAdminToVolMessage+ numOfVolToAdminMessage);
 
 	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
 	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);
@@ -60,6 +70,8 @@ void AdminPage()
 	DrawButton(exitButtonCorr, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, exitButtonText, 20);
 
 	DrawTextsSingle(text3, songTi, adminText3, 25, 600, 0, blackOfText);
+	DrawTextsSingle(text4, songTi, adminText4, 25, 600, 0, blackOfText);
+
 	do{
 
 		//get the mouce position and operation

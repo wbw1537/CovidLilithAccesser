@@ -82,19 +82,21 @@ void InfoPage(int type,int nowType){
 	DrawButton(rectSolve, colorOutOfTheButton, colorInTheButton, colorClickingTheButton, exitButtonText, 20);
 
 	
-	TextExchange *textExchage = {0};
+	std::vector<TextExchange> temp;
 	if (type == AdminToVol) {
-		textExchage = AdminToVOlMessageList;
+		temp.assign(AdminToVOlMessageList.begin(), AdminToVOlMessageList.end());
 	}
 	if (type == VolToAdmin) {
-		textExchage = VolToAdminMessageList;
+		temp.assign(VolToAdminMessageList.begin(), VolToAdminMessageList.end());
 	}
 	if (type == ResiToVol) {
-		textExchage = ResiToVolMessageList;
+		temp.assign(ResiToVolMessageList.begin(), ResiToVolMessageList.end());
 	}
 	if (type == VolToResi) {
-		textExchage = VolToResiMessageList;
+		temp.assign(VolToResiMessageList.begin(), VolToResiMessageList.end());
 	}
+
+	forceToFlashButton = 1;
 	
 	indexToDrawPage = 0;
 
@@ -104,12 +106,11 @@ void InfoPage(int type,int nowType){
 		
 		CheckButton(m4, exitButtonCorr, ExitButtonForAdminInfoPage, exitButtonText, 20);
 		
-		DrawTextModule(m4, textExchage[indexToDrawPage]);
+		DrawTextModule(m4, temp);
 
 		forceToFlashButton = 0;
 
 	} while (InfoPageOpen);
-	free(textExchage);
 }
 
 void ExitButtonForAdminInfoPage() {
@@ -857,8 +858,6 @@ void EndVolManageMenu() {
 }
 
 
-
-
 bool WriteMessageFile(TextExchange toadd) {
 	FILE* fp = { 0 };
 	fp = fopen(".\\data\\message", "a");
@@ -867,33 +866,54 @@ bool WriteMessageFile(TextExchange toadd) {
 	return 0;
 }
 
-bool ReadMessageFile(TextExchange* MessageList, int type, int num) {
-	MessageList = (TextExchange*)malloc(5 * sizeof(TextExchange));
-	ZeroMemory(MessageList, 5 * sizeof(TextExchange));
-	int size[5] = {5,5,5,5,5}, index[5] = {0};
-	TextExchange tmp = { 0 };
-	TextExchange* tmpArray;
+
+void ReadVolToResiMessage() {
 	FILE* fp = fopen(".\\data\\message", "r");
+	TextExchange tmp = { 0 };
 	while (fscanf_s(fp, "%d ,%d ,%s ,%s ,%s",
 		&tmp.messageType, &tmp.isSolve, tmp.title, 500, tmp.message, 500, tmp.reply, 500) == 5
 		) {
-		if (tmp.messageType == type) {
-			MessageList[index[type]] = tmp;
-		}
-		if (index[type] == size[type] - 1) {
-			tmpArray = MessageList;
-			MessageList = (TextExchange*)malloc(2 * size[type] * sizeof(TextExchange));
-			if (MessageList == NULL) return false;
-			ZeroMemory(MessageList, 2 * size[type] * sizeof(TextExchange));
-			for (int i = 0; i < size[type]; i++) {
-				MessageList[i] = tmpArray[i];
-			}
-			size[type] *= 2;
-		}
-		if (tmp.messageType == type) {
-			index[type]++;
+		if (tmp.messageType == VolToResi) {
+			VolToResiMessageList.push_back(tmp);
 		}
 	}
-	num = index[type];
-	return true;
+	numOfVolToResiMessage = VolToResiMessageList.size();
+}
+
+void ReadResiToVolMessage() {
+	FILE* fp = fopen(".\\data\\message", "r");
+	TextExchange tmp = { 0 };
+	while (fscanf_s(fp, "%d ,%d ,%s ,%s ,%s",
+		&tmp.messageType, &tmp.isSolve, tmp.title, 500, tmp.message, 500, tmp.reply, 500) == 5
+		) {
+		if (tmp.messageType == ResiToVol) {
+			ResiToVolMessageList.push_back(tmp);
+		}
+	}
+	numOfResiToVolMessage = ResiToVolMessageList.size();
+}
+
+void ReadVolToAdminMessage() {
+	FILE* fp = fopen(".\\data\\message", "r");
+	TextExchange tmp = { 0 };
+	while (fscanf_s(fp, "%d ,%d ,%s ,%s ,%s",
+		&tmp.messageType, &tmp.isSolve, tmp.title, 500, tmp.message, 500, tmp.reply, 500) == 5
+		) {
+		if (tmp.messageType == ResiToVol) {
+			VolToAdminMessageList.push_back(tmp);
+		}
+	}
+	numOfVolToAdminMessage = VolToAdminMessageList.size();
+}
+void ReadAdminToVOlMessage() {
+	FILE* fp = fopen(".\\data\\message", "r");
+	TextExchange tmp = { 0 };
+	while (fscanf_s(fp, "%d ,%d ,%s ,%s ,%s",
+		&tmp.messageType, &tmp.isSolve, tmp.title, 500, tmp.message, 500, tmp.reply, 500) == 5
+		) {
+		if (tmp.messageType == ResiToVol) {
+			AdminToVOlMessageList.push_back(tmp);
+		}
+	}
+	numOfAdminToVolMessage = AdminToVOlMessageList.size();
 }

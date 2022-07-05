@@ -445,15 +445,15 @@ void DrawLineButtonOfVol(rectProperties rects[], int sizeOfFont, volunteer* voli
 
 }
 
-void DrawTextModule(MOUSEMSG m, TextExchange texts) {
+void DrawTextModule(MOUSEMSG m, std::vector<TextExchange>texts) {
 	rectProperties rectTitle, rectMessage, rectReply;
 	rectTitle = { 83,122,504,159 };
 	rectMessage = { 83,159,868,358 };
 	rectReply = { 83,358,868,465 };
 	if (forceToFlashButton) {
-		DrawTextsSingle(rectTitle, songTi, texts.title, 20, 600, 0, colorOfBackGround);
-		DrawTextsSingle(rectMessage, heiTi, texts.message, 18, 400, 0, colorOfBackGround);
-		DrawTextsSingle(rectReply, heiTi, texts.reply, 18, 400, 0, colorOfBackGround);
+		DrawTextsSingle(rectTitle, songTi, texts[indexToDrawPage].title, 20, 600, 0, colorOfBackGround);
+		DrawTextsSingle(rectMessage, heiTi, texts[indexToDrawPage].message, 18, 400, 0, colorOfBackGround);
+		DrawTextsSingle(rectReply, heiTi, texts[indexToDrawPage].reply, 18, 400, 0, colorOfBackGround);
 	}
 }
 
