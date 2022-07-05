@@ -1,5 +1,6 @@
 # CovidLilithAccesser
 ## 疫眼人通-社区疫情防控人员管理系统
+https://github.com/wbw1537/CovidLilithAccesser
 ---
 ## *使用教程：*
 ### 如果你想要对文件进行编译运行：
