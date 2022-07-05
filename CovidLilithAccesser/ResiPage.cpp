@@ -26,7 +26,7 @@ void ResiPage() {
 	char adminText2[50];
 	char adminText3[200];
 	char exitButtonText[50] = { "ÍË³ö" };
-	sprintf_s(adminText2, 50, "»¶Ó­Äú£¬%s", nowLoginResi.name, 20);
+	sprintf_s(adminText2, 50, "»¶Ó­Äú£¬%s", nowLoginResi->name, 20);
 
 	DrawTextsSingle(text1, songTi, adminText1, 30, 600, 0, blueOfText);
 	DrawTextsSingle(text2, songTi, adminText2, 20, 500, 0, blackOfText);

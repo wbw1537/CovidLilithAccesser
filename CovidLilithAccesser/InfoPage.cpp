@@ -497,7 +497,7 @@ void ReciManageMenuForResi() {
 
 	do {
 		m3 = GetMouseMsg();
-		DrawLineButtonOfRes(rects1, 15, &nowLoginResi, m3);
+		DrawLineButtonOfRes(rects1, 15, nowLoginResi, m3);
 		
 		lastIndexToDrawPage = indexToDrawPage;
 		forceToFlashButton = 0;

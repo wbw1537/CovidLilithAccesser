@@ -33,7 +33,7 @@ std::vector<TextExchange> ResiToVolMessageList;
 std::vector<TextExchange> VolToAdminMessageList;
 std::vector<TextExchange> AdminToVOlMessageList;
 
-extern resident nowLoginResi = {0};
+extern resident* nowLoginResi = {0};
 extern volunteer nowLoginVol = {0};
 extern int numOfRes = 0;
 extern int numOfVol = 0;

@@ -45,7 +45,7 @@ void UserSignIn(){
 			InputBox(resInputPasswd, 20, InputPasswd);
 			foundID = 1;
 			if (!strcmp(resInputPasswd, residentInfo[i].passwd)) {
-				nowLoginResi = residentInfo[i];
+				nowLoginResi = &residentInfo[i];
 				loadLoginPageOpen = 0;
 				ResiPage();
 			}
@@ -88,7 +88,7 @@ void UserSignIn(){
 			resInfo.ifRead = 0;
 			AddResident(resInfo);
 			LoadResidentInfoFile();
-			nowLoginResi = resInfo;
+			nowLoginResi = &resInfo;
 			loadLoginPageOpen = 0;
 			ResiPage();
 		}

@@ -117,5 +117,5 @@ extern std::vector<TextExchange> AdminToVOlMessageList;
 
 extern resident* residentInfo;
 extern volunteer* volunteerInfo;
-extern resident nowLoginResi;
+extern resident *nowLoginResi;
 extern volunteer nowLoginVol;
